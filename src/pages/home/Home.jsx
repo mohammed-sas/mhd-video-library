@@ -1,9 +1,10 @@
 import hero from '../../assets/astrox.png'
+import FeaturedCategory from './featured categories/FeaturedCategory';
 import classes from './home.module.css';
 const Home = () => {
     return (
         <main className={`${classes["home-container"]} bg-black`}>
-            <div className={classes["hero-container"]}>
+            <div className={`${classes["hero-container"]}  `}>
                 <img src={hero} alt="hero-image" />
                 <div className={classes["hero-body"]}>
                     <h2 className="text-white">Why and How of Badminton</h2>
@@ -11,6 +12,7 @@ const Home = () => {
                 <button className="btn btn-primary bg-primary text-grey">Explore Now</button>
                 </div>
             </div>
+            <FeaturedCategory/>
         </main>
     )
 }
