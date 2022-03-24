@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 const Login = () => {
     const [user, setUser] = useState({
         email: "mohammed@gmail.com",
-        password: "password",
+        password: "test123",
       });
       const handleChange = (e) => {
         const { name, value } = e.target;
