@@ -2,7 +2,7 @@ import logo from '../../assets/logo.webp';
 import classes from './navbar.module.css';
 const Navbar = () => {
   return (
-    <nav className="nav-bar bg-black bottom-shadow">
+    <nav className="nav-bar bg-black bottom-shadow width-auto">
     <i className="fas fa-bars drawer-btn"></i>
     <div className={`nav-brand ${classes["nav-brand-lib"]}`}>
       <h2 className="text-primary">MHD</h2>
