@@ -1,8 +1,11 @@
 import './signup.css';
 import '../login/login.css';
 import {useState} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import { useAuth } from '../../context/auth-context';
 const Signup = () => {
+    const navigate = useNavigate();
+    const {signUp} = useAuth();
     const [user,setUser] = useState({
         email:"",
         firstName:"",
@@ -17,11 +20,21 @@ const Signup = () => {
             [name]:value
         })
     }
+    const submitHandler=async (e)=>{
+        try{
+            e.preventDefault();
+            const status = await signUp(user);
+            if(status===201)
+                navigate("/");
+        }catch(error){
+            console.log(error);
+        }
+    }
     return (
         <main className="login-container">
                 <div className="login-form-container bg-black ">
                     <h2 className="centered-text text-white">Signup</h2>
-                    <form action="post" className="login-form" >
+                    <form action="post" className="login-form" onSubmit={submitHandler}>
                         <label className="text-white" htmlFor="email">Email address 
                             <br/> <input id="email" name="email" onChange={changeHandler} type="email" placeholder="abc@neog.com"/>
                         </label>

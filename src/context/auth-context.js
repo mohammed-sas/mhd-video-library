@@ -36,7 +36,7 @@ const useProvideAuth=()=>{
         try{
             const response = await axios.post('/api/auth/login',user);
             localStorage.setItem("token",response.data.encodedToken);
-            currentUser(response.data.foundUser);
+            setCurrentUser(response.data.foundUser);
             return response.status;
         }catch(error){
             console.log(error);
