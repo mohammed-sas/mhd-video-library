@@ -26,6 +26,7 @@ const useProvideAuth=()=>{
         try{
             const response = await axios.post('/api/auth/signup',user);
             localStorage.setItem("token",response.data.encodedToken);
+            console.log(response)
             setCurrentUser(response.data.createdUser);
             return response.status;
         }catch(error){

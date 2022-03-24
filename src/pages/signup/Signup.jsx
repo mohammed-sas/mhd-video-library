@@ -38,11 +38,11 @@ const Signup = () => {
                         <label className="text-white" htmlFor="email">Email address 
                             <br/> <input id="email" name="email" onChange={changeHandler} type="email" placeholder="abc@neog.com"/>
                         </label>
-                        <label className="text-white" htmlFor="fname">First Name 
-                            <br/> <input id="firstName" name="fname" required onChange={changeHandler} type="text" placeholder="First Name"/>
+                        <label className="text-white" htmlFor="firstName">First Name 
+                            <br/> <input id="firstName" name="firstName" required onChange={changeHandler} type="text" placeholder="First Name"/>
                         </label>
-                        <label className="text-white" htmlFor="lname">Last Name 
-                            <br/> <input id="lastName" name="lname" required onChange={changeHandler} type="text" placeholder="Last Name"/>
+                        <label className="text-white" htmlFor="lastName">Last Name 
+                            <br/> <input id="lastName" name="lastName" required onChange={changeHandler} type="text" placeholder="Last Name"/>
                         </label>
                         
                         <label className="text-white" htmlFor="password">Password

@@ -1,7 +1,13 @@
 import logo from "../../assets/logo.webp";
 import classes from "./navbar.module.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/auth-context";
 const Navbar = () => {
+  const { currentUser,logout } = useAuth();
+
+  const logoutHandler=()=>{
+    logout();
+  }
   return (
     <nav className="nav-bar bg-black bottom-shadow width-auto">
       <i className="fas fa-bars drawer-btn"></i>
@@ -20,11 +26,15 @@ const Navbar = () => {
       <div className="nav-links">
         <ul>
           <li>
-            <Link to="/login">
-              <button className="btn btn-primary bg-primary text-grey">
-                Login
-              </button>
-            </Link>
+            {currentUser ? (
+              <span className="text-white">{currentUser.firstName}</span>
+            ) : (
+              <Link to="/login">
+                <button className="btn btn-primary bg-primary text-grey">
+                  Login
+                </button>
+              </Link>
+            )}
           </li>
           <li>
             <div>
@@ -35,6 +45,9 @@ const Navbar = () => {
             <div>
               <span>Playlist</span>
             </div>
+          </li>
+          <li>
+            {currentUser ? <button className="btn btn-secondary" onClick={logoutHandler}>Logout</button> : null}
           </li>
         </ul>
       </div>
