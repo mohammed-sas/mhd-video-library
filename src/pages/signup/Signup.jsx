@@ -3,9 +3,13 @@ import '../login/login.css';
 import {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 import { useAuth } from '../../context/auth-context';
+import { useToggle } from '../../hooks/useToggle';
 const Signup = () => {
     const navigate = useNavigate();
+    const [showpass,setShowpass] = useToggle(false);
+    const [showConfirmpass,setShowConfirmpass] = useToggle(false);
     const {signUp} = useAuth();
+    const [passMatch,setPassMatch] = useState(false);
     const [user,setUser] = useState({
         email:"",
         firstName:"",
@@ -23,6 +27,10 @@ const Signup = () => {
     const submitHandler=async (e)=>{
         try{
             e.preventDefault();
+            if(user.password !== user.confirmPassword){
+                setPassMatch(false);
+                return;
+            }
             const status = await signUp(user);
             if(status===201)
                 navigate("/");
@@ -47,16 +55,17 @@ const Signup = () => {
                         
                         <label className="text-white" htmlFor="password">Password
                             <div id="password" className="password">
-                                <input name="password" required onChange={changeHandler} />
-                            
+                                <input name="password" type={showpass ?"text":"password"} required onChange={changeHandler} />
+                                <i onClick={setShowpass} className={"fas " + (showpass?"fa-eye":"fa-eye-slash")}></i>
                             </div>
                         </label>
                         <label className="text-white"  htmlFor="confirmPassword">Confirm Password
                             <div className="password">
-                                <input name="confirmPassword" required  onChange={changeHandler} />
-                                
+                                <input name="confirmPassword" type={showConfirmpass ?"text":"password"} required  onChange={changeHandler} />
+                                <i onClick={setShowConfirmpass} className={"fas " + (showConfirmpass?"fa-eye":"fa-eye-slash")}></i>
                             </div>
                         </label>
+                        {passMatch?null: <span className="mismatch">Passwords Not Matching</span>}
                         
                         
                         <div>
