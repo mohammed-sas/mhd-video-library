@@ -1,0 +1,27 @@
+
+img{
+    max-inline-size: 100%;
+}
+.featured-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 1rem;
+    box-shadow: rgba(255, 255, 255, 0.3) 0px 1px 2px 0px, rgba(255, 255, 255, 0.15) 0px 1px 3px 1px;
+}
+.featured-item img{
+    height: 15rem;
+    width: 25rem;
+}
+.featured-category{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.container{
+    margin-top: -5rem;
+}
