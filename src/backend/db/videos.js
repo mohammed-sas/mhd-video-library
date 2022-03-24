@@ -146,5 +146,126 @@ export const videos = [
     channelTitle:"Badminton Famly",
     catgory:"defense",
     channelThumbnail:"https://yt3.ggpht.com/ytc/AKedOLQ8uUyZP-fdAtjaiqpp6mcdJWIxyAOlFU7BCwZHIw=s88-c-k-c0x00ffffff-no-rj" 
+  },
+  {
+    _id: "2dae1656-ab96-11ec-b909-0242ac120002",
+    youtubeId:"SIVJqH90pU8",
+    title: "How to use the feet in badminton - Footwork biomechanics",
+    description:
+      "How to use the feet in badminton - Footwork biomechanics.\nI will show you how to use correct footwork in badminton. I cover some of the basic moves in the badminton footwork. The footwork biomechanics is really important to get more balance, power, and low gravity, and to avoid injuries in your feet. With the correct badminton footwork, you will be able to cover the court much better and do better shots.",
+    videoThumbnail: "https://i.ytimg.com/vi/SIVJqH90pU8/mqdefault.jpg",
+    channelTitle:"Badminton Famly",
+    catgory:"footwork",
+    channelThumbnail:"https://yt3.ggpht.com/ytc/AKedOLQ8uUyZP-fdAtjaiqpp6mcdJWIxyAOlFU7BCwZHIw=s88-c-k-c0x00ffffff-no-rj" 
+  },
+  {
+    _id: "2dae1778-ab96-11ec-b909-0242ac120002",
+    youtubeId:"KwU3UwV3f6M",
+    title: "IMPORTANT Badminton FOOTWORK - The LUNGE",
+    description:
+      " The lunge is used all the times in all areas of the badminton court. Master this movement and then you will be able to land better, do better strokes and move faster on court💪🏻.",
+    videoThumbnail: "https://i.ytimg.com/vi/KwU3UwV3f6M/mqdefault.jpg",
+    channelTitle:"Badminton Famly",
+    catgory:"footwork",
+    channelThumbnail:"https://yt3.ggpht.com/ytc/AKedOLQ8uUyZP-fdAtjaiqpp6mcdJWIxyAOlFU7BCwZHIw=s88-c-k-c0x00ffffff-no-rj" 
+  },
+  {
+    _id: "2dae18b8-ab96-11ec-b909-0242ac120002",
+    youtubeId:"I9ALMfFaiIE",
+    title: "Basic FOOTWORK badminton - 4 corners",
+    description:
+      "In some cases you have to use a non-directltional split step, like in the defense to the sides. Also sometimes on the center if you are “waiting” for the opponents shot. The quickly change to a directional split step for the corner you want to go to👍🏻",
+    videoThumbnail: "https://i.ytimg.com/vi/I9ALMfFaiIE/mqdefault.jpg",
+    channelTitle:"Badminton Famly",
+    catgory:"footwork",
+    channelThumbnail:"https://yt3.ggpht.com/ytc/AKedOLQ8uUyZP-fdAtjaiqpp6mcdJWIxyAOlFU7BCwZHIw=s88-c-k-c0x00ffffff-no-rj" 
+  },
+  {
+    _id: "2dae1bb0-ab96-11ec-b909-0242ac120002",
+    youtubeId:"8xEzJQ09KyY",
+    title: "Badminton China JUMP Footwork",
+    description:
+      "One of the most used badminton footwork jumps is the China Jump, or some call it the side shuffle jump. The China jump is good in these situation where you can jump out fast and reach the shuttle early and high to put pressure on your opponents.",
+    videoThumbnail: "https://i.ytimg.com/vi/8xEzJQ09KyY/mqdefault.jpg",
+    channelTitle:"Badminton Famly",
+    catgory:"footwork",
+    channelThumbnail:"https://yt3.ggpht.com/ytc/AKedOLQ8uUyZP-fdAtjaiqpp6mcdJWIxyAOlFU7BCwZHIw=s88-c-k-c0x00ffffff-no-rj" 
+  },
+  {
+    _id: "2dae1d18-ab96-11ec-b909-0242ac120002",
+    youtubeId:"1KT2jfzGnwM",
+    title: "3 TIPS badminton FOOTWORK - Badminton Famly",
+    description:
+      "When you move on court it is important to move the best possible way, we got 3 hot tips for you to be better and faster on court.Remember to have patience when you train this, it is hard to master.",
+    videoThumbnail: "https://i.ytimg.com/vi/1KT2jfzGnwM/mqdefault.jpg",
+    channelTitle:"Badminton Famly",
+    catgory:"footwork",
+    channelThumbnail:"https://yt3.ggpht.com/ytc/AKedOLQ8uUyZP-fdAtjaiqpp6mcdJWIxyAOlFU7BCwZHIw=s88-c-k-c0x00ffffff-no-rj" 
+  },
+  {
+    _id: "2dae20ce-ab96-11ec-b909-0242ac120002",
+    youtubeId:"1KT2jfzGnwM",
+    title: "How to use the upper body - 5 moves biomechanics",
+    description:
+      "How to use the upper body - 5 moves biomechanics. Welcome to this tutorial about how to use your upper body in badminton and how to move correctly for you to be faster, have better balance, make more variations, and hit with more power in your shots. The upper body is deeply connected to the footwork and the core. I show 5 wrong moves and then 5 correct ones.",
+    videoThumbnail: "https://i.ytimg.com/vi/jiL3IrdOQf4/mqdefault.jpg",
+    channelTitle:"Badminton Famly",
+    catgory:"bio-mechanics",
+    channelThumbnail:"https://yt3.ggpht.com/ytc/AKedOLQ8uUyZP-fdAtjaiqpp6mcdJWIxyAOlFU7BCwZHIw=s88-c-k-c0x00ffffff-no-rj" 
+  },
+  {
+    _id: "2dae236c-ab96-11ec-b909-0242ac120002",
+    youtubeId:"U1MmM6hj39c",
+    title: "Badminton drop biomechanics - Easy tips",
+    description:
+      "Badminton drop biomechanics - Easy tips to learn in this tutorial about the badminton basic drop shot. I look at the biomechanics in the basic drop and will share some easy tips for you to train on your own. The badminton drop can be a great variation to all other overhead shots in badminton, so add the drop shot and get better attacking shots.",
+    videoThumbnail: "https://i.ytimg.com/vi/U1MmM6hj39c/mqdefault.jpg",
+    channelTitle:"Badminton Famly",
+    catgory:"bio-mechanics",
+    channelThumbnail:"https://yt3.ggpht.com/ytc/AKedOLQ8uUyZP-fdAtjaiqpp6mcdJWIxyAOlFU7BCwZHIw=s88-c-k-c0x00ffffff-no-rj" 
+  },
+  {
+    _id: "2dae24ac-ab96-11ec-b909-0242ac120002",
+    youtubeId:"CbmGhtK5A24",
+    title: "Badminton clear bio-mechanics - 5 easy tips",
+    description:
+      "Badminton clear bio-mechanics - learn it here with 5 easy tips. The badminton clear technique is very simple but also very tricky to master at the same time. Let me share with you 5 easy tips to learn the badminton clear bio-mechanics. The use of the forearm rotation, the forehand grip and more are key factors in doing a perfect clear.",
+    videoThumbnail: "https://i.ytimg.com/vi/CbmGhtK5A24/mqdefault.jpg",
+    channelTitle:"Badminton Famly",
+    catgory:"bio-mechanics",
+    channelThumbnail:"https://yt3.ggpht.com/ytc/AKedOLQ8uUyZP-fdAtjaiqpp6mcdJWIxyAOlFU7BCwZHIw=s88-c-k-c0x00ffffff-no-rj" 
+  },
+  {
+    _id: "2dae25f6-ab96-11ec-b909-0242ac120002",
+    youtubeId:"wdm7qtjvZbk",
+    title: "Badminton hammer grip - The panhandle grip tutorial",
+    description:
+      "Badminton hammer grip - The panhandle grip is used in many places on court, but still be careful using it too much, as you can get locked in that position. The hammer grip is the grip most beginners and kids use, as it is the most natural grip to do, because you think the strings need to be parallel towards the shuttle, but that is wrong. If you hold a 100% hammer/panhandle grip then you can´t rotate the forearm and add power to your shots. I will show you where to use it, and how to use it - Let´s GO😃",
+    videoThumbnail: "https://i.ytimg.com/vi/wdm7qtjvZbk/mqdefault.jpg",
+    channelTitle:"Badminton Famly",
+    catgory:"bio-mechanics",
+    channelThumbnail:"https://yt3.ggpht.com/ytc/AKedOLQ8uUyZP-fdAtjaiqpp6mcdJWIxyAOlFU7BCwZHIw=s88-c-k-c0x00ffffff-no-rj" 
+  },
+  {
+    _id: "2dae289e-ab96-11ec-b909-0242ac120002",
+    youtubeId:"3vatPgXL8NI",
+    title: "MUST learn Forearm Rotation Bio-Mechanics",
+    description:
+      "This video is a MUST WATCH video about how train the forearm rotation. How, why and where? We cover all aspects in this tutorial. If you want more badminton power in your smash, drives, lifts etc. then you must learn this movement - Without a forearm rotation you can't have powerful drives!",
+    videoThumbnail: "https://i.ytimg.com/vi/3vatPgXL8NI/mqdefault.jpg",
+    channelTitle:"Badminton Famly",
+    catgory:"bio-mechanics",
+    channelThumbnail:"https://yt3.ggpht.com/ytc/AKedOLQ8uUyZP-fdAtjaiqpp6mcdJWIxyAOlFU7BCwZHIw=s88-c-k-c0x00ffffff-no-rj" 
+  },
+  {
+    _id: "2dae29f2-ab96-11ec-b909-0242ac120002",
+    youtubeId:"WmDl_048fDk",
+    title: "How Should We Use the Wrist?",
+    description:
+      "A lot of you guys in the Badminton Famly have requested clarification of the wrist movement, so here it is.Here comes the nerdy stuff.People are asking how we get power, how can we get more powerful smashes. Actually, we don't want to aim for power when we practice. We want to aim for efficiency and efficient movement and then power will come automatically.",
+    videoThumbnail: "https://i.ytimg.com/vi/WmDl_048fDk/mqdefault.jpg",
+    channelTitle:"Badminton Famly",
+    catgory:"bio-mechanics",
+    channelThumbnail:"https://yt3.ggpht.com/ytc/AKedOLQ8uUyZP-fdAtjaiqpp6mcdJWIxyAOlFU7BCwZHIw=s88-c-k-c0x00ffffff-no-rj"
   }
 ];
