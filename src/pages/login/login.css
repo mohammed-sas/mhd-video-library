@@ -7,7 +7,8 @@
 .login-form-container{
     width: 30rem;
     padding: 2rem;
-    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+    border: 1px solid var(--primary);
+    border-radius: 10px;
 }
 .login-form-container,.login-form{
     display: flex;
@@ -23,6 +24,7 @@ form input{
     padding: 0 5px;
     border:1px solid var(--gray-70);
     border-radius: 5px;
+    margin-top: 5px;
 }
 #remember-me{
     height:1.5rem;
@@ -36,6 +38,9 @@ form input{
 }
 a{
     text-decoration: none;
+}
+label{
+    text-align: left;
 }
 @media only screen and (max-width:600px) {
     html{

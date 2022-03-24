@@ -10,6 +10,7 @@
   --grey:#C5C6C7;
   --primary:#66FCF1;
   --secondary:#45A29E;
+  --white:#CCCCCC;
 }
 
 span{
@@ -33,7 +34,7 @@ span{
 }
 
 .text-white{
-  color:white;
+  color:var(--white)
 }
 
 .btn-primary:hover{

@@ -16,9 +16,9 @@ const Login = () => {
     return (
         <main className="login-container ">
         <div className="login-form-container bg-black ">
-          <h2 className="centered-text grey">Login</h2>
+          <h2 className="centered-text text-white">Login</h2>
           <form action="post" className="login-form" >
-            <label htmlFor="email">
+            <label htmlFor="email" className="text-white">
               Email address
               <br />{" "}
               <input
@@ -31,7 +31,7 @@ const Login = () => {
               />
             </label>
 
-            <label htmlFor="password">
+            <label htmlFor="password" className="text-white">
               Password
               <br />{" "}
               <input
@@ -44,17 +44,17 @@ const Login = () => {
             </label>
 
             <div className="remember-me-container">
-              <label htmlFor="remember-me">
+              <label htmlFor="remember-me" className="text-white">
                 <input id="remember-me" type="checkbox" /> Remember me
               </label>
               <span>
-                <a href="">Forgot Your Password?</a>
+                <a href="" className="text-primary">Forgot Your Password?</a>
               </span>
             </div>
-            <input type="submit" value="Login" className="btn btn-primary" />
+            <input type="submit" value="Login" className="btn btn-primary bg-primary text-grey" />
             <div>
-              <p className="centered-text">
-                <Link to="/signup">
+              <p className="centered-text ">
+                <Link to="/signup" className="text-primary">
                   Create New Account <i className="fas fa-chevron-right"></i>
                 </Link>
               </p>
