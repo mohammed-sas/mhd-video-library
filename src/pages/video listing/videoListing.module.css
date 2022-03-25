@@ -6,7 +6,7 @@
     grid-template-areas:"side-nav video-lists" ;
 }
 
-.side-navbar{
+aside{
     grid-area: side-nav;
 }
 

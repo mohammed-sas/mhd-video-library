@@ -1,6 +1,7 @@
 .App {
   text-align: center;
   display: grid;
+  gap: 1rem;
   grid-template-rows: auto 1fr;
   grid-template-columns: 1fr;
   grid-template-areas: "nav"
