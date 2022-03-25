@@ -9,6 +9,7 @@ const VideoListing = () => {
         const fetchVideos=async ()=>{
             try{
                 const response = await axios.get('/api/videos');
+                if(response.status===200)
                 setLists(response.data.videos);
             }catch(error){
                 console.log(error);
