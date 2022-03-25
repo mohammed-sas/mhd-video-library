@@ -1,6 +1,7 @@
 import classes from "./videoCard.module.css";
-
+import { useToggle } from "../../../hooks/useToggle";
 const VideoCard = ({ video }) => {
+  const [showMenu, setShowMenu] = useToggle(false);
   return (
     <div className={classes["video-card"]}>
       <div className={classes["video-thumbnail"]}>
@@ -12,12 +13,28 @@ const VideoCard = ({ video }) => {
           src={video.channelThumbnail}
           alt={video.channelTitle}
         />
-        <div className={classes["video-card-typography"]}> 
-            <p className="text-white">{video.title}</p>
-            <p className={`text-white ${classes["channel-title"]}`}>{video.channelTitle}</p>
-            <small className={`text-white ${classes["video-category"]}`}>{video.category}</small>
+        <div className={classes["video-card-typography"]}>
+          <p className="text-white">{video.title}</p>
+          <p className={`text-white ${classes["channel-title"]}`}>
+            {video.channelTitle}
+          </p>
+          <small className={`text-white ${classes["video-category"]}`}>
+            {video.category}
+          </small>
         </div>
-        <i className={`fas fa-ellipsis-v text-white ${classes["video-controls"]}`}></i>
+        <div className={classes["controls-container"]}>
+          <i
+            className={`fas fa-ellipsis-v text-white ${classes["video-controls"]}`}
+            onClick={setShowMenu}
+          ></i>
+          {showMenu ? (
+            <ul className={classes["controls"]}>
+              <li className={classes["control-item"]}>
+                <i className="fas fa-plus text-white"></i> <span className="text-white">Add to playlist</span>
+              </li>
+            </ul>
+          ) : null}
+        </div>
       </div>
     </div>
   );

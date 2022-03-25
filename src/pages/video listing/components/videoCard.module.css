@@ -54,3 +54,22 @@ img{
 .video-card-typography p:first-child{
     height: 3rem;
 }
+.controls-container{
+    position: relative;
+}
+.controls{
+    background: #30323A;
+    width: 12rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+}
+.control-item{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+.control-item:hover{
+    background: #4E505B;
+}
