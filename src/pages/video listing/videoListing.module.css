@@ -4,6 +4,7 @@
     grid-template-columns: 10rem 1fr;
     grid-template-rows: 1fr;
     grid-template-areas:"side-nav video-lists" ;
+    
 }
 
 aside{
@@ -13,6 +14,7 @@ aside{
 .lists{
     grid-area: video-lists;
     overflow-y: scroll;
+    padding: 1rem 0 0 1rem;
 }
 
 .video-cards{

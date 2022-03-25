@@ -2,6 +2,7 @@ import classes from './videoListing.module.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import VideoCard from './components/VideoCard';
+import SideNavbar from '../../components/side navbar/SideNavbar';
 const VideoListing = () => {
     const [lists,setLists] = useState([]);
     useEffect(()=>{
@@ -18,9 +19,7 @@ const VideoListing = () => {
     },[])
     return (
         <main className={classes["listing-container"]}>
-            <aside className={classes["side-navbar"]}>
-
-            </aside>
+            <SideNavbar/>
             <div className={classes["lists"]}>
                 <div className="filters"></div>
                 <div className={classes["video-cards"]}>

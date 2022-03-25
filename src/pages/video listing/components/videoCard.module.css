@@ -9,12 +9,14 @@ img{
     width: 32rem;
     height: 30rem;
     text-align: left;
+    box-shadow:var(--secondary) 0px 1px 4px;
 }
 
 .video-details{
     display: flex;
     align-items:flex-start;
     justify-content: space-between;
+    
 }
 
 .video-details>*{
