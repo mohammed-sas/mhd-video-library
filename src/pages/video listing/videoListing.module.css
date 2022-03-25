@@ -1,0 +1,25 @@
+
+.listing-container{
+    display: grid;
+    grid-template-columns: 10rem 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:"side-nav video-lists" ;
+    
+}
+
+aside{
+    grid-area: side-nav;
+}
+
+.lists{
+    grid-area: video-lists;
+    overflow-y: scroll;
+    padding: 1rem 0 0 1rem;
+}
+
+.video-cards{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+}
+
