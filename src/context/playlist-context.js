@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useReducer } from "react";
 import {playlistReducer} from '../reducer/playlistReducer'
 
 const PlaylistContext = createContext(null);
@@ -24,6 +24,7 @@ const usePlaylistAction=()=>{
     const addNewPlaylist=async (data)=>{
         try{
             const response = await axios.post('api/user/playlists',{playlist:data},auth);
+            console.log(response);
             if(response.status === 201){
                 playlistDispatch({type:"UPDATE",payload:response.data.playlists});
             }
@@ -34,7 +35,8 @@ const usePlaylistAction=()=>{
     const addToPlaylist=async (id,video)=>{
         try{
             const response = await axios.post(`/api/user/playlists/${id}`,{video},auth);
-            console.log(response);
+            console.log(response.data.playlist);
+            playlistDispatch({type:"ADD_TO_PLAYLIST",payload:response.data.playlist})
         }catch(error){
             console.log(error);
         }

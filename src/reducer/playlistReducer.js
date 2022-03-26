@@ -18,6 +18,11 @@ const playlistReducer=(state,{type,payload})=>{
                 ...state,
                 playlists:payload
             }
+        case "ADD_TO_PLAYLIST":
+            return{
+                ...state,
+                playlists:[payload,...state.playlists.filter(list=>list._id !== payload._id)]
+            }
     }
 }
 

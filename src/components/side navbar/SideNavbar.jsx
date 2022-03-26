@@ -1,30 +1,38 @@
-import classes from './sideNavbar.module.css';
-
+import classes from "./sideNavbar.module.css";
+import { Link } from "react-router-dom";
 const SideNavbar = () => {
-    return (
-        <aside className={classes["side-navbar"]}>
-            <div>
-            <i className="fas fa-home"></i>
-            <span>Home</span>
-            </div>
-            <div>
-            <i className="fas fa-compass"></i>
-            <span>Explore</span>
-            </div>
-            <div>
-            <i className="fas fa-list-music"></i>
-            <span>Playlist</span>
-            </div>
-            <div>
-            <i className="fas fa-thumbs-up"></i>
-            <span>Liked</span>
-            </div>
-            <div>
-            <i className="fas fa-history"></i>
-            <span>History</span>
-            </div>
-        </aside>
-    )
-}
+  return (
+    <aside className={classes["side-navbar"]}>
+      <Link to="/">
+        <div>
+          <i className="fas fa-home"></i>
+          <span>Home</span>
+        </div>
+      </Link>
+      <Link to="/explore">
+        <div>
+          <i className="fas fa-compass"></i>
+          <span>Explore</span>
+        </div>
+      </Link>
 
-export default SideNavbar
+      <Link to="/playlists">
+        <div>
+          <i class="fas fa-list"></i>
+          <span>Playlist</span>
+        </div>
+      </Link>
+
+      <div>
+        <i className="fas fa-thumbs-up"></i>
+        <span>Liked</span>
+      </div>
+      <div>
+        <i className="fas fa-history"></i>
+        <span>History</span>
+      </div>
+    </aside>
+  );
+};
+
+export default SideNavbar;
