@@ -42,7 +42,7 @@ const usePlaylistAction=()=>{
 
     const removeFromPlaylist = async (id,video)=>{
         try{
-            const response = await axios.delete(`api/user/playlists/${id}/${video._id}`,auth);
+            const response = await axios.delete(`/api/user/playlists/${id}/${video._id}`,auth);
             if(response.status === 200){
                 playlistDispatch({type:"REMOVE_FROM_PLAYLIST",payload:response.data.playlist});
             }
