@@ -1,6 +1,8 @@
 import classes from "./sideNavbar.module.css";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../context/auth-context";
 const SideNavbar = () => {
+  const {currentUser} = useAuth();
   return (
     <aside className={classes["side-navbar"]}>
       <Link to="/">
@@ -16,9 +18,9 @@ const SideNavbar = () => {
         </div>
       </Link>
 
-      <Link to="/playlists">
+      <Link to={currentUser ? "/playlists":"/login"}>
         <div>
-          <i class="fas fa-list"></i>
+          <i className="fas fa-list"></i>
           <span>Playlist</span>
         </div>
       </Link>

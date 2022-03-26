@@ -43,12 +43,12 @@ const ActionsModal = ({playlistVideo, setShowModal }) => {
         >
           Create Playlist
         </button>
-        <ul>
+        <ul className={classes["playlists"]}>
           {playlistState.playlists.map((list) => {
             return (
               <li key={list._id}>
-                <label htmlFor="playlist" className="text-white">
-                    <input type="checkbox" checked={isPresentInPlaylist(list._id)} onChange={(e)=>changeHandler(e,list._id)} /> {list.title}
+                <label htmlFor="playlist" className="text-white" className={classes["playlist-item"]}>
+                    <input type="checkbox" checked={isPresentInPlaylist(list._id)} onChange={(e)=>changeHandler(e,list._id)} /> <span>{list.title}</span>
                 </label>
               </li>
             );

@@ -1,6 +1,5 @@
 
 const playlistReducer=(state,{type,payload})=>{
-    console.log(type,payload);
     switch(type){
         case "FETCHING":
             return{

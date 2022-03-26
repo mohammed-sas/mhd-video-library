@@ -14,6 +14,7 @@
     width: 35rem;
     position: relative;
     background: var(--black);
+    padding: 1rem;
 }
 
 .close-btn{
@@ -21,4 +22,19 @@
   top: 0;
   right: 0;
   font-size: 1.4rem;
+}
+
+.playlists{
+  padding-top: 1rem;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 15rem;
+  margin:0 auto;
+}
+
+.playlist-item{
+  display: flex;
+  justify-content: space-between;
 }

@@ -8,8 +8,6 @@ import VideoCard from '../../../components/video card/VideoCard'
 const SpecificPlaylist = () => {
     const {playlistState} = usePlaylist();
     const {playlistId} = useParams();
-
-    console.log(playlistId);
     return (
         <main className={classes["specific-playlist"]}>
             <SideNavbar/>
@@ -17,7 +15,7 @@ const SpecificPlaylist = () => {
                 {
                     playlistState.playlists.filter(list=>list._id==playlistId)[0].videos.map(video=>{
                         return(
-                            <VideoCard video={video}/>
+                            <VideoCard key={video._id} video={video} playlistId={playlistId} />
                         )
                     })
                 }
