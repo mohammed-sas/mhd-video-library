@@ -8,7 +8,15 @@ const ActionsModal = ({playlistVideo, setShowModal }) => {
 
   const addPlaylistHandler = async () => {
     try {
-      await addNewPlaylist({ title: newPlayList, description: "" });
+      if(newPlayList.trim()===""){
+        return;
+      }
+      let isExist = playlistState.playlists.find(list=> list.title.toLowerCase()=== newPlayList.trim().toLowerCase());
+      if(isExist){
+        return;
+      }
+
+      await addNewPlaylist({ title: newPlayList.trim(), description: "" });
     } catch (error) {
       console.log(error);
     }
