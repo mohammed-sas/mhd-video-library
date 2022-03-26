@@ -1,7 +1,12 @@
 import classes from "./videoCard.module.css";
 import { useToggle } from "../../../hooks/useToggle";
-const VideoCard = ({ video }) => {
+const VideoCard = ({ video,setShowModal,setPlaylistVideo }) => {
   const [showMenu, setShowMenu] = useToggle(false);
+  const playListHandler=()=>{
+    setShowModal();
+    setShowMenu();
+    setPlaylistVideo(video);
+  }
   return (
     <div className={classes["video-card"]}>
       <div className={classes["video-thumbnail"]}>
@@ -29,7 +34,7 @@ const VideoCard = ({ video }) => {
           ></i>
           {showMenu ? (
             <ul className={classes["controls"]}>
-              <li className={classes["control-item"]}>
+              <li className={classes["control-item"]} onClick={playListHandler}>
                 <i className="fas fa-plus text-white"></i> <span className="text-white">Add to playlist</span>
               </li>
             </ul>

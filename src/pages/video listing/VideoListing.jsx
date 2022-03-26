@@ -3,8 +3,12 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import VideoCard from './components/VideoCard';
 import SideNavbar from '../../components/side navbar/SideNavbar';
+import { useToggle } from '../../hooks/useToggle';
+import ActionsModal from '../../components/video actions modal/ActionsModal';
 const VideoListing = () => {
     const [lists,setLists] = useState([]);
+    const [showModal,setShowModal] = useToggle(false);
+    const [playlistVideo,setPlaylistVideo] = useState(null);
     useEffect(()=>{
         const fetchVideos=async ()=>{
             try{
@@ -26,11 +30,14 @@ const VideoListing = () => {
                 <div className={classes["video-cards"]}>
                     {
                         lists.map(video=>{
-                            return <VideoCard key={video._id} video={video}/>
+                            return <VideoCard key={video._id} setPlaylistVideo={setPlaylistVideo} video={video} setShowModal={setShowModal}/>
                         })
                     }
                 </div>
             </div>
+            {
+                showModal ? <ActionsModal setPlaylistVideo={setPlaylistVideo} playlistVideo={playlistVideo} setShowModal={setShowModal}/> : null
+            }
         </main>
     )
 }
