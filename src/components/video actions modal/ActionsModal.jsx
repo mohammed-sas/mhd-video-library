@@ -15,7 +15,6 @@ const ActionsModal = ({playlistVideo, setShowModal }) => {
       if(isExist){
         return;
       }
-
       await addNewPlaylist({ title: newPlayList.trim(), description: "" });
     } catch (error) {
       console.log(error);

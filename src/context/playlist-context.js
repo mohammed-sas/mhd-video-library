@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import {playlistReducer} from '../reducer/playlistReducer'
 
 const PlaylistContext = createContext(null);
@@ -16,6 +17,7 @@ const PlaylistProvider=({children})=>{
 const usePlaylistAction=()=>{
     const [playlistState, playlistDispatch] = useReducer(playlistReducer,{playlists:[]})
     const token = localStorage.getItem("token");
+    const navigate =useNavigate();
     const auth = {
         headers:{
             authorization:token
@@ -44,13 +46,29 @@ const usePlaylistAction=()=>{
         try{
             const response = await axios.delete(`/api/user/playlists/${id}/${video._id}`,auth);
             if(response.status === 200){
+                if(response.data.playlist.videos.length === 0){
+                    navigate('/explore');
+                }
                 playlistDispatch({type:"REMOVE_FROM_PLAYLIST",payload:response.data.playlist});
             }
         }catch(error){
             console.log(error);
         }
     }
-    return {playlistState,playlistDispatch,addNewPlaylist,addToPlaylist,removeFromPlaylist};
+    const removePlaylist=async (id)=>{
+        try{
+            const response = await axios.delete(`/api/user/playlists/${id}`,auth);
+           if(response.status === 200){
+            if(response.data.playlists.length === 0){
+                navigate('/explore');
+            }
+               playlistDispatch({type:"UPDATE",payload:response.data.playlists});
+           }
+        }catch(error){
+            console.log(error);
+        }
+    }
+    return {playlistState,playlistDispatch,addNewPlaylist,addToPlaylist,removeFromPlaylist,removePlaylist};
 }
 
 

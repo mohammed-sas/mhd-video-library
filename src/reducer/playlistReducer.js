@@ -20,12 +20,12 @@ const playlistReducer=(state,{type,payload})=>{
         case "ADD_TO_PLAYLIST":
             return{
                 ...state,
-                playlists:[payload,...state.playlists.filter(list=>list._id !== payload._id)]
+                playlists:[...state.playlists.filter(list=>list._id !== payload._id),payload]
             }
             case "REMOVE_FROM_PLAYLIST":
                 return{
                     ...state,
-                    playlists:[payload,...state.playlists.filter(list=>list._id !== payload._id)]
+                    playlists:[...state.playlists.filter(list=>list._id !== payload._id),payload]
                 }
         default:
             return state;
