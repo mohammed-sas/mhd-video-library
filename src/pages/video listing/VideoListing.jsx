@@ -1,7 +1,7 @@
 import classes from './videoListing.module.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
-import VideoCard from './components/VideoCard';
+import VideoCard from '../../components/video card/VideoCard'
 import SideNavbar from '../../components/side navbar/SideNavbar';
 import { useToggle } from '../../hooks/useToggle';
 import ActionsModal from '../../components/video actions modal/ActionsModal';

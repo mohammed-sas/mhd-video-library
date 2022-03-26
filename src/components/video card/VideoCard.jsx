@@ -1,5 +1,5 @@
 import classes from "./videoCard.module.css";
-import { useToggle } from "../../../hooks/useToggle";
+import { useToggle } from "../../hooks/useToggle"
 const VideoCard = ({ video,setShowModal,setPlaylistVideo }) => {
   const [showMenu, setShowMenu] = useToggle(false);
   const playListHandler=()=>{
