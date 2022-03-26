@@ -24,6 +24,11 @@ const ActionsModal = ({playlistVideo, setShowModal }) => {
         console.log(error);
     }
   }
+
+  const isPresentInPlaylist=(id)=>{
+     let res= playlistState.playlists.filter(list => list._id === id)[0].videos.filter(video =>video._id == playlistVideo._id);
+     return res.length> 0? true:false
+  }
   return (
     <div className={classes["modal-container"]}>
       <div className={classes["modal"]}>
@@ -43,7 +48,7 @@ const ActionsModal = ({playlistVideo, setShowModal }) => {
             return (
               <li key={list._id}>
                 <label htmlFor="playlist" className="text-white">
-                    <input type="checkbox" onChange={(e)=>changeHandler(e,list._id)} /> {list.title}
+                    <input type="checkbox" checked={isPresentInPlaylist(list._id)} onChange={(e)=>changeHandler(e,list._id)} /> {list.title}
                 </label>
               </li>
             );

@@ -13,7 +13,7 @@ const SpecificPlaylist = () => {
     return (
         <main className={classes["specific-playlist"]}>
             <SideNavbar/>
-            <div>
+            <div className={classes["lists"]}>
                 {
                     playlistState.playlists.filter(list=>list._id==playlistId)[0].videos.map(video=>{
                         return(

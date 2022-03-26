@@ -1,6 +1,6 @@
 
 const playlistReducer=(state,{type,payload})=>{
-
+    console.log(type,payload);
     switch(type){
         case "FETCHING":
             return{
@@ -23,6 +23,13 @@ const playlistReducer=(state,{type,payload})=>{
                 ...state,
                 playlists:[payload,...state.playlists.filter(list=>list._id !== payload._id)]
             }
+            case "REMOVE_FROM_PLAYLIST":
+                return{
+                    ...state,
+                    playlists:[payload,...state.playlists.filter(list=>list._id !== payload._id)]
+                }
+        default:
+            return state;
     }
 }
 
