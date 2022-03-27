@@ -1,19 +1,19 @@
-.side-navbar{
-    display: flex;
-    flex-direction: column;
-    gap: 3rem;
-    align-items: center;
-    padding-top: 3rem;
-    box-shadow: -2px 0px 5px 3px rgba(255, 255, 255, 0.5);
+.side-navbar {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+  padding-top: 3rem;
+  box-shadow: -2px 0px 5px 3px rgba(255, 255, 255, 0.5);
 }
 
-.side-navbar i{
-    font-size: 1.4rem;
-    color: var(--primary);
+.side-navbar i {
+  font-size: 1.4rem;
+  color: var(--primary);
 }
 
-.side-navbar>div{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
+.side-navbar div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
