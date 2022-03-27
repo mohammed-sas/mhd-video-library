@@ -8,6 +8,7 @@ import VideoListing from "./pages/video listing/VideoListing";
 import Playlist from "./pages/playlist/Playlist";
 import SpecificPlaylist from "./pages/playlist/specific playlist/SpecificPlaylist";
 import Mockman from "mockman-js";
+import Liked from "./pages/liked/Liked";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/explore" element={<VideoListing />} />
         <Route path="/playlists" element={<Playlist />} />
         <Route path="/playlists/:playlistId" element={<SpecificPlaylist />} />
+        <Route path="/liked" element={<Liked/>}/>
         <Route path="/mock-api" element={<Mockman />} />
       </Routes>
     </div>

@@ -43,6 +43,7 @@ img {
   font-size: 1.4rem;
   padding-top: 1rem;
   font-weight: bolder;
+  cursor: pointer;
 }
 .video-card-typography {
   display: flex;
@@ -68,6 +69,7 @@ img {
   display: flex;
   justify-content: space-between;
   padding: 1rem;
+  cursor: pointer;
 }
 .control-item:hover {
   background: #4e505b;
