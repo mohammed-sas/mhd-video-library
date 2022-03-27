@@ -95,6 +95,14 @@ const SingleVideo = () => {
               ></i>
               <i className="text-white fas fa-bookmark"></i>
             </div>
+            <div className={classes["channel-details"]}>
+                <img src={video.channelThumbnail} alt={video.channelTitle} />
+                <h3 className="text-white">{video.channelTitle}</h3>
+            </div>
+          </div>
+          <div className={classes["video-typography"]}>
+              <h2 className="text-primary">{video.title}</h2>
+              <p className="text-white">{video.description}</p>
           </div>
           {showModal ? (
             <ActionsModal setShowModal={setShowModal} playlistVideo={video} />
