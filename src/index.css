@@ -23,9 +23,7 @@ span{
 }
 
 
-.text-primary{
-   color:var(--primary)
-}
+
 
 .bg-primary{
   background: var(--primary);
@@ -37,7 +35,9 @@ span{
 .text-white{
   color:var(--white)
 }
-
+.text-primary{
+  color:var(--primary)
+}
 .btn-primary:hover{
   background: var(--smoke-black);
   color: var(--primary);
