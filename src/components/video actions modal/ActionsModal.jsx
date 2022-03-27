@@ -44,6 +44,7 @@ const ActionsModal = ({ playlistVideo, setShowModal }) => {
   return (
     <div className={classes["modal-container"]}>
       <div className={classes["modal"]}>
+        <h2 className="text-white">Playlists</h2>
         <i
           onClick={setShowModal}
           className={`fas fa-times text-white ${classes["close-btn"]}`}

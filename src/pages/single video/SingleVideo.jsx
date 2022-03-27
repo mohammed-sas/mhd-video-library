@@ -1,17 +1,20 @@
 import classes from "./singleVideo.module.css";
-import SideNavbar from "../../components/side navbar/SideNavbar";
+import { SideNavbar, ActionsModal } from "../../components";
 import ReactPlayer from "react-player";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useToggle } from "../../hooks/useToggle";
-import {useLike} from '../../context'
+import { useLike, useAuth } from "../../context";
 const SingleVideo = () => {
   const { videoId } = useParams();
   const [video, setVideo] = useState({});
-  const {addToLikes,deleteFromLikes,likeState} = useLike();
+  const { addToLikes, deleteFromLikes, likeState } = useLike();
   const [loading, setLoading] = useState(true);
-  const [liked,setLiked] = useToggle(false);
+  const [liked, setLiked] = useToggle(false);
+  const [showModal, setShowModal] = useToggle(false);
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchVideos = async () => {
       try {
@@ -31,26 +34,40 @@ const SingleVideo = () => {
 
     fetchVideos();
 
-    const isLiked =async ()=>{
-        const isExist = likeState.likes.find(likedVideo=> likedVideo._id === videoId);
-        isExist ? setLiked() : null;
-    }
+    const isLiked = async () => {
+      const isExist = likeState.likes.find(
+        (likedVideo) => likedVideo._id === videoId
+      );
+      isExist ? setLiked() : null;
+    };
     isLiked();
   }, []);
 
-  const likehandler=async ()=>{
-    try{
-        setLiked();
-        if(!liked){
-            await addToLikes(video);
-        }else{
-            await deleteFromLikes(video._id);
-        }
-    }catch(error){
-        console.log(error);
+  const likehandler = async () => {
+    try {
+      if (!currentUser) {
+        navigate("/login");
+      }
+      setLiked();
+      if (!liked) {
+        await addToLikes(video);
+      } else {
+        await deleteFromLikes(video._id);
+      }
+    } catch (error) {
+      console.log(error);
     }
-  }
-  const playlistHandler=()=>{}
+  };
+  const playlistHandler = async () => {
+    try {
+      if (!currentUser) {
+        navigate("/login");
+      }
+      setShowModal();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <main className={classes["single-video-container"]}>
       <SideNavbar />
@@ -66,11 +83,22 @@ const SingleVideo = () => {
           </div>
           <div className={classes["video-body"]}>
             <div className={classes["video-controls"]}>
-              <i className={"text-white far fa-thumbs-up "+(liked ? "text-primary":"")} onClick={likehandler}></i>
-              <i className="text-white fas fa-folder-plus" onClick={playlistHandler}></i>
+              <i
+                className={
+                  "text-white far fa-thumbs-up " + (liked ? "text-primary" : "")
+                }
+                onClick={likehandler}
+              ></i>
+              <i
+                className="text-white fas fa-folder-plus"
+                onClick={playlistHandler}
+              ></i>
               <i className="text-white fas fa-bookmark"></i>
             </div>
           </div>
+          {showModal ? (
+            <ActionsModal setShowModal={setShowModal} playlistVideo={video} />
+          ) : null}
         </div>
       ) : (
         <h2 className="text-white">Loading...</h2>
