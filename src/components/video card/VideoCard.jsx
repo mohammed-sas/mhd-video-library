@@ -80,7 +80,15 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
           ></i>
           {showMenu ? (
             <ul className={classes["controls"]}>
-              {!isPlaylisted() && (
+              {isPlaylisted() ? (
+                <li
+                  className={classes["control-item"]}
+                  onClick={removeFromPlayListHandler}
+                >
+                  <i className="fas fa-plus text-white"></i>{" "}
+                  <span className="text-white">Remove from playlist</span>
+                </li>
+              ) : (
                 <li
                   className={classes["control-item"]}
                   onClick={playListHandler}
@@ -89,31 +97,22 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
                   <span className="text-white">Add to playlist</span>
                 </li>
               )}
-              {isPlaylisted() && (
-                <li
-                  className={classes["control-item"]}
-                  onClick={removeFromPlayListHandler}
-                >
-                  <i className="fas fa-plus text-white"></i>{" "}
-                  <span className="text-white">Remove from playlist</span>
-                </li>
-              )}
-              {!isLiked(video._id) && (
-                <li
-                  className={classes["control-item"]}
-                  onClick={addToLikeHandler}
-                >
-                  <i className="far fa-thumbs-up text-white"></i>
-                  <span className="text-white">Like Video</span>
-                </li>
-              )}
-              {isLiked(video._id) && (
+
+              {isLiked(video._id) ? (
                 <li
                   className={classes["control-item"]}
                   onClick={removeLikeHandler}
                 >
                   <i className="fas fa-thumbs-down text-white"></i>
                   <span className="text-white">Unlike Video</span>
+                </li>
+              ) : (
+                <li
+                  className={classes["control-item"]}
+                  onClick={addToLikeHandler}
+                >
+                  <i className="far fa-thumbs-up text-white"></i>
+                  <span className="text-white">Like Video</span>
                 </li>
               )}
             </ul>
