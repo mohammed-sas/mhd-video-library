@@ -75,6 +75,10 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
                   <span className="text-white">Remove from playlist</span>
                 </li>
               )}
+              <li className={classes["control-item"]}>
+              <i className="far fa-thumbs-up text-white"></i>
+              <span className="text-white">Like Video</span>
+              </li>
             </ul>
           ) : null}
         </div>
