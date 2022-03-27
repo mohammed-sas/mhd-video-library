@@ -1,41 +1,40 @@
-
-.modal-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    width: 100vw;
-    background: rgba(0, 0, 0, 0.5);
-    position: absolute;
+.modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
 }
 
-.modal{
-    height: 30rem;
-    width: 35rem;
-    position: relative;
-    background: var(--black);
-    padding: 1rem;
-    border-radius: 1rem;
+.modal {
+  height: 30rem;
+  width: 35rem;
+  position: relative;
+  background: var(--black);
+  padding: 1rem;
+  border-radius: 1rem;
 }
 
-.close-btn{
+.close-btn {
   position: absolute;
   top: 5px;
   right: 5px;
   font-size: 1.4rem;
 }
 
-.playlists{
+.playlists {
   padding-top: 1rem;
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 5px;
   width: 15rem;
-  margin:0 auto;
+  margin: 0 auto;
 }
 
-.playlist-item{
+.playlist-item {
   display: flex;
   justify-content: space-between;
 }

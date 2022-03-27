@@ -1,75 +1,74 @@
-img{
-    max-inline-size: 100%;
+img {
+  max-inline-size: 100%;
 }
 
-.video-card{
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    width: 32rem;
-    height: 30rem;
-    text-align: left;
-    box-shadow:var(--secondary) 0px 1px 4px;
+.video-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 32rem;
+  height: 30rem;
+  text-align: left;
+  box-shadow: var(--secondary) 0px 1px 4px;
 }
 
-.video-details{
-    display: flex;
-    align-items:flex-start;
-    justify-content: space-between;
-    
+.video-details {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
-.video-details>*{
-    padding: 5px;
+.video-details > * {
+  padding: 5px;
 }
 
-.video-thumbnail img{
-    width: 32rem;
-    height: 18rem;
+.video-thumbnail img {
+  width: 32rem;
+  height: 18rem;
 }
 
-.channel-img{
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
+.channel-img {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
 }
-.video-category{
-    font-size: 1.2rem;
+.video-category {
+  font-size: 1.2rem;
 }
-.channel-title{
-    font-weight: bolder;
-}
-
-.video-controls{
-    font-size: 1.4rem;
-    padding-top: 1rem;
-    font-weight: bolder;
-}
-.video-card-typography{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+.channel-title {
+  font-weight: bolder;
 }
 
-.video-card-typography p:first-child{
-    height: 3rem;
+.video-controls {
+  font-size: 1.4rem;
+  padding-top: 1rem;
+  font-weight: bolder;
 }
-.controls-container{
-    position: relative;
+.video-card-typography {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
-.controls{
-    background: #30323A;
-    width: 12rem;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
+
+.video-card-typography p:first-child {
+  height: 3rem;
 }
-.control-item{
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem;
+.controls-container {
+  position: relative;
 }
-.control-item:hover{
-    background: #4E505B;
+.controls {
+  background: #30323a;
+  width: 12rem;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+}
+.control-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+.control-item:hover {
+  background: #4e505b;
 }
