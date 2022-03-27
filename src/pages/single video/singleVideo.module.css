@@ -1,0 +1,11 @@
+
+.single-video-container{
+    display: grid;
+  grid-template-columns: 10rem 1fr;
+  grid-template-rows: 1fr;
+}
+
+aside {
+    grid-row: 1/2;
+    grid-column: 1/2;
+  }
