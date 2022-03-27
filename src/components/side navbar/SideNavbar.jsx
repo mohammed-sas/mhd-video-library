@@ -25,10 +25,12 @@ const SideNavbar = () => {
         </div>
       </Link>
 
-      <div>
-        <i className="fas fa-thumbs-up"></i>
-        <span>Liked</span>
-      </div>
+      <Link to={currentUser ? "/liked" : "/login"}>
+        <div>
+          <i className="fas fa-thumbs-up"></i>
+          <span>Liked</span>
+        </div>
+      </Link>
       <div>
         <i className="fas fa-history"></i>
         <span>History</span>
