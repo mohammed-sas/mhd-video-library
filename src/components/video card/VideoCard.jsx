@@ -9,7 +9,7 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   const { removeFromPlaylist } = usePlaylist();
   const { currentUser } = useAuth();
   const navigate = useNavigate();
-  const { addToLikes, likeState,deleteFromLikes } = useLike();
+  const { addToLikes, likeState, deleteFromLikes } = useLike();
   const playListHandler = () => {
     if (!currentUser) {
       navigate("/login");
@@ -33,8 +33,8 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   };
   const addToLikeHandler = async () => {
     try {
-      if(!currentUser){
-        navigate('/login');
+      if (!currentUser) {
+        navigate("/login");
         return;
       }
       await addToLikes(video);
@@ -46,13 +46,13 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
     const result = likeState.likes.find((likedVideo) => likedVideo._id === id);
     return result ? true : false;
   };
-  const removeLikeHandler=async ()=>{
-    try{
+  const removeLikeHandler = async () => {
+    try {
       await deleteFromLikes(video._id);
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
   return (
     <div className={classes["video-card"]}>
       <div className={classes["video-thumbnail"]}>
