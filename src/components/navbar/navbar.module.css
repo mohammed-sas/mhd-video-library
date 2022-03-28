@@ -8,3 +8,32 @@
 .nav-brand-lib small {
   font-size: 10px;
 }
+.hamburger-icon{
+  color: var(--white);
+  font-size: 2rem;
+}
+
+.side-bar.active{
+  transform: translateX(0);
+}
+
+@media only  screen and (max-width:600px) {
+ #side-bar{
+   display: block;
+   position: absolute;
+   top:0;
+  transform: translateX(-300%);
+   width: 30%;
+   height: 100vh;
+   z-index: 2;
+   
+   transition: all 0.5s ease-in-out;
+   background: red;
+
+ }
+ #side-bar ul{
+   display: flex;
+   flex-direction: column;
+   gap: 1rem;
+ } 
+}
