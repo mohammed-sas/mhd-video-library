@@ -5,13 +5,13 @@ const SideNavbar = () => {
   const { currentUser } = useAuth();
   return (
     <aside className={classes["side-navbar"]}>
-      <Link to="/">
+      <Link to="/" className={classes["home-icon"]}>
         <div>
           <i className="fas fa-home"></i>
           <span>Home</span>
         </div>
       </Link>
-      <Link to="/explore">
+      <Link to="/explore" className={classes["explore-icon"]}>
         <div>
           <i className="fas fa-compass"></i>
           <span>Explore</span>

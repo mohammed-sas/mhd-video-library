@@ -84,5 +84,9 @@ img {
   }
   .video-thumbnail img {
     width: 100%;
+
+  }
+  .controls{
+    right: 0;
   }
 }
