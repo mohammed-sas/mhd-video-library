@@ -76,3 +76,13 @@ img {
 .control-item:hover {
   background: #4e505b;
 }
+
+
+@media only screen and (max-width:600px){
+  .video-card{
+    width: 100%;
+  }
+  .video-thumbnail img {
+    width: 100%;
+  }
+}
