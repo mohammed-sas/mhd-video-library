@@ -4,9 +4,12 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
-import { AuthProvider } from "./context/auth-context";
-import { PlaylistProvider } from "./context/playlist-context";
-import { LikeProvider } from "./context/like-context";
+import {
+  LikeProvider,
+  PlaylistProvider,
+  AuthProvider,
+  HistoryProvider,
+} from "./context";
 // Call make Server
 makeServer();
 
@@ -16,7 +19,9 @@ ReactDOM.render(
       <AuthProvider>
         <PlaylistProvider>
           <LikeProvider>
-            <App />
+            <HistoryProvider>
+              <App />
+            </HistoryProvider>
           </LikeProvider>
         </PlaylistProvider>
       </AuthProvider>
