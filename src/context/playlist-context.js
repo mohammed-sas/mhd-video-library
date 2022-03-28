@@ -25,7 +25,7 @@ const usePlaylistAction=()=>{
     };
     const addNewPlaylist=async (data)=>{
         try{
-            const response = await axios.post('api/user/playlists',{playlist:data},auth);
+            const response = await axios.post('/api/user/playlists',{playlist:data},auth);
             if(response.status === 201){
                 playlistDispatch({type:"UPDATE",payload:response.data.playlists});
             }

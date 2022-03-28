@@ -41,8 +41,6 @@ const useLikeActions=()=>{
                     ...likeState,
                     likes:response.data.likes
                 })
-                if(response.data.likes.length ===0 )
-                    navigate("/explore");
             }
         }catch(error){
             console.log(error);

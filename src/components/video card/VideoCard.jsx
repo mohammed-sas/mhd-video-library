@@ -1,9 +1,8 @@
 import classes from "./videoCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
-import { usePlaylist } from "../../context/playlist-context";
-import { useLike } from "../../context/like-context";
+import {useAuth,useLike,usePlaylist} from '../../context/index'
+
 const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   const [showMenu, setShowMenu] = useToggle(false);
   const { removeFromPlaylist } = usePlaylist();
@@ -53,9 +52,12 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
       console.log(error);
     }
   };
+  const singleVideoHandler=()=>{
+    navigate(`/explore/${video._id}`);
+  }
   return (
     <div className={classes["video-card"]}>
-      <div className={classes["video-thumbnail"]}>
+      <div className={classes["video-thumbnail"]} onClick={singleVideoHandler}>
         <img src={video.videoThumbnail} alt={video.title} />
       </div>
       <div className={classes["video-details"]}>
