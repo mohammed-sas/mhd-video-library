@@ -33,7 +33,21 @@ const useHistoryActions=()=>{
             console.log(error);
         }
     }
-    return {historyState ,addToHistory};
+    const deleteHistory=async (id)=>{
+        try{
+            const response = await axios.delete(`/api/user/history/${id}`,auth);
+            if(response.status===200){
+                setHistoryState({
+                    ...historyState,
+                    history: response.data.history
+
+                })
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
+    return {historyState ,addToHistory,deleteHistory};
 }
 
 const useHistory =()=> useContext(HistoryContext);

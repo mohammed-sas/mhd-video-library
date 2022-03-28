@@ -5,7 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useToggle } from "../../hooks/useToggle";
-import { useLike, useAuth } from "../../context";
+import { useLike, useAuth,useHistory } from "../../context";
 const SingleVideo = () => {
   const { videoId } = useParams();
   const [video, setVideo] = useState({});
@@ -15,6 +15,7 @@ const SingleVideo = () => {
   const [showModal, setShowModal] = useToggle(false);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
+  const {addToHistory} = useHistory();
   useEffect(() => {
     const fetchVideos = async () => {
       try {
@@ -26,6 +27,7 @@ const SingleVideo = () => {
             (video) => video._id === videoId
           );
           setVideo(result);
+          await addToHistory(result);
         }
       } catch (error) {
         console.log(error);

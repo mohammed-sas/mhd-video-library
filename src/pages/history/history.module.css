@@ -1,0 +1,32 @@
+.history-page {
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  grid-template-rows: 1fr;
+}
+
+aside {
+  grid-row: 1/2;
+  grid-column: 1/2;
+}
+
+.history-container{
+    gap: 1rem;
+    padding: 1rem;
+    grid-row: 1/2;
+    grid-column: 2/3;
+    width: 50rem;
+    margin: 0 auto;
+}
+
+.history-lists{
+  display: flex;
+  flex-flow: column wrap;
+  gap: 1rem;
+}
+
+.history-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
