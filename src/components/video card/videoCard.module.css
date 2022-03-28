@@ -21,7 +21,9 @@ img {
 .video-details > * {
   padding: 5px;
 }
-
+.video-thumbnail{
+  cursor: pointer;
+}
 .video-thumbnail img {
   width: 32rem;
   height: 18rem;
