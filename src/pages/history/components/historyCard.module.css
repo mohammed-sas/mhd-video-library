@@ -1,0 +1,23 @@
+image{
+    max-inline-size: 100%;
+}
+.history-card{
+    display: flex;
+    gap: 1rem;
+    width: 50rem;
+    height: 10rem;
+    justify-content: space-between;
+    align-items: center;
+    background: #1E1F26;
+    border-radius: 1rem;
+}
+
+.video-thumbnail img{
+    width: 20rem;
+    height: 10rem;
+}
+
+span{
+    font-size: 1.4rem;
+}
+

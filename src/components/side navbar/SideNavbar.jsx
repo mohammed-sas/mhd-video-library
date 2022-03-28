@@ -31,10 +31,12 @@ const SideNavbar = () => {
           <span>Liked</span>
         </div>
       </Link>
-      <div>
-        <i className="fas fa-history"></i>
-        <span>History</span>
-      </div>
+      <Link to={currentUser ? "/history": "/login"}>
+        <div>
+          <i className="fas fa-history"></i>
+          <span>History</span>
+        </div>
+      </Link>
     </aside>
   );
 };

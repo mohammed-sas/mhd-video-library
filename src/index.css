@@ -21,7 +21,9 @@ span{
 .bg-black{
   background: var(--black);
 }
-
+.bg-red{
+  background: var(--red-600);
+}
 
 
 
@@ -41,6 +43,10 @@ span{
 .btn-primary:hover{
   background: var(--smoke-black);
   color: var(--primary);
+}
+.btn-primary.bg-red:hover{
+  color: white;
+  background: var(--red-700);
 }
 .btn-secondary{
   background: var(---black);
