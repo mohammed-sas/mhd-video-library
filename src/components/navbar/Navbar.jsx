@@ -2,16 +2,19 @@ import logo from "../../assets/logo.webp";
 import classes from "./navbar.module.css";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
-import {useToggle} from '../../hooks/useToggle';
+import { useToggle } from "../../hooks/useToggle";
 const Navbar = () => {
-  const { currentUser,logout } = useAuth();
-  const [showSideBar,setShowSidebar] = useToggle(false);
-  const logoutHandler=()=>{
+  const { currentUser, logout } = useAuth();
+  const [showSideBar, setShowSidebar] = useToggle(false);
+  const logoutHandler = () => {
     logout();
-  }
+  };
   return (
     <nav className="nav-bar bg-black bottom-shadow width-auto">
-      <i className={`fas fa-bars drawer-btn ${classes["hamburger-icon"]}`} onClick={setShowSidebar}></i>
+      <i
+        className={`fas fa-bars drawer-btn ${classes["hamburger-icon"]}`}
+        onClick={setShowSidebar}
+      ></i>
       <div className={`nav-brand ${classes["nav-brand-lib"]}`}>
         <h2 className="text-primary">MHD</h2>
         <small className="text-primary">Video Library</small>
@@ -24,8 +27,20 @@ const Navbar = () => {
           placeholder="Search..."
         />
       </div>
-      <div id={classes["side-bar"]} className={`nav-links ${(showSideBar ? classes["active"] : "")}`}>
+      <div
+        className={`nav-links ${classes["drawer-lib"]} ${classes["side-bar"]} ${
+          showSideBar ? classes["active"] : ""
+        }`}
+      >
         <ul>
+          {showSideBar && (
+            <li>
+              <i
+                className="fas fa-times text-white"
+                onClick={setShowSidebar}
+              ></i>
+            </li>
+          )}
           <li>
             {currentUser ? (
               <span className="text-white">{currentUser.firstName}</span>
@@ -48,7 +63,11 @@ const Navbar = () => {
             </div>
           </li>
           <li>
-            {currentUser ? <button className="btn btn-secondary" onClick={logoutHandler}>Logout</button> : null}
+            {currentUser ? (
+              <button className="btn btn-secondary" onClick={logoutHandler}>
+                Logout
+              </button>
+            ) : null}
           </li>
         </ul>
       </div>
