@@ -12,11 +12,13 @@ const HistoryCard = ({video}) => {
     }
     return (
         <div className={classes["history-card"]}>
-            <div className={classes["video-thumbnail"]}>
-                <img src={video.videoThumbnail} alt={video.title} />
-            </div>
-            <div>
-                <span className="text-white">{video.title}</span>
+            <div className={classes["card-body"]}>
+                <div className={classes["video-thumbnail"]}>
+                    <img src={video.videoThumbnail} alt={video.title} />
+                </div>
+                <div>
+                    <span className={`text-white ${classes["video-title"]}`}>{video.title}</span>
+                </div>
             </div>
             <button className="btn btn-primary bg-red" onClick={()=>removeHandler(video._id)}>Remove</button>
         </div>

@@ -17,3 +17,24 @@
   flex-direction: column;
   gap: 5px;
 }
+
+
+@media only screen and (max-width:600px){
+  .side-navbar{
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: space-around;
+    padding: 0;
+  }
+  .side-navbar i{
+    font-size: 2rem;
+  }
+  .home-icon{
+    display: none;
+  }
+  .explore-icon{
+    display: none;
+  }
+
+
+}

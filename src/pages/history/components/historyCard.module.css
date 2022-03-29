@@ -17,7 +17,19 @@ image{
     height: 10rem;
 }
 
-span{
+.video-title{
     font-size: 1.4rem;
 }
+.card-body{
+    display: flex;
+}
 
+@media only screen and (max-width:600px){
+    .history-card{
+        flex-direction: column;
+        width: 95%;
+    }
+    .video-title{
+        width: 10ch;
+    }
+}
