@@ -1,11 +1,12 @@
 import logo from "../../assets/logo.webp";
 import classes from "./navbar.module.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { useToggle } from "../../hooks/useToggle";
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
   const [showSideBar, setShowSidebar] = useToggle(false);
+  const navigate = useNavigate();
   const logoutHandler = () => {
     logout();
   };
@@ -15,7 +16,7 @@ const Navbar = () => {
         className={`fas fa-bars drawer-btn ${classes["hamburger-icon"]}`}
         onClick={setShowSidebar}
       ></i>
-      <div className={`nav-brand ${classes["nav-brand-lib"]}`}>
+      <div className={`nav-brand ${classes["nav-brand-lib"]}`} onClick={()=>navigate('/')}>
         <h2 className="text-primary">MHD</h2>
         <small className="text-primary">Video Library</small>
       </div>
@@ -53,14 +54,18 @@ const Navbar = () => {
             )}
           </li>
           <li>
-            <div>
-              <span>Explore</span>
-            </div>
+            <Link to={currentUser ? "/explore" : "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
+              <div>
+                <span>Explore</span>
+              </div>
+            </Link>
           </li>
           <li>
-            <div>
-              <span>Playlist</span>
-            </div>
+            <Link to={currentUser ? "/playlist": "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
+              <div>
+                <span>Playlist</span>
+              </div>
+            </Link>
           </li>
           <li>
             {currentUser ? (
