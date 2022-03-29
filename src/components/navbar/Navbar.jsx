@@ -45,7 +45,7 @@ const Navbar = () => {
             {currentUser ? (
               <span className="text-white">{currentUser.firstName}</span>
             ) : (
-              <Link to="/login">
+              <Link to="/login" onClick={()=>(showSideBar && setShowSidebar())}>
                 <button className="btn btn-primary bg-primary text-grey">
                   Login
                 </button>
