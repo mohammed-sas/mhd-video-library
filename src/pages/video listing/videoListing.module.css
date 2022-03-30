@@ -22,6 +22,22 @@ aside {
   gap: 1rem;
 }
 
+.filters{
+  display: flex;
+  flex-flow: wrap;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.filter-category{
+  border:1px solid var(--primary);
+  background: var(--black);
+  color:var(--primary);
+  border-radius: 1rem;
+  font-size: 1.4rem;
+  padding: 1rem 1.6rem;
+}
+
 @media only screen and (max-width: 600px) {
   .listing-container {
     grid-template-columns: 1fr;
