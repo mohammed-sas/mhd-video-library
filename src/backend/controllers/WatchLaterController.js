@@ -43,7 +43,9 @@ export const getWatchLaterVideosHandler = function (schema, request) {
  * */
 
 export const addItemToWatchLaterVideos = function (schema, request) {
+
   const user = requiresAuth.call(this, request);
+  
   if (user) {
     const { video } = JSON.parse(request.requestBody);
     if (user.watchlater.some((item) => item.id === video.id)) {

@@ -21,6 +21,7 @@ const useHistoryActions=()=>{
     };
     const addToHistory=async (video)=>{
         try{
+            
             const response = await axios.post('/api/user/history',{video},auth);
             if(response.status===201){
                 setHistoryState({

@@ -67,6 +67,7 @@ export function makeServer({ environment = "development" } = {}) {
           likes: [],
           history: [],
           playlists: [],
+          watchlater: [],
         })
       );
     },
