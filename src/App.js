@@ -11,6 +11,7 @@ import Mockman from "mockman-js";
 import Liked from "./pages/liked/Liked";
 import SingleVideo from "./pages/single video/SingleVideo";
 import History from "./pages/history/History";
+import WatchLater from "./pages/watch later/WatchLater";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/liked" element={<Liked/>}/>
         <Route path="/explore/:videoId" element={<SingleVideo/>}/>
         <Route path ="/history" element={<History/>}/>
+        <Route path="/watchlater" element={<WatchLater/>}/>
         <Route path="/mock-api" element={<Mockman />} />
       </Routes>
     </div>

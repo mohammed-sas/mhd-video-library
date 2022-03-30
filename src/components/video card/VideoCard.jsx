@@ -14,7 +14,8 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
   const { addToLikes, likeState, deleteFromLikes } = useLike();
-  const { watchLaterState,addToWatchLater, deleteFromWatchLater } = useWatchLater();
+  const { watchLaterState, addToWatchLater, deleteFromWatchLater } =
+    useWatchLater();
   const playListHandler = () => {
     if (!currentUser) {
       navigate("/login");
@@ -68,18 +69,20 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
       console.log(error);
     }
   };
-  const removeWatchLaterHandler=async ()=>{
-    try{
+  const removeWatchLaterHandler = async () => {
+    try {
       await deleteFromWatchLater(video._id);
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
-  }
-  const isSaved=(id)=>{
-    const isExist = watchLaterState.watchLater.some(savedVideo=> savedVideo._id === id);
+  };
+  const isSaved = (id) => {
+    const isExist = watchLaterState.watchLater.some(
+      (savedVideo) => savedVideo._id === id
+    );
 
     return isExist;
-  }
+  };
   return (
     <div className={classes["video-card"]}>
       <div className={classes["video-thumbnail"]} onClick={singleVideoHandler}>
@@ -143,18 +146,20 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
                 </li>
               )}
               {!isSaved(video._id) ? (
-                <li className={classes["control-item"]}>
+                <li
+                  className={classes["control-item"]}
+                  onClick={addWatchLaterHandler}
+                >
                   <i className="far fa-bookmark text-white"></i>
-                  <span className="text-white" onClick={addWatchLaterHandler}>
-                    Watch later
-                  </span>
+                  <span className="text-white">Watch later</span>
                 </li>
               ) : (
-                <li className={classes["control-item"]}>
+                <li
+                  className={classes["control-item"]}
+                  onClick={removeWatchLaterHandler}
+                >
                   <i className="fas fa-bookmark text-white"></i>
-                  <span className="text-white" onClick={removeWatchLaterHandler}>
-                    Watch later
-                  </span>
+                  <span className="text-white">Watch later</span>
                 </li>
               )}
             </ul>

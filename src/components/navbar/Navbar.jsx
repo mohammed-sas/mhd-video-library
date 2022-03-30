@@ -61,7 +61,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link to={currentUser ? "/playlist": "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
+            <Link to={currentUser ? "/playlists": "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
               <div>
                 <span>Playlist</span>
               </div>
