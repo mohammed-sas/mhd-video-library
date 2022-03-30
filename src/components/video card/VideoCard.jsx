@@ -1,7 +1,12 @@
 import classes from "./videoCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
-import { useNavigate, useLocation } from "react-router-dom";
-import {useAuth,useLike,usePlaylist} from '../../context/index'
+import { useNavigate } from "react-router-dom";
+import {
+  useAuth,
+  useLike,
+  usePlaylist,
+  useWatchLater,
+} from "../../context/index";
 
 const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   const [showMenu, setShowMenu] = useToggle(false);
@@ -9,6 +14,8 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
   const { addToLikes, likeState, deleteFromLikes } = useLike();
+  const { watchLaterState, addToWatchLater, deleteFromWatchLater } =
+    useWatchLater();
   const playListHandler = () => {
     if (!currentUser) {
       navigate("/login");
@@ -52,9 +59,30 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
       console.log(error);
     }
   };
-  const singleVideoHandler=()=>{
+  const singleVideoHandler = () => {
     navigate(`/explore/${video._id}`);
-  }
+  };
+  const addWatchLaterHandler = async () => {
+    try {
+      await addToWatchLater(video);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const removeWatchLaterHandler = async () => {
+    try {
+      await deleteFromWatchLater(video._id);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  const isSaved = (id) => {
+    const isExist = watchLaterState.watchLater.some(
+      (savedVideo) => savedVideo._id === id
+    );
+
+    return isExist;
+  };
   return (
     <div className={classes["video-card"]}>
       <div className={classes["video-thumbnail"]} onClick={singleVideoHandler}>
@@ -115,6 +143,23 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
                 >
                   <i className="far fa-thumbs-up text-white"></i>
                   <span className="text-white">Like Video</span>
+                </li>
+              )}
+              {!isSaved(video._id) ? (
+                <li
+                  className={classes["control-item"]}
+                  onClick={addWatchLaterHandler}
+                >
+                  <i className="far fa-bookmark text-white"></i>
+                  <span className="text-white">Watch later</span>
+                </li>
+              ) : (
+                <li
+                  className={classes["control-item"]}
+                  onClick={removeWatchLaterHandler}
+                >
+                  <i className="fas fa-bookmark text-white"></i>
+                  <span className="text-white">Watch later</span>
                 </li>
               )}
             </ul>

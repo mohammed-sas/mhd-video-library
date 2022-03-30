@@ -61,7 +61,7 @@ img {
 }
 .controls {
   background: #30323a;
-  width: 12rem;
+  width: 13rem;
   display: flex;
   flex-direction: column;
   position: absolute;
@@ -72,6 +72,10 @@ img {
   justify-content: space-between;
   padding: 1rem;
   cursor: pointer;
+  gap: 5px;
+}
+.control-item span{
+  width: 10rem;
 }
 .control-item:hover {
   background: #4e505b;

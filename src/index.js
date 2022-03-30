@@ -9,6 +9,7 @@ import {
   PlaylistProvider,
   AuthProvider,
   HistoryProvider,
+  WatchLaterProvider,
 } from "./context";
 // Call make Server
 makeServer();
@@ -20,7 +21,9 @@ ReactDOM.render(
         <PlaylistProvider>
           <LikeProvider>
             <HistoryProvider>
-              <App />
+              <WatchLaterProvider>
+                <App />
+              </WatchLaterProvider>
             </HistoryProvider>
           </LikeProvider>
         </PlaylistProvider>
