@@ -5,28 +5,39 @@ import VideoCard from "../../components/video card/VideoCard";
 import SideNavbar from "../../components/side navbar/SideNavbar";
 import { useToggle } from "../../hooks/useToggle";
 import ActionsModal from "../../components/video actions modal/ActionsModal";
+import { useSearchParams } from "react-router-dom";
 const VideoListing = () => {
   const [lists, setLists] = useState([]);
   const [showModal, setShowModal] = useToggle(false);
   const [playlistVideo, setPlaylistVideo] = useState(null);
   const [categoryVideos,setCategoryVideos] = useState([]);
   const [category,setCategory]=useState("all");
+  const [searchParams,setSearchParams]=useSearchParams();
+  const type = searchParams.get("type");
+  
+  
   useEffect(() => {
     const fetchVideos = async () => {
       try {
         const response = await axios.get("/api/videos");
         if (response.status === 200){
-           setLists(response.data.videos)
+           setLists(response.data.videos);
+           if(type){
+             const result = response.data.videos.filter(video=>video.category === type);
+             setCategoryVideos(result);
+             setCategory(type);
+           }else{
            setCategoryVideos(response.data.videos);
+           }
           };
       } catch (error) {
         console.log(error);
       }
     };
-
     fetchVideos();
   }, []);
   const categoryHandler=(category)=>{
+    setSearchParams({"type":category});
     setCategory(category);
     if(category === "all"){
       setCategoryVideos(lists);
