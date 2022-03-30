@@ -36,6 +36,12 @@ aside {
   border-radius: 1rem;
   font-size: 1.4rem;
   padding: 1rem 1.6rem;
+  cursor: pointer;
+}
+
+.filter-category.active{
+  background: var(--primary);
+  color:var(--black);
 }
 
 @media only screen and (max-width: 600px) {

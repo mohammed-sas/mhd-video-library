@@ -10,6 +10,7 @@ const VideoListing = () => {
   const [showModal, setShowModal] = useToggle(false);
   const [playlistVideo, setPlaylistVideo] = useState(null);
   const [categoryVideos,setCategoryVideos] = useState([]);
+  const [category,setCategory]=useState("all");
   useEffect(() => {
     const fetchVideos = async () => {
       try {
@@ -26,6 +27,7 @@ const VideoListing = () => {
     fetchVideos();
   }, []);
   const categoryHandler=(category)=>{
+    setCategory(category);
     if(category === "all"){
       setCategoryVideos(lists);
       return;
@@ -38,11 +40,11 @@ const VideoListing = () => {
       <SideNavbar />
       <div className={classes["lists"]}>
         <div className={classes["filters"]}>
-          <span className={classes["filter-category"]} onClick={()=>categoryHandler("all")}>All Categories</span>
-          <span className={classes["filter-category"]} onClick={()=>categoryHandler("trickshot")}>Trickshot</span>
-          <span className={classes["filter-category"]} onClick={()=>categoryHandler("defense")}>Defense</span>
-          <span className={classes["filter-category"]} onClick={()=>categoryHandler("bio-mechanics")}>Bio-mechanics</span>
-          <span className={classes["filter-category"]} onClick={()=>categoryHandler("footwork")}>Footwork</span>
+          <span className={`${classes["filter-category"]} ${category==="all" ? classes["active"] :""}`} onClick={()=>categoryHandler("all")}>All Categories</span>
+          <span className={`${classes["filter-category"]} ${category==="trickshot" ? classes["active"] :""}`} onClick={()=>categoryHandler("trickshot")}>Trickshot</span>
+          <span className={`${classes["filter-category"]} ${category==="defense" ? classes["active"] :""}`} onClick={()=>categoryHandler("defense")}>Defense</span>
+          <span className={`${classes["filter-category"]} ${category==="bio-mechanics" ? classes["active"] :""}`} onClick={()=>categoryHandler("bio-mechanics")}>Bio-mechanics</span>
+          <span className={`${classes["filter-category"]} ${category==="footwork" ? classes["active"] :""}`} onClick={()=>categoryHandler("footwork")}>Footwork</span>
         </div>
         <div className={classes["video-cards"]}>
           {categoryVideos.map((video) => {
