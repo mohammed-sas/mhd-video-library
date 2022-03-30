@@ -1,7 +1,7 @@
 import classes from "./videoCard.module.css";
 import { useToggle } from "../../hooks/useToggle";
 import { useNavigate, useLocation } from "react-router-dom";
-import {useAuth,useLike,usePlaylist} from '../../context/index'
+import { useAuth, useLike, usePlaylist } from "../../context/index";
 
 const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   const [showMenu, setShowMenu] = useToggle(false);
@@ -52,9 +52,9 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
       console.log(error);
     }
   };
-  const singleVideoHandler=()=>{
+  const singleVideoHandler = () => {
     navigate(`/explore/${video._id}`);
-  }
+  };
   return (
     <div className={classes["video-card"]}>
       <div className={classes["video-thumbnail"]} onClick={singleVideoHandler}>
@@ -117,6 +117,11 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
                   <span className="text-white">Like Video</span>
                 </li>
               )}
+
+              <li className={classes["control-item"]}>
+                <i className="far fa-bookmark text-white"></i>
+                <span className="text-white">Watch later</span>
+              </li>
             </ul>
           ) : null}
         </div>
