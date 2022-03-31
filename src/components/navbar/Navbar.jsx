@@ -1,8 +1,8 @@
-import logo from "../../assets/logo.webp";
 import classes from "./navbar.module.css";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { useToggle } from "../../hooks/useToggle";
+import Searchbar from '../navbar/searchbar/Searchbar';
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
   const [showSideBar, setShowSidebar] = useToggle(false);
@@ -20,14 +20,7 @@ const Navbar = () => {
         <h2 className="text-primary">MHD</h2>
         <small className="text-primary">Video Library</small>
       </div>
-      <div className="search-bar">
-        <i className="fas fa-search text-primary"></i>
-        <input
-          type="text"
-          className="bg-black text-white"
-          placeholder="Search..."
-        />
-      </div>
+      <Searchbar/>
       <div
         className={`nav-links ${classes["drawer-lib"]} ${classes["side-bar"]} ${
           showSideBar ? classes["active"] : ""
