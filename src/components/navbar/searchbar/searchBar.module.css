@@ -3,6 +3,9 @@
     width: 100%;
     top:110%;
     background:#1E1F26;
+    z-index: 3;
+    max-height: 20rem;
+    overflow-y: scroll;
 }
 
 .search-lists li{
