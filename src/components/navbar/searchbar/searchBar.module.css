@@ -1,0 +1,23 @@
+.search-lists{
+    position: absolute;
+    width: 100%;
+    top:110%;
+    background:#1E1F26;
+}
+
+.search-lists li{
+    cursor: pointer;
+    padding: 1rem 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+}
+
+.search-lists li:hover{
+    background: #30323A;
+}
+
+.position-relative{
+    position: relative;
+}
