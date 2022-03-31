@@ -23,10 +23,10 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/explore" element={<VideoListing />} />
+        <Route path="/explore/:videoId" element={<SingleVideo />} />
         <Route path="/playlists" element={<Playlist />} />
         <Route path="/playlists/:playlistId" element={<SpecificPlaylist />} />
         <Route path="/liked" element={<Liked />} />
-        <Route path="/explore/:videoId" element={<SingleVideo />} />
         <Route path="/history" element={<History />} />
         <Route path="/watchlater" element={<WatchLater />} />
         <Route path="/mock-api" element={<Mockman />} />
