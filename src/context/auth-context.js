@@ -20,10 +20,10 @@ const useProvideAuth = () => {
   const signUp = async (user) => {
     try {
       const response = await axios.post("/api/auth/signup", user);
-      if(response.status === 201){
-      localStorage.setItem("token", response.data.encodedToken);
-      setCurrentUser(response.data.createdUser);
-      navigate(-2);
+      if (response.status === 201) {
+        localStorage.setItem("token", response.data.encodedToken);
+        setCurrentUser(response.data.createdUser);
+        navigate(-2);
       }
       return response.status;
     } catch (error) {
@@ -33,10 +33,10 @@ const useProvideAuth = () => {
   const login = async (user) => {
     try {
       const response = await axios.post("/api/auth/login", user);
-      if(response.status === 200){
-      localStorage.setItem("token", response.data.encodedToken);
-      setCurrentUser(response.data.foundUser);
-      navigate(-1);
+      if (response.status === 200) {
+        localStorage.setItem("token", response.data.encodedToken);
+        setCurrentUser(response.data.foundUser);
+        navigate(-1);
       }
       return response.status;
     } catch (error) {

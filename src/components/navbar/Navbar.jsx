@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { useToggle } from "../../hooks/useToggle";
 import Searchbar from '../navbar/searchbar/Searchbar';
+import logo from '../../assets/logo.webp';
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
   const [showSideBar, setShowSidebar] = useToggle(false);
@@ -17,8 +18,11 @@ const Navbar = () => {
         onClick={setShowSidebar}
       ></i>
       <div className={`nav-brand ${classes["nav-brand-lib"]}`} onClick={()=>navigate('/')}>
-        <h2 className="text-primary">MHD</h2>
-        <small className="text-primary">Video Library</small>
+        <img src={logo} alt="logo" />
+        <div className={classes["logo-header"]}>
+          <h2 className="text-primary">MHD</h2>
+          <small className="text-primary">Video Library</small>
+        </div>
       </div>
       <Searchbar/>
       <div
