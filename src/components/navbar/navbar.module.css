@@ -1,5 +1,6 @@
 .nav-brand-lib {
   display: flex;
+  cursor: pointer;
 }
 .logo-header{
   display: flex;
