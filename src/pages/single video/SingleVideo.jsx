@@ -6,15 +6,20 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useToggle } from "../../hooks/useToggle";
 import { useLike, useAuth, useHistory, useWatchLater } from "../../context";
+import {InfoAlert,SuccessAlert} from '../../components'
 const SingleVideo = () => {
   const { videoId } = useParams();
   const [video, setVideo] = useState({});
   const { addToLikes, deleteFromLikes, likeState } = useLike();
-  const {addToWatchLater,deleteFromWatchLater,watchLaterState} = useWatchLater();
+  const { addToWatchLater, deleteFromWatchLater, watchLaterState } =
+    useWatchLater();
   const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useToggle(false);
-  const [saved,setSaved] = useToggle(false);
+  const [saved, setSaved] = useToggle(false);
   const [showModal, setShowModal] = useToggle(false);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [apiCalled, setApiCalled] = useState(false);
+  const [processing, setProcessing] = useState(false);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
   const { addToHistory } = useHistory();
@@ -38,17 +43,19 @@ const SingleVideo = () => {
 
     fetchVideos();
 
-    const isLiked =()=> {
+    const isLiked = () => {
       const isExist = likeState.likes.find(
         (likedVideo) => likedVideo._id === videoId
       );
       isExist ? setLiked() : null;
     };
     isLiked();
-    const isSaved=()=>{
-      const isExist=watchLaterState.watchLater.find(watchedVideo=>watchedVideo._id === videoId);
-      isExist ? setSaved():null;
-    }
+    const isSaved = () => {
+      const isExist = watchLaterState.watchLater.find(
+        (watchedVideo) => watchedVideo._id === videoId
+      );
+      isExist ? setSaved() : null;
+    };
     isSaved();
   }, []);
 
@@ -59,9 +66,19 @@ const SingleVideo = () => {
       }
       setLiked();
       if (!liked) {
+        setApiCalled(true);
+        setProcessing(true);
+        setAlertMessage("Adding to your liked list");
         await addToLikes(video);
+        setProcessing(false);
+        setAlertMessage("Added to your liked list");
       } else {
+        setApiCalled(true);
+        setProcessing(true);
+        setAlertMessage("removing from liked list");
         await deleteFromLikes(video._id);
+        setProcessing(false);
+        setAlertMessage("removed from liked list");
       }
     } catch (error) {
       console.log(error);
@@ -77,22 +94,31 @@ const SingleVideo = () => {
       console.log(error);
     }
   };
-  const watchLaterHandler=async ()=>{
-    try{
+  const watchLaterHandler = async () => {
+    try {
       if (!currentUser.user) {
         navigate("/login");
       }
       setSaved();
       if (!saved) {
+        setApiCalled(true);
+        setProcessing(true);
+        setAlertMessage("adding to watch later");
         await addToWatchLater(video);
+        setProcessing(false);
+        setAlertMessage("added to watch later");
       } else {
+        setApiCalled(true);
+        setProcessing(true);
+        setAlertMessage("removing from watch later");
         await deleteFromWatchLater(video._id);
+        setProcessing(false);
+        setAlertMessage("removed from watch later");
       }
-
-    }catch(error){
+    } catch (error) {
       console.log(error);
     }
-  }
+  };
   return (
     <main className={classes["single-video-container"]}>
       <SideNavbar />
@@ -141,6 +167,10 @@ const SingleVideo = () => {
       ) : (
         <h2 className="text-white">Loading...</h2>
       )}
+      {apiCalled && !processing ? (
+        <SuccessAlert message={alertMessage} />
+      ) : null}
+      {apiCalled && processing && <InfoAlert message={alertMessage} />}
     </main>
   );
 };
