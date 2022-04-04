@@ -40,8 +40,8 @@ const Navbar = () => {
             </li>
           )}
           <li>
-            {currentUser ? (
-              <span className="text-white">{currentUser.firstName}</span>
+            {currentUser.user ? (
+              <span className="text-white">{currentUser.user.firstName}</span>
             ) : (
               <Link to="/login" onClick={()=>(showSideBar && setShowSidebar())}>
                 <button className="btn btn-primary bg-primary text-grey">
@@ -51,21 +51,21 @@ const Navbar = () => {
             )}
           </li>
           <li>
-            <Link to={currentUser ? "/explore" : "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
+            <Link to={currentUser.user ? "/explore" : "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
               <div>
                 <span>Explore</span>
               </div>
             </Link>
           </li>
           <li>
-            <Link to={currentUser ? "/playlists": "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
+            <Link to={currentUser.user ? "/playlists": "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
               <div>
                 <span>Playlist</span>
               </div>
             </Link>
           </li>
           <li>
-            {currentUser ? (
+            {currentUser.user ? (
               <button className="btn btn-secondary" onClick={logoutHandler}>
                 Logout
               </button>

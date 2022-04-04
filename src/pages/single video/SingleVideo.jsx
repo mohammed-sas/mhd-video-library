@@ -54,7 +54,7 @@ const SingleVideo = () => {
 
   const likehandler = async () => {
     try {
-      if (!currentUser) {
+      if (!currentUser.user) {
         navigate("/login");
       }
       setLiked();
@@ -69,7 +69,7 @@ const SingleVideo = () => {
   };
   const playlistHandler = async () => {
     try {
-      if (!currentUser) {
+      if (!currentUser.user) {
         navigate("/login");
       }
       setShowModal();
@@ -79,7 +79,7 @@ const SingleVideo = () => {
   };
   const watchLaterHandler=async ()=>{
     try{
-      if (!currentUser) {
+      if (!currentUser.user) {
         navigate("/login");
       }
       setSaved();

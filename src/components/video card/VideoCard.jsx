@@ -17,7 +17,7 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   const { watchLaterState, addToWatchLater, deleteFromWatchLater } =
     useWatchLater();
   const playListHandler = () => {
-    if (!currentUser) {
+    if (!currentUser.user) {
       navigate("/login");
       return;
     }
@@ -39,7 +39,7 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   };
   const addToLikeHandler = async () => {
     try {
-      if (!currentUser) {
+      if (!currentUser.user) {
         navigate("/login");
         return;
       }
