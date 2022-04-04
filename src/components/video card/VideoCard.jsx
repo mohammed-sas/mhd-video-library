@@ -7,6 +7,8 @@ import {
   usePlaylist,
   useWatchLater,
 } from "../../context/index";
+import {SuccessAlert,InfoAlert} from '../index';
+import { useState } from "react";
 
 const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   const [showMenu, setShowMenu] = useToggle(false);
@@ -14,6 +16,9 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
   const { addToLikes, likeState, deleteFromLikes } = useLike();
+  const [alertMessage,setAlertMessage] = useState("");
+  const [apiCalled,setApiCalled] = useState(false);
+  const [processing,setProcessing]=useState(false);
   const { watchLaterState, addToWatchLater, deleteFromWatchLater } =
     useWatchLater();
   const playListHandler = () => {
@@ -43,7 +48,13 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
         navigate("/login");
         return;
       }
+      setApiCalled(true);
+      setProcessing(true);
+      setAlertMessage("Adding to your liked list");
       await addToLikes(video);
+      setProcessing(false);
+      setAlertMessage("Added to your liked list");
+      
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +65,12 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   };
   const removeLikeHandler = async () => {
     try {
+      setApiCalled(true);
+      setProcessing(true);
+      setAlertMessage("removing from liked list");
       await deleteFromLikes(video._id);
+      setProcessing(false);
+      setAlertMessage("removed from liked list")
     } catch (error) {
       console.log(error);
     }
@@ -64,14 +80,24 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   };
   const addWatchLaterHandler = async () => {
     try {
+      setApiCalled(true);
+      setProcessing(true);
+      setAlertMessage("adding to watch later");
       await addToWatchLater(video);
+      setProcessing(false);
+      setAlertMessage("added to watch later");
     } catch (error) {
       console.log(error);
     }
   };
   const removeWatchLaterHandler = async () => {
     try {
+      setApiCalled(true);
+      setProcessing(true);
+      setAlertMessage("removing from watch later");
       await deleteFromWatchLater(video._id);
+      setProcessing(false);
+      setAlertMessage("removed from watch later");
     } catch (error) {
       console.log(error);
     }
@@ -166,6 +192,8 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
           ) : null}
         </div>
       </div>
+      {(apiCalled && !processing) ? <SuccessAlert message={alertMessage}/> : null}
+      {(apiCalled&&processing) && <InfoAlert message={alertMessage}/>}
     </div>
   );
 };
