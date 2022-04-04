@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { useToggle } from "../../hooks/useToggle";
 import Searchbar from '../navbar/searchbar/Searchbar';
+import logo from '../../assets/logo.webp';
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
   const [showSideBar, setShowSidebar] = useToggle(false);
@@ -17,8 +18,11 @@ const Navbar = () => {
         onClick={setShowSidebar}
       ></i>
       <div className={`nav-brand ${classes["nav-brand-lib"]}`} onClick={()=>navigate('/')}>
-        <h2 className="text-primary">MHD</h2>
-        <small className="text-primary">Video Library</small>
+        <img src={logo} alt="logo" />
+        <div className={classes["logo-header"]}>
+          <h2 className="text-primary">MHD</h2>
+          <small className="text-primary">Video Library</small>
+        </div>
       </div>
       <Searchbar/>
       <div
@@ -36,8 +40,8 @@ const Navbar = () => {
             </li>
           )}
           <li>
-            {currentUser ? (
-              <span className="text-white">{currentUser.firstName}</span>
+            {currentUser.user ? (
+              <span className="text-white">{currentUser.user.firstName}</span>
             ) : (
               <Link to="/login" onClick={()=>(showSideBar && setShowSidebar())}>
                 <button className="btn btn-primary bg-primary text-grey">
@@ -47,21 +51,21 @@ const Navbar = () => {
             )}
           </li>
           <li>
-            <Link to={currentUser ? "/explore" : "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
+            <Link to={currentUser.user ? "/explore" : "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
               <div>
                 <span>Explore</span>
               </div>
             </Link>
           </li>
           <li>
-            <Link to={currentUser ? "/playlists": "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
+            <Link to={currentUser.user ? "/playlists": "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
               <div>
                 <span>Playlist</span>
               </div>
             </Link>
           </li>
           <li>
-            {currentUser ? (
+            {currentUser.user ? (
               <button className="btn btn-secondary" onClick={logoutHandler}>
                 Logout
               </button>

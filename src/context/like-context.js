@@ -1,7 +1,7 @@
 import axios from "axios";
-import { createContext, useContext, useReducer, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
-
+import { createContext, useContext, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
+import {likeReducer} from '../reducer/likeReducer';
 const LikeContext = createContext(null);
 
 const LikeProvider = ({children})=>{
@@ -12,9 +12,8 @@ const LikeProvider = ({children})=>{
 }
 
 const useLikeActions=()=>{
-    const [likeState,setLikeState]= useState({likes:[]});
+    const [likeState,likeDispatch]=useReducer(likeReducer,{likes:[]});
     const token = localStorage.getItem("token");
-    const navigate = useNavigate();
     const auth= {
         headers:{
             authorization:token
@@ -24,10 +23,7 @@ const useLikeActions=()=>{
         try{
             const response = await axios.post('/api/user/likes',{video},auth);
             if(response.status === 201){
-                setLikeState({
-                    ...likeState,
-                    likes:response.data.likes
-                })
+                likeDispatch({type:"ADD",payload:response.data.likes});
             }
         }catch(error){
             console.log(error);
@@ -37,10 +33,7 @@ const useLikeActions=()=>{
         try{
             const response = await axios.delete(`/api/user/likes/${id}`,auth);
             if(response.status === 200){
-                setLikeState({
-                    ...likeState,
-                    likes:response.data.likes
-                })
+                likeDispatch({type:"DELETE",payload:response.data.likes});
             }
         }catch(error){
             console.log(error);

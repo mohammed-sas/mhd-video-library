@@ -18,26 +18,26 @@ const SideNavbar = () => {
         </div>
       </Link>
 
-      <Link to={currentUser ? "/playlists" : "/login"}>
+      <Link to={currentUser.user ? "/playlists" : "/login"}>
         <div>
           <i className="fas fa-list"></i>
           <span>Playlist</span>
         </div>
       </Link>
 
-      <Link to={currentUser ? "/liked" : "/login"}>
+      <Link to={currentUser.user ? "/liked" : "/login"}>
         <div>
           <i className="fas fa-thumbs-up"></i>
           <span>Liked</span>
         </div>
       </Link>
-      <Link to={currentUser ? "/history" : "/login"}>
+      <Link to={currentUser.user ? "/history" : "/login"}>
         <div>
           <i className="fas fa-history"></i>
           <span>History</span>
         </div>
       </Link>
-      <Link to={currentUser ? "/watchlater" : "/login"}>
+      <Link to={currentUser.user ? "/watchlater" : "/login"}>
         <div>
           <i className="fas fa-bookmark"></i>
           <span>Watch later</span>

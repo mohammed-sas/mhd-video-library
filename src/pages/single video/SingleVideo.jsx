@@ -5,17 +5,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useToggle } from "../../hooks/useToggle";
-import { useLike, useAuth,useHistory } from "../../context";
+import { useLike, useAuth, useHistory, useWatchLater } from "../../context";
 const SingleVideo = () => {
   const { videoId } = useParams();
   const [video, setVideo] = useState({});
   const { addToLikes, deleteFromLikes, likeState } = useLike();
+  const {addToWatchLater,deleteFromWatchLater,watchLaterState} = useWatchLater();
   const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useToggle(false);
+  const [saved,setSaved] = useToggle(false);
   const [showModal, setShowModal] = useToggle(false);
   const { currentUser } = useAuth();
   const navigate = useNavigate();
-  const {addToHistory} = useHistory();
+  const { addToHistory } = useHistory();
   useEffect(() => {
     const fetchVideos = async () => {
       try {
@@ -36,18 +38,23 @@ const SingleVideo = () => {
 
     fetchVideos();
 
-    const isLiked = async () => {
+    const isLiked =()=> {
       const isExist = likeState.likes.find(
         (likedVideo) => likedVideo._id === videoId
       );
       isExist ? setLiked() : null;
     };
     isLiked();
+    const isSaved=()=>{
+      const isExist=watchLaterState.watchLater.find(watchedVideo=>watchedVideo._id === videoId);
+      isExist ? setSaved():null;
+    }
+    isSaved();
   }, []);
 
   const likehandler = async () => {
     try {
-      if (!currentUser) {
+      if (!currentUser.user) {
         navigate("/login");
       }
       setLiked();
@@ -62,7 +69,7 @@ const SingleVideo = () => {
   };
   const playlistHandler = async () => {
     try {
-      if (!currentUser) {
+      if (!currentUser.user) {
         navigate("/login");
       }
       setShowModal();
@@ -70,6 +77,22 @@ const SingleVideo = () => {
       console.log(error);
     }
   };
+  const watchLaterHandler=async ()=>{
+    try{
+      if (!currentUser.user) {
+        navigate("/login");
+      }
+      setSaved();
+      if (!saved) {
+        await addToWatchLater(video);
+      } else {
+        await deleteFromWatchLater(video._id);
+      }
+
+    }catch(error){
+      console.log(error);
+    }
+  }
   return (
     <main className={classes["single-video-container"]}>
       <SideNavbar />
@@ -95,16 +118,21 @@ const SingleVideo = () => {
                 className="text-white fas fa-folder-plus"
                 onClick={playlistHandler}
               ></i>
-              <i className="text-white fas fa-bookmark"></i>
+              <i
+                className={
+                  "text-white fas fa-bookmark " + (saved ? "text-primary" : "")
+                }
+                onClick={watchLaterHandler}
+              ></i>
             </div>
             <div className={classes["channel-details"]}>
-                <img src={video.channelThumbnail} alt={video.channelTitle} />
-                <h3 className="text-white">{video.channelTitle}</h3>
+              <img src={video.channelThumbnail} alt={video.channelTitle} />
+              <h3 className="text-white">{video.channelTitle}</h3>
             </div>
           </div>
           <div className={classes["video-typography"]}>
-              <h2 className="text-primary">{video.title}</h2>
-              <p className="text-white">{video.description}</p>
+            <h2 className="text-primary">{video.title}</h2>
+            <p className="text-white">{video.description}</p>
           </div>
           {showModal ? (
             <ActionsModal setShowModal={setShowModal} playlistVideo={video} />
