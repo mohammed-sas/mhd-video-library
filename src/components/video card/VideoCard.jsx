@@ -193,7 +193,7 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
         </div>
       </div>
       {(apiCalled && !processing) ? <SuccessAlert message={alertMessage}/> : null}
-      {(apiCalled&&processing) && <InfoAlert message={alertMessage}/>}
+      {(apiCalled&&processing) ? <InfoAlert message={alertMessage}/> :null}
     </div>
   );
 };
