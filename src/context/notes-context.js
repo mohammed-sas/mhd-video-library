@@ -39,8 +39,18 @@ const useNotesActions=()=>{
             console.log(error);
         }
     }
+    const updateNote=async (note)=>{
+        try{
+            const response = await axios.post(`/api/user/note/${note._id}`,{note},auth);
+            if(response.status === 200){
+                notesDispatch({type:"UPDATE",payload:response.data.notes});
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
 
-    return {notesState,addNotes,deleteNote};
+    return {notesState,addNotes,deleteNote,updateNote};
 }
 
 const useNotes=()=>useContext(NotesContext);

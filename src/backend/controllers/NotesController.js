@@ -18,6 +18,25 @@ export const addNewNotesHandler = function (schema, request) {
     }
   );
 };
+export const updateNoteHandler = function (schema, request) {
+  const user = requiresAuth.call(this, request);
+  if (user) {
+    const noteId = request.params.noteId;
+    const { note } = JSON.parse(request.requestBody);
+    const notes = user.notes.filter(note=>note._id !== noteId);
+    const updatedNotes= [...notes,note];
+    this.db.users.update({ notes: updatedNotes });
+    return new Response(200, {}, { notes: updatedNotes });
+  }
+  return new Response(
+    404,
+    {},
+    {
+      errors: ["The email you entered is not Registered. Not Found error"],
+    }
+  );
+};
+
 
 
 export const deleteNoteHandler = function (schema, request) {
