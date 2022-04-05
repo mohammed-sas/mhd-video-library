@@ -1,0 +1,30 @@
+.notes-modal{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.5);
+}
+.notes-form{
+    height: 30rem;
+    width: 35rem;
+    position: relative;
+    background: var(--black);
+    padding: 1rem;
+    border-radius: 1rem;
+}
+.textarea{
+    width: 95%;
+    height: 10rem;
+}
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 1.4rem;
+    cursor: pointer;
+  }
