@@ -7,7 +7,7 @@ import axios from "axios";
 import { useToggle } from "../../hooks/useToggle";
 import { useLike, useAuth, useHistory, useWatchLater } from "../../context";
 import {InfoAlert,SuccessAlert} from '../../components'
-import NotesModal from "./notes/modal/NotesModal";
+import {NotesModal,NotesList} from "./notes";
 const SingleVideo = () => {
   const { videoId } = useParams();
   const [video, setVideo] = useState({});
@@ -171,6 +171,7 @@ const SingleVideo = () => {
             <h2 className="text-primary">{video.title}</h2>
             <p className="text-white">{video.description}</p>
           </div>
+          <NotesList videoId={videoId}/>
         
           {showModal ? (
             <ActionsModal setShowModal={setShowModal} playlistVideo={video} />
