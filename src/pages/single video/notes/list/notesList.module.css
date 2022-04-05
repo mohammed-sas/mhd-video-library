@@ -1,6 +1,17 @@
+.container{
+    text-align: left;
+}
 .notes-list{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
     gap: 1rem;
     text-align: left;
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+    justify-content: flex-start;
 }

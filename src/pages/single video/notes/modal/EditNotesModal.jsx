@@ -1,7 +1,7 @@
 import {useState} from "react";
 import { useNotes } from "../../../../context";
 import classes from './notesModal.module.css';
-const EditNotesModal = ({note,setShowEditForm}) => {
+const EditNotesModal = ({note,setShowEditForm,setPlaying}) => {
     const {updateNote} = useNotes();
     const [editedNote,setEditedNote]=useState({
       ...note
@@ -18,7 +18,9 @@ const EditNotesModal = ({note,setShowEditForm}) => {
     const submitHandler=async (e)=>{
         try{
             e.preventDefault();
+            setShowEditForm();
             await updateNote(editedNote);
+            setPlaying();
         }catch(error){
             console.log(error);
         }
