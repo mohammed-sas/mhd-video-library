@@ -10,7 +10,7 @@ const NotesList = ({videoId}) => {
             <h2 className="text-primary">Notes</h2>
             {
                 videoNotes.map(note=>{
-                    return <NotesCard note={note}/>
+                    return <NotesCard key={note._id} note={note}/>
                 })
             }
         </div>

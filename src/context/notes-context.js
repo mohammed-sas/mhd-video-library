@@ -29,8 +29,18 @@ const useNotesActions=()=>{
             console.log(error);
         }
     }
+    const deleteNote=async (note)=>{
+        try{
+            const response= await axios.delete(`/api/user/note/${note._id}`,auth);
+            if(response.status === 200){
+                notesDispatch({type:"UPDATE",payload:response.data.notes});
+            }
+        }catch(error){
+            console.log(error);
+        }
+    }
 
-    return {notesState,addNotes};
+    return {notesState,addNotes,deleteNote};
 }
 
 const useNotes=()=>useContext(NotesContext);

@@ -5,6 +5,11 @@ const notesReducer=(state,{type,payload})=>{
                 ...state,
                 notes:payload
             }
+        case "UPDATE":
+            return{
+                ...state,
+                notes:payload
+            }
         default:
             return state;
     }

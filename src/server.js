@@ -38,7 +38,10 @@ import {
   getWatchLaterVideosHandler,
   removeItemFromWatchLaterVideos,
 } from "./backend/controllers/WatchLaterController";
-import {addNewNotesHandler} from './backend/controllers/NotesController';
+import {
+  addNewNotesHandler,
+  deleteNoteHandler
+} from './backend/controllers/NotesController';
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
     serializers: {
@@ -106,7 +109,7 @@ export function makeServer({ environment = "development" } = {}) {
 
        // notes routes (private)
        this.post("/user/notes/:videoId",addNewNotesHandler.bind(this));
-
+       this.delete("/user/note/:noteId",deleteNoteHandler.bind(this));
       // playlist routes (private)
       this.get("/user/playlists", getAllPlaylistsHandler.bind(this));
       this.post("/user/playlists", addNewPlaylistHandler.bind(this));
