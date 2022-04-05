@@ -1,9 +1,13 @@
+import classes from "./actionsModal.module.css";
 import { useState } from "react";
 import { usePlaylist } from "../../context/playlist-context";
-import classes from "./actionsModal.module.css";
+import { InfoAlert, SuccessAlert } from "../index";
 
 const ActionsModal = ({ playlistVideo, setShowModal }) => {
   const [newPlayList, setNewPlayList] = useState("");
+  const [alertMessage, setAlertMessage] = useState("");
+  const [apiCalled, setApiCalled] = useState(false);
+  const [processing, setProcessing] = useState(false);
   const { playlistState, addNewPlaylist, addToPlaylist, removeFromPlaylist } =
     usePlaylist();
 
@@ -18,7 +22,12 @@ const ActionsModal = ({ playlistVideo, setShowModal }) => {
       if (isExist) {
         return;
       }
+      setApiCalled(true);
+      setProcessing(true);
+      setAlertMessage("creating playlist");
       await addNewPlaylist({ title: newPlayList.trim(), description: "" });
+      setProcessing(false);
+      setAlertMessage("playlist created");
     } catch (error) {
       console.log(error);
     }
@@ -26,9 +35,19 @@ const ActionsModal = ({ playlistVideo, setShowModal }) => {
   const changeHandler = async (e, id) => {
     try {
       if (e.target.checked) {
+        setApiCalled(true);
+        setProcessing(true);
+        setAlertMessage("Adding to playlist");
         await addToPlaylist(id, playlistVideo);
+        setProcessing(false);
+        setAlertMessage("Added to your playlist");
       } else {
+        setApiCalled(true);
+        setProcessing(true);
+        setAlertMessage("Removing from the playlist");
         await removeFromPlaylist(id, playlistVideo);
+        setProcessing(false);
+        setAlertMessage("Removed from the playlist");
       }
     } catch (error) {
       console.log(error);
@@ -77,6 +96,10 @@ const ActionsModal = ({ playlistVideo, setShowModal }) => {
           })}
         </ul>
       </div>
+      {apiCalled && !processing ? (
+        <SuccessAlert message={alertMessage} />
+      ) : null}
+      {(apiCalled && processing) ? <InfoAlert message={alertMessage} />:null}
     </div>
   );
 };
