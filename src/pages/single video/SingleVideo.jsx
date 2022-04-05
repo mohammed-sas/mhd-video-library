@@ -165,7 +165,7 @@ const SingleVideo = () => {
           </div>
           <div>
             <button className="btn btn-primary bg-primary text-grey" onClick={notesHandler}>Add notes</button>
-            {showNotesForm ? <NotesModal player={playerRef} setShowNotesForm={setShowNotesForm}/> : null}
+            {showNotesForm ? <NotesModal player={playerRef} videoId={videoId} setShowNotesForm={setShowNotesForm}/> : null}
           </div>
           <div className={classes["video-typography"]}>
             <h2 className="text-primary">{video.title}</h2>

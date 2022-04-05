@@ -4,6 +4,7 @@ import { usePlaylist, PlaylistProvider } from "./playlist-context";
 import { useHistory, HistoryProvider } from "./history-context";
 import { useWatchLater, WatchLaterProvider } from "./watchLater-context";
 import { useVideo, VideoProvider } from "./video-context";
+import {useNotes,NotesProvider} from './notes-context';
 export {
   usePlaylist,
   useLike,
@@ -16,5 +17,7 @@ export {
   useWatchLater,
   WatchLaterProvider,
   useVideo,
-  VideoProvider
+  VideoProvider,
+  useNotes,
+  NotesProvider
 };

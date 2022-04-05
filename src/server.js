@@ -38,6 +38,7 @@ import {
   getWatchLaterVideosHandler,
   removeItemFromWatchLaterVideos,
 } from "./backend/controllers/WatchLaterController";
+import {addNewNotesHandler} from './backend/controllers/NotesController';
 export function makeServer({ environment = "development" } = {}) {
   return new Server({
     serializers: {
@@ -52,6 +53,7 @@ export function makeServer({ environment = "development" } = {}) {
       like: Model,
       history: Model,
       playlist: Model,
+      notes:Model
     },
 
     // Runs on the start of the server
@@ -68,6 +70,7 @@ export function makeServer({ environment = "development" } = {}) {
           history: [],
           playlists: [],
           watchlater: [],
+          notes:[],
         })
       );
     },
@@ -100,6 +103,9 @@ export function makeServer({ environment = "development" } = {}) {
          "/user/watchlater/:videoId",
          removeItemFromWatchLaterVideos.bind(this)
        );
+
+       // notes routes (private)
+       this.post("/user/notes/:videoId",addNewNotesHandler.bind(this));
 
       // playlist routes (private)
       this.get("/user/playlists", getAllPlaylistsHandler.bind(this));
