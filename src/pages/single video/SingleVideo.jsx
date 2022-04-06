@@ -2,11 +2,12 @@ import classes from "./singleVideo.module.css";
 import { SideNavbar, ActionsModal } from "../../components";
 import ReactPlayer from "react-player";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState,useRef } from "react";
 import axios from "axios";
 import { useToggle } from "../../hooks/useToggle";
 import { useLike, useAuth, useHistory, useWatchLater } from "../../context";
 import {InfoAlert,SuccessAlert} from '../../components'
+import {NotesList} from "./notes";
 const SingleVideo = () => {
   const { videoId } = useParams();
   const [video, setVideo] = useState({});
@@ -21,6 +22,8 @@ const SingleVideo = () => {
   const [apiCalled, setApiCalled] = useState(false);
   const [processing, setProcessing] = useState(false);
   const { currentUser } = useAuth();
+  const playerRef = useRef(null);
+  const [playing,setPlaying] = useToggle(true);
   const navigate = useNavigate();
   const { addToHistory } = useHistory();
   useEffect(() => {
@@ -119,6 +122,7 @@ const SingleVideo = () => {
       console.log(error);
     }
   };
+  
   return (
     <main className={classes["single-video-container"]}>
       <SideNavbar />
@@ -130,6 +134,9 @@ const SingleVideo = () => {
               width="100%"
               height="100%"
               controls={true}
+              ref={playerRef}
+              playing={playing}
+              
             />
           </div>
           <div className={classes["video-body"]}>
@@ -156,10 +163,14 @@ const SingleVideo = () => {
               <h3 className="text-white">{video.channelTitle}</h3>
             </div>
           </div>
+          
           <div className={classes["video-typography"]}>
             <h2 className="text-primary">{video.title}</h2>
             <p className="text-white">{video.description}</p>
           </div>
+          
+          <NotesList videoId={videoId} playerRef={playerRef} setPlaying={setPlaying} />
+        
           {showModal ? (
             <ActionsModal setShowModal={setShowModal} playlistVideo={video} />
           ) : null}

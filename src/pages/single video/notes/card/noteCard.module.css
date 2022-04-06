@@ -1,0 +1,24 @@
+.note-card{
+    background: #1E1F26;
+    display: flex;
+    flex-flow: column wrap;
+    gap:1rem;
+    width: 20rem;
+}
+.note-card>*{
+    background:inherit;
+}
+.card-body{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.card-body span{
+    font-size: 1.2rem;
+}
+.card-footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
