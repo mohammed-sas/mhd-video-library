@@ -7,11 +7,13 @@
 :root{
   --black:#0B0C10;
   --smoke-black:#1F2833;
+  --black-one:#1E1F26;
   --grey:#C5C6C7;
   --primary:#66FCF1;
   --secondary:#45A29E;
   --white:#CCCCCC;
   --red:#ef4444;
+
 }
 
 span{

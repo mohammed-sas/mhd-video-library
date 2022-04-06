@@ -2,8 +2,8 @@ import classes from "./navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { useToggle } from "../../hooks/useToggle";
-import Searchbar from '../navbar/searchbar/Searchbar';
-import logo from '../../assets/logo.webp';
+import Searchbar from "../navbar/searchbar/Searchbar";
+import logo from "../../assets/logo.webp";
 const Navbar = () => {
   const { currentUser, logout } = useAuth();
   const [showSideBar, setShowSidebar] = useToggle(false);
@@ -17,14 +17,17 @@ const Navbar = () => {
         className={`fas fa-bars drawer-btn ${classes["hamburger-icon"]}`}
         onClick={setShowSidebar}
       ></i>
-      <div className={`nav-brand ${classes["nav-brand-lib"]}`} onClick={()=>navigate('/')}>
+      <div
+        className={`nav-brand ${classes["nav-brand-lib"]}`}
+        onClick={() => navigate("/")}
+      >
         <img src={logo} alt="logo" />
         <div className={classes["logo-header"]}>
           <h2 className="text-primary">MHD</h2>
           <small className="text-primary">Video Library</small>
         </div>
       </div>
-      <Searchbar/>
+      <Searchbar />
       <div
         className={`nav-links ${classes["drawer-lib"]} ${classes["side-bar"]} ${
           showSideBar ? classes["active"] : ""
@@ -41,9 +44,12 @@ const Navbar = () => {
           )}
           <li>
             {currentUser.user ? (
-              <span className="text-white">{currentUser.user.firstName}</span>
+              <Link to="/profile">
+                {" "}
+                <span className="text-white">{currentUser.user.firstName}</span>
+              </Link>
             ) : (
-              <Link to="/login" onClick={()=>(showSideBar && setShowSidebar())}>
+              <Link to="/login" onClick={() => showSideBar && setShowSidebar()}>
                 <button className="btn btn-primary bg-primary text-grey">
                   Login
                 </button>
@@ -51,14 +57,20 @@ const Navbar = () => {
             )}
           </li>
           <li>
-            <Link to={currentUser.user ? "/explore" : "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
+            <Link
+              to={currentUser.user ? "/explore" : "/login"}
+              onClick={() => showSideBar && setShowSidebar()}
+            >
               <div>
                 <span>Explore</span>
               </div>
             </Link>
           </li>
           <li>
-            <Link to={currentUser.user ? "/playlists": "/login"} onClick={()=>(showSideBar && setShowSidebar())}>
+            <Link
+              to={currentUser.user ? "/playlists" : "/login"}
+              onClick={() => showSideBar && setShowSidebar()}
+            >
               <div>
                 <span>Playlist</span>
               </div>

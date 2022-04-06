@@ -14,6 +14,7 @@ import {
   WatchLater,
   SpecificPlaylist
 } from "./pages";
+import Profile from "./pages/profile/Profile";
 function App() {
   return (
     <div className="App bg-black">
@@ -29,6 +30,7 @@ function App() {
         <Route path="/liked" element={<Liked />} />
         <Route path="/history" element={<History />} />
         <Route path="/watchlater" element={<WatchLater />} />
+        <Route path="/profile" element={<Profile/>}/>
         <Route path="/mock-api" element={<Mockman />} />
       </Routes>
     </div>
