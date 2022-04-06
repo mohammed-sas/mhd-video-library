@@ -1,0 +1,103 @@
+
+.profile-container{
+    width: 50%;
+    margin: 5rem auto;
+    height: 50rem;
+    display: grid;
+    grid-template-columns: 15rem 1fr;
+    grid-template-rows: auto 1fr;
+    grid-template-areas: "header header"
+                         "aside  main";
+}
+.profile-header{
+    grid-area: header;
+    border:1px solid var(--primary);
+    padding: 1rem;
+    background: var(--black-one);
+}
+.profile-aside{
+    grid-area:aside;
+    border:1px solid var(--primary);
+    background: var(--black-one);
+    padding: 1rem;
+    border-top: none;
+    
+}
+.profile-main{
+    grid-area: main;
+    border:1px solid var(--primary);
+    border-top: none;
+    border-left: none;
+    padding: 1rem;
+    background: var(--black-one);
+}
+.user-header{
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.charcoal{
+    color: var(--charcoal);
+}
+/* profile tabs */
+.profile-tabs{
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.tab-item span{
+   font-size: 1.4rem;
+}
+.profile-overview{
+    height: 60%;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.profile-overview h2{
+    margin-top: 0;
+    padding-top: 0;
+}
+.profile-overview-item{
+    display: flex;
+}
+.profile-overview-item>*{
+    color: var(--white);
+    font-size: 1.4rem;
+}
+.profile-overview-item span:nth-child(1){
+    width: 50%;  
+}
+.profile-overview-item span:nth-child(2){
+    width: 60%;  
+}
+
+
+@media only screen and (max-width:900px){
+    .profile-container{
+        width: 90%;
+        margin: 5rem auto;
+        height: 50rem;
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr;
+        grid-template-areas: "header"
+                             "main";
+    }
+    .profile-aside{
+        display: none;
+    }
+    .profile-main{
+        border-left: 1px solid var(--primary);
+    }
+}
+@media only screen and (max-width:600px){
+    html{
+        font-size: 50%;
+    }
+}
