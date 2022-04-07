@@ -6,8 +6,8 @@ const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const [user, setUser] = useState({
-    email: "mohammed@gmail.com",
-    password: "test123",
+    email: "",
+    password: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,6 +23,20 @@ const Login = () => {
       if (status === 200) navigate("/");
     } catch (error) {}
   };
+  const guestHandler = async () => {
+    try {
+      let guestUser = {
+        email: "mohammed@gmail.com",
+        password: "test12345678@",
+      };
+      let status = await login(guestUser);
+      if (status) {
+        navigate(-1);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <main className="login-container ">
       <div className="login-form-container bg-black ">
@@ -37,7 +51,6 @@ const Login = () => {
               name="email"
               type="email"
               placeholder="abc@neog.com"
-              defaultValue="mohammed@gmail.com"
             />
           </label>
 
@@ -49,7 +62,6 @@ const Login = () => {
               name="password"
               onChange={handleChange}
               placeholder="*******"
-              defaultValue="password"
             />
           </label>
 
@@ -68,6 +80,12 @@ const Login = () => {
             value="Login"
             className="btn btn-primary bg-primary text-grey"
           />
+          <button
+            className="btn btn-secondary bg-secondary"
+            onClick={guestHandler}
+          >
+            Login as Guest
+          </button>
           <div>
             <p className="centered-text ">
               <Link to="/signup" className="text-primary">
