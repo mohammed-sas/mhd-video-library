@@ -8,6 +8,13 @@ The complete tutorial video library where you could find great tutorials related
 3.React Router v6  
 4.MHD UI Component Library  
 5.CSS modules
+## Demo
+![video-lib-1](https://user-images.githubusercontent.com/89216938/162173039-ae970394-0d01-4d8d-8116-f01ec8848385.gif)  
+
+![video-lib-2](https://user-images.githubusercontent.com/89216938/162171129-df261a4f-1b07-430d-93e2-b795ca5932bf.gif)  
+
+![video-lib-3](https://user-images.githubusercontent.com/89216938/162172573-58612af6-22d1-4f72-8fd0-af2996e6c3d9.gif)  
+
 ## Functionalities
 1. Video listing page
 1. Authentication
