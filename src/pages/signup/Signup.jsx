@@ -11,6 +11,11 @@ const Signup = () => {
   const { signUp } = useAuth();
   const [passMatch, setPassMatch] = useState(true);
   const [passLen, setPassLen] = useState(true);
+  const {historyDispatch}=useHistory();
+  const {likeDispatch} = useLike();
+  const {playlistDispatch} = usePlaylist();
+  const {watchLaterDispatch} = useWatchLater();
+  const {notesDispatch} = useNotes();
   const [user, setUser] = useState({
     email: "",
     firstName: "",
