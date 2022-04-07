@@ -1,11 +1,17 @@
 import { useState } from "react";
 import "./login.css";
 import { Link, useNavigate,useLocation } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
+import { useAuth,useNotes,usePlaylist,useWatchLater,useHistory,useLike } from "../../context";
+
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+  const {historyDispatch}=useHistory();
+  const {likeDispatch} = useLike();
+  const {playlistDispatch} = usePlaylist();
+  const {watchLaterDispatch} = useWatchLater();
+  const {notesDispatch} = useNotes();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -17,11 +23,24 @@ const Login = () => {
       [name]: value,
     });
   };
+  const updateUserData=()=>{
+    historyDispatch({type:"UPDATE",payload:[]});
+    likeDispatch({type:"UPDATE",payload:[]});
+    notesDispatch({type:"UPDATE",payload:[]});
+    playlistDispatch({type:"UPDATE",payload:[]});
+    watchLaterDispatch({type:"UPDATE",payload:[]});
+
+  
+  }
   const submitHandler = async (e) => {
     try {
       e.preventDefault();
       let status = await login(user);
-      if (status === 200)  navigate(location?.state?.from?.pathname || -1, { replace: true });;
+
+      if (status === 200){
+        updateUserData();
+        navigate(location?.state?.from?.pathname || -1, { replace: true });
+      }  
     } catch (error) {}
   };
   const guestHandler = async () => {
@@ -32,6 +51,7 @@ const Login = () => {
       };
       let status = await login(guestUser);
       if (status) {
+        updateUserData();
         navigate(location?.state?.from?.pathname || -1, { replace: true });
       }
     } catch (error) {

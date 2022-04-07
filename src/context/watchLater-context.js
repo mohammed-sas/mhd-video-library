@@ -42,7 +42,7 @@ const useWatchLaterActions=()=>{
         }
     }
 
-    return {watchLaterState,addToWatchLater,deleteFromWatchLater};
+    return {watchLaterState,addToWatchLater,deleteFromWatchLater,watchLaterDispatch};
 }
 
 

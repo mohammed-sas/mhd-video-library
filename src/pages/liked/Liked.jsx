@@ -11,7 +11,7 @@ const Liked = () => {
             {
                 likeState.likes.map(video=>{
                     return(
-                        <VideoCard video={video}/>
+                        <VideoCard key={video._id} video={video}/>
                     )
                 })
             }

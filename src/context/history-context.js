@@ -52,7 +52,7 @@ const useHistoryActions=()=>{
             console.log(error);
         }
     }
-    return {historyState ,addToHistory,deleteHistory,clearAllHistory};
+    return {historyState ,addToHistory,deleteHistory,clearAllHistory,historyDispatch};
 }
 
 const useHistory =()=> useContext(HistoryContext);

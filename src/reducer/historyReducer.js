@@ -15,6 +15,11 @@ const historyReducer = (state, { type, payload }) => {
         ...state,
         history: payload,
       };
+    case "UPDATE":
+      return {
+        ...state,
+        history: payload,
+      };
     default:
       return state;
   }

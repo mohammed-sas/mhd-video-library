@@ -13,8 +13,8 @@ const SuccessAlert = ({message}) => {
 
   return (
       <>
-    { !hide && <div class={"alert alert-success "+classes["top-6"]}>
-      <i class="fas fa-check-circle"></i>
+    { !hide && <div className={"alert alert-success "+classes["top-6"]}>
+      <i className="fas fa-check-circle"></i>
       <p>{message}</p>
     </div>}
     </>
