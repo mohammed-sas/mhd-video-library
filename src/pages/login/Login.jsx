@@ -29,8 +29,6 @@ const Login = () => {
     notesDispatch({type:"UPDATE",payload:[]});
     playlistDispatch({type:"UPDATE",payload:[]});
     watchLaterDispatch({type:"UPDATE",payload:[]});
-
-  
   }
   const submitHandler = async (e) => {
     try {
