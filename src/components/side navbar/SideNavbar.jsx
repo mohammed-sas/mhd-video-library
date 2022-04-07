@@ -1,8 +1,13 @@
 import classes from "./sideNavbar.module.css";
-import { Link } from "react-router-dom";
+import { Link,NavLink } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 const SideNavbar = () => {
   const { currentUser } = useAuth();
+  let active = {
+    border: "1px solid var(--primary)",
+    padding:"1rem",
+    background:"var(--black-one)"
+  };
   return (
     <aside className={classes["side-navbar"]}>
       <Link to="/" className={classes["home-icon"]}>
@@ -11,38 +16,38 @@ const SideNavbar = () => {
           <span>Home</span>
         </div>
       </Link>
-      <Link to="/explore" className={classes["explore-icon"]}>
+      <NavLink style={({isActive})=>isActive ? active : undefined} to="/explore" className={classes["explore-icon"]}>
         <div>
           <i className="fas fa-compass"></i>
           <span>Explore</span>
         </div>
-      </Link>
+      </NavLink>
 
-      <Link to={currentUser.user ? "/playlists" : "/login"}>
+      <NavLink style={({isActive})=>isActive ? active : undefined} to={currentUser.user ? "/playlists" : "/login"}>
         <div>
           <i className="fas fa-list"></i>
           <span>Playlist</span>
         </div>
-      </Link>
+      </NavLink>
 
-      <Link to={currentUser.user ? "/liked" : "/login"}>
+      <NavLink style={({isActive})=>isActive ? active : undefined} to={currentUser.user ? "/liked" : "/login"}>
         <div>
           <i className="fas fa-thumbs-up"></i>
           <span>Liked</span>
         </div>
-      </Link>
-      <Link to={currentUser.user ? "/history" : "/login"}>
+      </NavLink>
+      <NavLink style={({isActive})=>isActive ? active : undefined} to={currentUser.user ? "/history" : "/login"}>
         <div>
           <i className="fas fa-history"></i>
           <span>History</span>
         </div>
-      </Link>
-      <Link to={currentUser.user ? "/watchlater" : "/login"}>
+      </NavLink>
+      <NavLink style={({isActive})=>isActive ? active : undefined} to={currentUser.user ? "/watchlater" : "/login"}>
         <div>
           <i className="fas fa-bookmark"></i>
           <span>Watch later</span>
         </div>
-      </Link>
+      </NavLink>
     </aside>
   );
 };
