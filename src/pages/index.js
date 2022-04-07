@@ -8,4 +8,5 @@ import SingleVideo from './single video/SingleVideo';
 import VideoListing from './video listing/VideoListing';
 import WatchLater from './watch later/WatchLater';
 import SpecificPlaylist from './playlist/specific playlist/SpecificPlaylist';
-export {History,Home,Liked,Login,Playlist,Signup,SingleVideo,VideoListing,WatchLater,SpecificPlaylist};
+import NotFound from './not found/NotFound';
+export {History,Home,Liked,Login,Playlist,Signup,SingleVideo,VideoListing,WatchLater,SpecificPlaylist,NotFound};
