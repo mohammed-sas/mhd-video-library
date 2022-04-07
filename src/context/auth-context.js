@@ -36,7 +36,6 @@ const useProvideAuth = () => {
       if (response.status === 200) {
         localStorage.setItem("token", response.data.encodedToken);
         authDispatch({type:"SET_USER",payload:response.data.foundUser});
-        navigate(-1);
       }
       return response.status;
     } catch (error) {

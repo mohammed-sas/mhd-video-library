@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./login.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,useLocation } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
   const [user, setUser] = useState({
     email: "",
     password: "",
@@ -20,7 +21,7 @@ const Login = () => {
     try {
       e.preventDefault();
       let status = await login(user);
-      if (status === 200) navigate("/");
+      if (status === 200)  navigate(location?.state?.from?.pathname || -1, { replace: true });;
     } catch (error) {}
   };
   const guestHandler = async () => {
@@ -31,7 +32,7 @@ const Login = () => {
       };
       let status = await login(guestUser);
       if (status) {
-        navigate(-1);
+        navigate(location?.state?.from?.pathname || -1, { replace: true });
       }
     } catch (error) {
       console.log(error);
