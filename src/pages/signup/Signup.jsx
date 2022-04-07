@@ -2,7 +2,6 @@ import "./signup.css";
 import "../login/login.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
 import { useToggle } from "../../hooks/useToggle";
 import { useAuth,useNotes,usePlaylist,useWatchLater,useHistory,useLike } from "../../context";
 const Signup = () => {
