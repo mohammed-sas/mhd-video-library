@@ -50,7 +50,7 @@ const useNotesActions=()=>{
         }
     }
 
-    return {notesState,addNotes,deleteNote,updateNote};
+    return {notesState,addNotes,deleteNote,updateNote,notesDispatch};
 }
 
 const useNotes=()=>useContext(NotesContext);

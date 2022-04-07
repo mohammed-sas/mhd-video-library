@@ -40,7 +40,7 @@ const useLikeActions=()=>{
         }
     }
 
-    return {likeState,addToLikes,deleteFromLikes};
+    return {likeState,addToLikes,deleteFromLikes,likeDispatch};
 }
 
 const useLike=()=>useContext(LikeContext);

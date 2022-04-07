@@ -2,8 +2,8 @@ import "./signup.css";
 import "../login/login.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../../context/auth-context";
 import { useToggle } from "../../hooks/useToggle";
+import { useAuth,useNotes,usePlaylist,useWatchLater,useHistory,useLike } from "../../context";
 const Signup = () => {
   const navigate = useNavigate();
   const [showpass, setShowpass] = useToggle(false);
@@ -25,6 +25,13 @@ const Signup = () => {
       [name]: value,
     });
   };
+  const updateUserData=()=>{
+    historyDispatch({type:"UPDATE",payload:[]});
+    likeDispatch({type:"UPDATE",payload:[]});
+    notesDispatch({type:"UPDATE",payload:[]});
+    playlistDispatch({type:"UPDATE",payload:[]});
+    watchLaterDispatch({type:"UPDATE",payload:[]});
+  }
   const submitHandler = async (e) => {
     try {
       e.preventDefault();
@@ -37,7 +44,10 @@ const Signup = () => {
         return;
       }
       const status = await signUp(user);
-      if (status === 201) navigate("/");
+      if (status === 201){
+        updateUserData();
+        navigate("/");
+      } 
     } catch (error) {
       console.log(error);
     }

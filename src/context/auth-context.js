@@ -30,6 +30,7 @@ const useProvideAuth = () => {
       console.log(error);
     }
   };
+  
   const login = async (user) => {
     try {
       const response = await axios.post("/api/auth/login", user);
