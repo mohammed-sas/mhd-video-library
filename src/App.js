@@ -13,6 +13,7 @@ import {
   History,
   WatchLater,
   SpecificPlaylist,
+  NotFound
 } from "./pages";
 import Profile from "./pages/profile/Profile";
 function App() {
@@ -74,6 +75,7 @@ function App() {
           }
         />
         <Route path="/mock-api" element={<Mockman />} />
+        <Route path="*" element={<NotFound/>}/>
       </Routes>
     </div>
   );
