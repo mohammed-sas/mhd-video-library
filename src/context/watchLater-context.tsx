@@ -1,6 +1,5 @@
 import axios from "axios";
 import { createContext, useContext, useReducer } from "react";
-import * as React from 'react'
 
 import {watchLaterReducer} from '../reducer/watchLaterReducer'; 
 import {WatchLaterContextInterface,Props,WatchLater} from '../context types/watchLater.types';

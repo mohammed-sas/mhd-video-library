@@ -2,11 +2,12 @@ import axios from "axios";
 import { createContext, useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import {playlistReducer} from '../reducer/playlistReducer'
-import {} from '../context types/playlist.types'
-const PlaylistContext = createContext(null);
+import {Prop,ContextInterface,PlaylistData} from '../context types/playlist.types'
+import { Video } from "../context types/common.types";
+const PlaylistContext = createContext<ContextInterface|null>(null);
 
 
-const PlaylistProvider=({children})=>{
+const PlaylistProvider=({children}:Prop)=>{
     const value = usePlaylistAction();
     
     return(
@@ -15,7 +16,7 @@ const PlaylistProvider=({children})=>{
 }
 
 const usePlaylistAction=()=>{
-    const [playlistState, playlistDispatch] = useReducer(playlistReducer,{playlists:[]})
+    const [playlistState, playlistDispatch] = useReducer(playlistReducer,{playlists:[],loading:false})
     const token = localStorage.getItem("token");
     const navigate =useNavigate();
     const auth = {
@@ -23,7 +24,7 @@ const usePlaylistAction=()=>{
             authorization:token
         }
     };
-    const addNewPlaylist=async (data)=>{
+    const addNewPlaylist=async (data:PlaylistData)=>{
         try{
             const response = await axios.post('/api/user/playlists',{playlist:data},auth);
             if(response.status === 201){
@@ -33,7 +34,7 @@ const usePlaylistAction=()=>{
             console.log(error);
         }
     }
-    const addToPlaylist=async (id,video)=>{
+    const addToPlaylist=async (id:string,video:Video)=>{
         try{
             const response = await axios.post(`/api/user/playlists/${id}`,{video},auth);
             playlistDispatch({type:"ADD_TO_PLAYLIST",payload:response.data.playlist})
@@ -42,7 +43,7 @@ const usePlaylistAction=()=>{
         }
     }
 
-    const removeFromPlaylist = async (id,video)=>{
+    const removeFromPlaylist = async (id:string,video:Video)=>{
         try{
             const response = await axios.delete(`/api/user/playlists/${id}/${video._id}`,auth);
             if(response.status === 200){
@@ -55,7 +56,7 @@ const usePlaylistAction=()=>{
             console.log(error);
         }
     }
-    const removePlaylist=async (id)=>{
+    const removePlaylist=async (id:string)=>{
         try{
             const response = await axios.delete(`/api/user/playlists/${id}`,auth);
            if(response.status === 200){
