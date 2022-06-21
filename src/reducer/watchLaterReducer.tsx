@@ -1,4 +1,6 @@
-const watchLaterReducer = (state, { type, payload }) => {
+import {WatchLaterActions,WatchLaterState} from '../context types/watchLater.types';
+
+const watchLaterReducer = (state:WatchLaterState,{type,payload}:WatchLaterActions) => {
   switch (type) {
     case "ADD":
       return {

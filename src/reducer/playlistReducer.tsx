@@ -1,4 +1,6 @@
-const playlistReducer = (state, { type, payload }) => {
+import {PlayListState,PlaylistActions} from '../context types/playlist.types'
+
+const playlistReducer = (state:PlayListState, { type, payload }:PlaylistActions) => {
   switch (type) {
     case "FETCHING":
       return {
@@ -20,7 +22,7 @@ const playlistReducer = (state, { type, payload }) => {
       return {
         ...state,
         playlists: [
-          ...state.playlists.filter((list) => list._id !== payload._id),
+          ...state.playlists.filter((list) => list._id !== payload?._id),
           payload,
         ],
       };
@@ -28,7 +30,7 @@ const playlistReducer = (state, { type, payload }) => {
       return {
         ...state,
         playlists: [
-          ...state.playlists.filter((list) => list._id !== payload._id),
+          ...state.playlists.filter((list) => list._id !== payload?._id),
           payload,
         ],
       };
