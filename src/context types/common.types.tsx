@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type Video = {
   _id: string;
   youtubeId: string;
@@ -8,3 +10,7 @@ export type Video = {
   category: string;
   channelThumbnail: string;
 };
+
+export type Prop={
+  children:ReactNode;
+}
