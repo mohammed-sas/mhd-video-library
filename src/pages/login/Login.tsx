@@ -114,12 +114,13 @@ const Login = ():JSX.Element => {
             value="Login"
             className="btn btn-primary bg-primary text-grey"
           />
-          <button
+          <input
+          type="button"
             className="btn btn-secondary bg-secondary"
             onClick={guestHandler}
-          >
-            Login as Guest
-          </button>
+            value="Login as Guest"
+          />
+
           <div>
             <p className="centered-text ">
               <Link to="/signup" className="text-primary">
