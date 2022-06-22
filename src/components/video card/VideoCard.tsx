@@ -13,9 +13,9 @@ import {Video} from '../../context types/common.types'
 
 type VideoCardProp={
   video:Video,
-  setShowModal:()=>void,
-  playlistId:string,
-  setPlaylistVideo:(video:Video)=>void
+  setShowModal?:()=>void,
+  playlistId?:string,
+  setPlaylistVideo?:(video:Video)=>void
 }
 
 const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }:VideoCardProp) => {
@@ -33,9 +33,9 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }:VideoCa
       navigate("/login");
       return;
     }
-    setShowModal();
+    if(setShowModal) setShowModal();
     setShowMenu();
-    setPlaylistVideo(video);
+    if(setPlaylistVideo)setPlaylistVideo(video);
   };
 
   const isPlaylisted = () => {
@@ -44,7 +44,7 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }:VideoCa
   };
   const removeFromPlayListHandler = async () => {
     try {
-      await playlistContext?.removeFromPlaylist(playlistId, video);
+      await playlistContext?.removeFromPlaylist(playlistId?playlistId :"", video);
     } catch (error) {
       console.log(error);
     }

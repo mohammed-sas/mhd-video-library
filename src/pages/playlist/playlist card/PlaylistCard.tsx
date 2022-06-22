@@ -1,22 +1,26 @@
 import classes from "./playlistCard.module.css";
-import {useState} from 'react';
+import React, {useState} from 'react';
 import { useNavigate } from "react-router-dom";
 import { usePlaylist } from "../../../context/playlist-context";
 import {InfoAlert,SuccessAlert} from '../../../components'
+import { Playlist } from "context types/playlist.types";
 
-const PlaylistCard = ({ list }) => {
+type PlaylistCardProp={
+  list:Playlist
+}
+const PlaylistCard = ({ list }:PlaylistCardProp) => {
   const navigate = useNavigate();
-  const [alertMessage,setAlertMessage] = useState("");
-  const [apiCalled,setApiCalled] = useState(false);
-  const [processing,setProcessing]=useState(false);
-  const { removePlaylist } = usePlaylist();
-  const closeHandler = async (e) => {
+  const [alertMessage,setAlertMessage] = useState<string>("");
+  const [apiCalled,setApiCalled] = useState<boolean>(false);
+  const [processing,setProcessing]=useState<boolean>(false);
+  const playlistCtx=usePlaylist();
+  const closeHandler = async (e:React.MouseEvent<HTMLElement>) => {
     try {
       e.stopPropagation();
       setApiCalled(true);
       setProcessing(true);
       setAlertMessage("playlist being deleted");
-      await removePlaylist(list._id);
+      await playlistCtx?.removePlaylist(list._id);
       setProcessing(false);
       setAlertMessage("playlist deleted");
     } catch (error) {

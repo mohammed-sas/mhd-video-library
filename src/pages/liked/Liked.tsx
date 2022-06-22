@@ -3,13 +3,13 @@ import SideNavbar from '../../components/side navbar/SideNavbar';
 import {useLike} from '../../context/like-context'
 import VideoCard from '../../components/video card/VideoCard'
 const Liked = () => {
-    const {likeState} = useLike();
+    const likeContext= useLike();
     return (
         <main className={classes["likes-page"]}>
            <SideNavbar/>
            <div className={classes["liked-video-container"]}>
             {
-                likeState.likes.map(video=>{
+                likeContext?.likeState.likes.map(video=>{
                     return(
                         <VideoCard key={video._id} video={video}/>
                     )
