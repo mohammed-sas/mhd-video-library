@@ -1,37 +1,26 @@
 import {PlayListState,PlaylistActions} from '../context types/playlist.types'
 
-const playlistReducer = (state:PlayListState, { type, payload }:PlaylistActions) => {
-  switch (type) {
-    // case "FETCHING":
-    //   return {
-    //     ...state,
-    //     loading: true,
-    //   };
-    // case "FETCHED":
-    //   return {
-    //     ...state,
-    //     loading: false,
-    //     playlists: payload,
-    //   };
+const playlistReducer = (state:PlayListState, actions:PlaylistActions) => {
+  switch (actions.type) {
     case "UPDATE":
       return {
         ...state,
-        playlists: payload,
+        playlists: actions.payload,
       };
     case "ADD_TO_PLAYLIST":
       return {
         ...state,
         playlists: [
-          ...state?.playlists?.filter((list) => list._id !== payload._id),
-          payload,
+          ...state?.playlists?.filter((list) => list._id !== actions.payload._id),
+          actions.payload,
         ],
       };
     case "REMOVE_FROM_PLAYLIST":
       return {
         ...state,
         playlists: [
-          ...state?.playlists?.filter((list) => list._id !== payload?._id),
-          payload,
+          ...state?.playlists?.filter((list) => list._id !== actions.payload?._id),
+          actions.payload,
         ],
       };
     default:

@@ -16,7 +16,7 @@ const PlaylistProvider=({children}:Prop)=>{
 }
 
 const usePlaylistAction=()=>{
-    const [playlistState, playlistDispatch] = useReducer(playlistReducer,{playlists:[],loading:false})
+    const [playlistState, playlistDispatch] = useReducer(playlistReducer,{playlists:[]})
     const token = localStorage.getItem("token");
     const navigate =useNavigate();
     const auth = {

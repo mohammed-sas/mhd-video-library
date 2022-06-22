@@ -33,7 +33,7 @@ export type PlayListState={
 export type PlaylistActions=
 |{
     type:"UPDATE",
-    payload:Playlist[]
+    payload:Playlist[] | []
 }
 |{
     type:"ADD_TO_PLAYLIST",

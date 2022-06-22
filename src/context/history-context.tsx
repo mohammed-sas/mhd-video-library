@@ -1,10 +1,11 @@
 import axios from "axios";
 import { createContext, useContext, useReducer } from 'react';
 import {historyReducer} from '../reducer/historyReducer';
+import {Prop,ContextInterface} from '../context types/history.types'
+import { Video } from "context types/common.types";
+const HistoryContext = createContext<ContextInterface|null>(null);
 
-const HistoryContext = createContext(null);
-
-const HistoryProvider =({children}) =>{
+const HistoryProvider =({children}:Prop) =>{
     const value = useHistoryActions();
     return (
         <HistoryContext.Provider value={value}>{children}</HistoryContext.Provider>
@@ -19,7 +20,7 @@ const useHistoryActions=()=>{
             authorization:token
         }
     };
-    const addToHistory=async (video)=>{
+    const addToHistory=async (video:Video)=>{
         try{
             
             const response = await axios.post('/api/user/history',{video},auth);
@@ -30,7 +31,7 @@ const useHistoryActions=()=>{
             console.log(error);
         }
     }
-    const deleteHistory=async (id)=>{
+    const deleteHistory=async (id:string)=>{
         try{
             const response = await axios.delete(`/api/user/history/${id}`,auth);
             
