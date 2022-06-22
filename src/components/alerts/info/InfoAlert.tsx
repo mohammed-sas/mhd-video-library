@@ -1,7 +1,11 @@
 import classes from "../alert.module.css";
 import {useState,useEffect} from 'react';
-const InfoAlert = ({ message }) => {
-  const [hide, setHide] = useState(false);
+
+type InfoProp={
+  message:string
+}
+const InfoAlert = ({ message }:InfoProp) => {
+  const [hide, setHide] = useState<boolean>(false);
   useEffect(() => {
     let id = setTimeout(() => {
       setHide(true);

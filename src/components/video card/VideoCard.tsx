@@ -9,20 +9,27 @@ import {
 } from "../../context/index";
 import {SuccessAlert,InfoAlert} from '../index';
 import { useState } from "react";
+import {Video} from '../../context types/common.types'
 
-const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
+type VideoCardProp={
+  video:Video,
+  setShowModal:()=>void,
+  playlistId:string,
+  setPlaylistVideo:(video:Video)=>void
+}
+
+const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }:VideoCardProp) => {
   const [showMenu, setShowMenu] = useToggle(false);
-  const { removeFromPlaylist } = usePlaylist();
-  const { currentUser } = useAuth();
+  const playlistContext = usePlaylist();
+  const authContext= useAuth();
   const navigate = useNavigate();
-  const { addToLikes, likeState, deleteFromLikes } = useLike();
-  const [alertMessage,setAlertMessage] = useState("");
-  const [apiCalled,setApiCalled] = useState(false);
-  const [processing,setProcessing]=useState(false);
-  const { watchLaterState, addToWatchLater, deleteFromWatchLater } =
-    useWatchLater();
+  const likeContext=useLike();
+  const [alertMessage,setAlertMessage] = useState<string>("");
+  const [apiCalled,setApiCalled] = useState<boolean>(false);
+  const [processing,setProcessing]=useState<boolean>(false);
+   const watchLaterCtx= useWatchLater();
   const playListHandler = () => {
-    if (!currentUser.user) {
+    if (!authContext?.currentUserState.user) {
       navigate("/login");
       return;
     }
@@ -37,21 +44,21 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
   };
   const removeFromPlayListHandler = async () => {
     try {
-      await removeFromPlaylist(playlistId, video);
+      await playlistContext?.removeFromPlaylist(playlistId, video);
     } catch (error) {
       console.log(error);
     }
   };
   const addToLikeHandler = async () => {
     try {
-      if (!currentUser.user) {
+      if (!authContext?.currentUserState.user) {
         navigate("/login");
         return;
       }
       setApiCalled(true);
       setProcessing(true);
       setAlertMessage("Adding to your liked list");
-      await addToLikes(video);
+      await likeContext?.addToLikes(video);
       setProcessing(false);
       setAlertMessage("Added to your liked list");
       
@@ -59,8 +66,8 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
       console.log(error);
     }
   };
-  const isLiked = (id) => {
-    const result = likeState.likes.find((likedVideo) => likedVideo._id === id);
+  const isLiked = (id:string) => {
+    const result = likeContext?.likeState.likes.find((likedVideo) => likedVideo._id === id);
     return result ? true : false;
   };
   const removeLikeHandler = async () => {
@@ -68,7 +75,7 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
       setApiCalled(true);
       setProcessing(true);
       setAlertMessage("removing from liked list");
-      await deleteFromLikes(video._id);
+      await likeContext?.deleteFromLikes(video._id);
       setProcessing(false);
       setAlertMessage("removed from liked list")
     } catch (error) {
@@ -83,7 +90,7 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
       setApiCalled(true);
       setProcessing(true);
       setAlertMessage("adding to watch later");
-      await addToWatchLater(video);
+      await watchLaterCtx?.addToWatchLater(video);
       setProcessing(false);
       setAlertMessage("added to watch later");
     } catch (error) {
@@ -95,15 +102,15 @@ const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }) => {
       setApiCalled(true);
       setProcessing(true);
       setAlertMessage("removing from watch later");
-      await deleteFromWatchLater(video._id);
+      await watchLaterCtx?.deleteFromWatchLater(video._id);
       setProcessing(false);
       setAlertMessage("removed from watch later");
     } catch (error) {
       console.log(error);
     }
   };
-  const isSaved = (id) => {
-    const isExist = watchLaterState.watchLater.some(
+  const isSaved = (id:string) => {
+    const isExist = watchLaterCtx?.watchLaterState.watchLater.some(
       (savedVideo) => savedVideo._id === id
     );
 

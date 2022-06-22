@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 import classes from '../alert.module.css';
 
-const SuccessAlert = ({message}) => {
-    const [hide,setHide] = useState(false);
+type SuccessProp={
+  message:string
+}
+const SuccessAlert = ({message}:SuccessProp) => {
+    const [hide,setHide] = useState<boolean>(false);
     useEffect(()=>{
         let id = setTimeout(()=>{
             setHide(true);

@@ -5,11 +5,12 @@ import { useToggle } from "../../hooks/useToggle";
 import Searchbar from "./searchbar/Searchbar";
 import logo from "../../assets/logo.webp";
 const Navbar = ():JSX.Element => {
-  const { currentUserState:currentUser, logout } = useAuth();
+  const authState = useAuth();
+
   const [showSideBar, setShowSidebar] = useToggle(false);
   const navigate = useNavigate();
   const logoutHandler = () => {
-    logout();
+    authState?.logout();
   };
   return (
     <nav className="nav-bar bg-black bottom-shadow width-auto">
@@ -43,10 +44,10 @@ const Navbar = ():JSX.Element => {
             </li>
           )}
           <li>
-            {currentUser.user ? (
+            {authState?.currentUserState.user ? (
               <Link to="/profile">
                 {" "}
-                <span className="text-white">{currentUser.user.firstName}</span>
+                <span className="text-white">{authState?.currentUserState.user.firstName}</span>
               </Link>
             ) : (
               <Link to="/login" onClick={() => showSideBar && setShowSidebar()}>
@@ -58,7 +59,7 @@ const Navbar = ():JSX.Element => {
           </li>
           <li>
             <Link
-              to={currentUser.user ? "/explore" : "/login"}
+              to={authState?.currentUserState.user ? "/explore" : "/login"}
               onClick={() => showSideBar && setShowSidebar()}
             >
               <div>
@@ -68,7 +69,7 @@ const Navbar = ():JSX.Element => {
           </li>
           <li>
             <Link
-              to={currentUser.user ? "/playlists" : "/login"}
+              to={authState?.currentUserState.user ? "/playlists" : "/login"}
               onClick={() => showSideBar && setShowSidebar()}
             >
               <div>
@@ -77,7 +78,7 @@ const Navbar = ():JSX.Element => {
             </Link>
           </li>
           <li>
-            {currentUser.user ? (
+            {authState?.currentUserState.user ? (
               <button className="btn btn-secondary" onClick={logoutHandler}>
                 Logout
               </button>

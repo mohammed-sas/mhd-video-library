@@ -1,10 +1,10 @@
+import { Prop } from 'context types/common.types';
 import {useLocation,Navigate} from 'react-router-dom';
 import {useAuth} from '../../context'
-
-const RequireAuth=({children})=>{
+const RequireAuth=({children}:Prop)=>{
     const location =useLocation();
-    const {currentUser} = useAuth();
-    return currentUser.user ?(children) : (
+    const authState= useAuth();
+    return authState?.currentUserState.user ?(children) : (
         <Navigate to="/login" state={{from:location}} replace/>
     )
 }

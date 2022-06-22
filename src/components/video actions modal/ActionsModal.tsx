@@ -1,22 +1,28 @@
 import classes from "./actionsModal.module.css";
 import { useState } from "react";
 import { usePlaylist } from "../../context/playlist-context";
-import { InfoAlert, SuccessAlert } from "../index";
+import { InfoAlert, SuccessAlert } from '../index';
+import {  Video } from "context types/common.types";
 
-const ActionsModal = ({ playlistVideo, setShowModal }) => {
+type ActionModalProps={
+  playlistVideo:Video,
+  setShowModal:()=>void
+}
+
+const ActionsModal = ({ playlistVideo, setShowModal }:ActionModalProps) => {
   const [newPlayList, setNewPlayList] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const [apiCalled, setApiCalled] = useState(false);
   const [processing, setProcessing] = useState(false);
-  const { playlistState, addNewPlaylist, addToPlaylist, removeFromPlaylist } =
-    usePlaylist();
+   
+   const playlistContext= usePlaylist();
 
   const addPlaylistHandler = async () => {
     try {
       if (newPlayList.trim() === "") {
         return;
       }
-      let isExist = playlistState.playlists.find(
+      let isExist = playlistContext?.playlistState.playlists.find(
         (list) => list.title.toLowerCase() === newPlayList.trim().toLowerCase()
       );
       if (isExist) {
@@ -25,27 +31,27 @@ const ActionsModal = ({ playlistVideo, setShowModal }) => {
       setApiCalled(true);
       setProcessing(true);
       setAlertMessage("creating playlist");
-      await addNewPlaylist({ title: newPlayList.trim(), description: "" });
+      await playlistContext?.addNewPlaylist({ title: newPlayList.trim(), description: "" });
       setProcessing(false);
       setAlertMessage("playlist created");
     } catch (error) {
       console.log(error);
     }
   };
-  const changeHandler = async (e, id) => {
+  const changeHandler = async (e:React.ChangeEvent<HTMLInputElement>, id:string) => {
     try {
       if (e.target.checked) {
         setApiCalled(true);
         setProcessing(true);
         setAlertMessage("Adding to playlist");
-        await addToPlaylist(id, playlistVideo);
+        await playlistContext?.addToPlaylist(id, playlistVideo);
         setProcessing(false);
         setAlertMessage("Added to your playlist");
       } else {
         setApiCalled(true);
         setProcessing(true);
         setAlertMessage("Removing from the playlist");
-        await removeFromPlaylist(id, playlistVideo);
+        await playlistContext?.removeFromPlaylist(id, playlistVideo);
         setProcessing(false);
         setAlertMessage("Removed from the playlist");
       }
@@ -54,11 +60,11 @@ const ActionsModal = ({ playlistVideo, setShowModal }) => {
     }
   };
 
-  const isPresentInPlaylist = (id) => {
-    let res = playlistState.playlists
+  const isPresentInPlaylist = (id:string) => {
+    let res = playlistContext?.playlistState.playlists
       .filter((list) => list._id === id)[0]
       .videos.filter((video) => video._id == playlistVideo._id);
-    return res.length > 0 ? true : false;
+    return (res!==undefined && res.length>0) ? true : false;
   };
   return (
     <div className={classes["modal-container"]}>
@@ -76,13 +82,12 @@ const ActionsModal = ({ playlistVideo, setShowModal }) => {
           Create Playlist
         </button>
         <ul className={classes["playlists"]}>
-          {playlistState.playlists.map((list) => {
+          {playlistContext?.playlistState.playlists.map((list) => {
             return (
               <li key={list._id}>
                 <label
                   htmlFor="playlist"
-                  className="text-white"
-                  className={classes["playlist-item"]}
+                  className={`text-white ${classes["playlist-item"]}`}
                 >
                   <input
                     type="checkbox"
