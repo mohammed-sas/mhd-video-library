@@ -5,7 +5,7 @@ import { useToggle } from "../../hooks/useToggle";
 import Searchbar from "../navbar/searchbar/Searchbar";
 import logo from "../../assets/logo.webp";
 const Navbar = () => {
-  const { currentUser, logout } = useAuth();
+  const { currentUserState:currentUser, logout } = useAuth();
   const [showSideBar, setShowSidebar] = useToggle(false);
   const navigate = useNavigate();
   const logoutHandler = () => {

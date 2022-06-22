@@ -2,7 +2,7 @@ import classes from "./sideNavbar.module.css";
 import { Link,NavLink } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 const SideNavbar = () => {
-  const { currentUser } = useAuth();
+  const { currentUserState:currentUser } = useAuth();
   let active = {
     border: "1px solid var(--primary)",
     padding:"1rem",
