@@ -5,13 +5,13 @@ import { usePlaylist } from "../../../context/playlist-context";
 import VideoCard from "../../../components/video card/VideoCard";
 
 const SpecificPlaylist = () => {
-  const { playlistState } = usePlaylist();
+  const playlistCtx= usePlaylist();
   const { playlistId } = useParams();
   return (
     <main className={classes["specific-playlist"]}>
       <SideNavbar />
       <div className={classes["lists"]}>
-        {playlistState.playlists
+        {playlistCtx?.playlistState.playlists
           .filter((list) => list._id == playlistId)[0]
           .videos.map((video) => {
             return (

@@ -3,10 +3,10 @@ import { useHistory } from "../../context";
 import classes from "./history.module.css";
 import HistoryCard from "./components/HistoryCard";
 const History = () => {
-    const {historyState,clearAllHistory} = useHistory();
+    const historyCtx = useHistory();
     const clearHistoryHandler=async ()=>{
         try{
-          await clearAllHistory();
+          await historyCtx?.clearAllHistory();
         }catch(error){
           console.log(error);
         }
@@ -21,7 +21,7 @@ const History = () => {
           </div>
           <div className={classes["history-lists"]}>
               {
-                  historyState.history.map(video=>{
+                  historyCtx?.historyState.history.map(video=>{
                     return  <HistoryCard key={video._id} video={video}/>
                   })
               }

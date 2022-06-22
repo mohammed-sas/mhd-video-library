@@ -1,16 +1,21 @@
 import classes from "./profile.module.css";
-import {useAuth} from '../../context'
-import { useRef } from "react";
+import { useAuth } from "../../context";
+
 const Profile = () => {
-    const {currentUser} = useAuth();
-    const {user} = currentUser;
+  const authCtx = useAuth();
+
   return (
-    <main class={classes["profile-container"]}>
+    <main className={classes["profile-container"]}>
       <div className={classes["profile-header"]}>
         <div className={classes["user-header"]}>
           <div className={classes["user-header-info"]}>
-            <h3 className="text-white">{user.firstName} {user.lastName}</h3>
-            <p className="text-white">{user.email}</p>
+            <h3 className="text-white">
+              {authCtx?.currentUserState?.user?.firstName}{" "}
+              {authCtx?.currentUserState?.user?.lastName}
+            </h3>
+            <p className="text-white">
+              {authCtx?.currentUserState?.user?.email}
+            </p>
           </div>
         </div>
       </div>
@@ -26,13 +31,18 @@ const Profile = () => {
           <h2 className="text-white">Profile Details</h2>
           <div className={classes["profile-overview-item"]}>
             <span>Full Name </span>
-            <span>{user.firstName} {user.lastName}</span>
+            <span>
+              {authCtx?.currentUserState?.user?.firstName}{" "}
+              {authCtx?.currentUserState?.user?.lastName}
+            </span>
           </div>
           <div className={classes["profile-overview-item"]}>
-            <span>Mobile Number</span> <span>{user.mobile}</span>
+            <span>Mobile Number</span>{" "}
+            <span>{authCtx?.currentUserState?.user?.mobile}</span>
           </div>
           <div className={classes["profile-overview-item"]}>
-            <span>Email ID</span> <span>{user.email}</span>
+            <span>Email ID</span>{" "}
+            <span>{authCtx?.currentUserState?.user?.email}</span>
           </div>
         </div>
       </div>

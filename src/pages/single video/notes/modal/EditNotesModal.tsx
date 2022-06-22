@@ -1,25 +1,32 @@
-import {useState} from "react";
+import { Notes } from "context types/notes.types";
+import React, {useState} from "react";
 import { useNotes } from "../../../../context";
 import classes from './notesModal.module.css';
-const EditNotesModal = ({note,setShowEditForm,setPlaying}) => {
-    const {updateNote} = useNotes();
+type Prop={
+  note:Notes,
+  setShowEditForm:()=>void,
+  setPlaying:()=>void
+}
+
+const EditNotesModal = ({note,setShowEditForm,setPlaying}:Prop) => {
+    const notesCtx= useNotes();
     const [editedNote,setEditedNote]=useState({
       ...note
     })
 
 
-    const changeHandler=(e)=>{
+    const changeHandler=(e:React.ChangeEvent<HTMLTextAreaElement>|React.ChangeEvent<HTMLInputElement>)=>{
         const {name,value}=e.target;
         setEditedNote({
             ...editedNote,
             [name]:value
         })
     }
-    const submitHandler=async (e)=>{
+    const submitHandler=async (e:React.SyntheticEvent)=>{
         try{
             e.preventDefault();
             setShowEditForm();
-            await updateNote(editedNote);
+            await notesCtx?.updateNote(editedNote);
             setPlaying();
         }catch(error){
             console.log(error);

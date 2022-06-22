@@ -1,20 +1,27 @@
-import React from "react";
+
 import { useAuth, useNotes } from "../../../../context";
 import { NotesCard, NotesModal } from "../index";
 import { useToggle } from "../../../../hooks/useToggle";
 import classes from "./notesList.module.css";
 import { useNavigate } from "react-router-dom";
-const NotesList = ({ videoId, playerRef,setPlaying }) => {
-  const { notesState } = useNotes();
-  const {currentUser} = useAuth();
+import ReactPlayer from 'react-player';
+type Prop={
+  videoId:string,
+  playerRef:ReactPlayer,
+  setPlaying:()=>void
+}
+
+const NotesList = ({ videoId, playerRef,setPlaying }:Prop) => {
+  const notesCtx= useNotes();
+  const authCtx= useAuth();
   const navigate = useNavigate();
   const [showNotesForm, setShowNotesForm] = useToggle(false);
-  const videoNotes = notesState.notes.filter(
+  const videoNotes =  notesCtx?.notesState.notes.filter(
     (note) => note.videoId === videoId
   );
   const addNoteHandler=()=>{
 
-    if(!currentUser.user){
+    if(!authCtx?.currentUserState.user){
       navigate("/login");
       return;
     }
@@ -42,7 +49,7 @@ const NotesList = ({ videoId, playerRef,setPlaying }) => {
       ) : null}
 
       <div className={classes["notes-list"]}>
-        {videoNotes.map((note) => {
+        {videoNotes?.map((note) => {
           return <NotesCard key={note._id} note={note} setPlaying={setPlaying}/>;
         })}
       </div>

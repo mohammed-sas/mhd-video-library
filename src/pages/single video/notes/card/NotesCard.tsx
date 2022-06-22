@@ -2,15 +2,20 @@ import classes from './noteCard.module.css'
 import { useNotes } from '../../../../context'
 import {useToggle} from '../../../../hooks/useToggle';
 import EditNotesModal from '../modal/EditNotesModal';
+import { Notes } from 'context types/notes.types';
 
 
-const NotesCard = ({note,setPlaying}) => {
-    const {deleteNote} = useNotes();
+type Prop={
+    note:Notes,
+    setPlaying:()=>void
+}
+const NotesCard = ({note,setPlaying}:Prop) => {
+    const notesCtx= useNotes();
     const [showEditForm,setShowEditForm] = useToggle(false);
 
     const deleteHandler=async ()=>{
         try{
-            await deleteNote(note);
+            await notesCtx?.deleteNote(note);
         }catch(error){
             console.log(error);
         }

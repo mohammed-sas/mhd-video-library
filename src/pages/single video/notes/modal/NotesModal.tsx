@@ -1,13 +1,21 @@
 import classes from "./notesModal.module.css";
 import { convertTime } from "../../../../utils/convertTime";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNotes } from "../../../../context";
-const NotesModal = ({ videoId, player, setShowNotesForm,setPlaying }) => {
-  const { addNotes } = useNotes();
+import ReactPlayer from 'react-player'
+type Prop={
+  videoId:string,
+  player:ReactPlayer,
+  setShowNotesForm:()=>void,
+  setPlaying:()=>void
+}
+
+const NotesModal = ({ videoId, player, setShowNotesForm,setPlaying }:Prop) => {
+  const notesCtx= useNotes();
   const [newNote, setNewNote] = useState({
-    time: convertTime(player.current.getCurrentTime()),
+    time: convertTime(player?.current?.getCurrentTime()),
   });
-  const changeHandler = (e) => {
+  const changeHandler = (e:React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setNewNote({
       ...newNote,
@@ -17,7 +25,7 @@ const NotesModal = ({ videoId, player, setShowNotesForm,setPlaying }) => {
   const submitHandler = async (e) => {
     try {
       e.preventDefault();
-      await addNotes(videoId, newNote);
+      await notesCtx?.addNotes(videoId, newNote);
       setShowNotesForm();
       setPlaying();
     } catch (error) {

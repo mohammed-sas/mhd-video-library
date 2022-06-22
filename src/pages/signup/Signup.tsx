@@ -1,21 +1,27 @@
 import "./signup.css";
 import "../login/login.css";
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate,Location,useLocation } from "react-router-dom";
 import { useToggle } from "../../hooks/useToggle";
 import { useAuth,useNotes,usePlaylist,useWatchLater,useHistory,useLike } from "../../context";
+type LocationProps = {
+  state: {
+    from: Location;
+  };
+};
 const Signup = () => {
   const navigate = useNavigate();
+  const location = useLocation() as unknown as LocationProps;
   const [showpass, setShowpass] = useToggle(false);
   const [showConfirmpass, setShowConfirmpass] = useToggle(false);
-  const { signUp } = useAuth();
-  const [passMatch, setPassMatch] = useState(true);
-  const [passLen, setPassLen] = useState(true);
-  const {historyDispatch}=useHistory();
-  const {likeDispatch} = useLike();
-  const {playlistDispatch} = usePlaylist();
-  const {watchLaterDispatch} = useWatchLater();
-  const {notesDispatch} = useNotes();
+  const authCtx= useAuth();
+  const [passMatch, setPassMatch] = useState<boolean>(true);
+  const [passLen, setPassLen] = useState<boolean>(true);
+  const historyCtx=useHistory();
+  const likeCtx= useLike();
+  const playlistCtx= usePlaylist();
+  const watchLaterCtx= useWatchLater();
+  const notesCtx = useNotes();
   const [user, setUser] = useState({
     email: "",
     firstName: "",
@@ -23,7 +29,7 @@ const Signup = () => {
     password: "",
     confirmPassword: "",
   });
-  const changeHandler = (e) => {
+  const changeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser({
       ...user,
@@ -31,13 +37,13 @@ const Signup = () => {
     });
   };
   const updateUserData=()=>{
-    historyDispatch({type:"UPDATE",payload:[]});
-    likeDispatch({type:"UPDATE",payload:[]});
-    notesDispatch({type:"UPDATE",payload:[]});
-    playlistDispatch({type:"UPDATE",payload:[]});
-    watchLaterDispatch({type:"UPDATE",payload:[]});
+    historyCtx?.historyDispatch({type:"UPDATE",payload:[]});
+    likeCtx?.likeDispatch({type:"UPDATE",payload:[]});
+    notesCtx?.notesDispatch({type:"UPDATE",payload:[]});
+    playlistCtx?.playlistDispatch({type:"UPDATE",payload:[]});
+    watchLaterCtx?.watchLaterDispatch({type:"UPDATE",payload:[]});
   }
-  const submitHandler = async (e) => {
+  const submitHandler = async (e:React.SyntheticEvent) => {
     try {
       e.preventDefault();
       if (user.password !== user.confirmPassword) {
@@ -48,10 +54,10 @@ const Signup = () => {
         setPassLen(false);
         return;
       }
-      const status = await signUp(user);
+      const status = await authCtx?.signUp(user);
       if (status === 201){
         updateUserData();
-        navigate("/");
+        navigate(location?.state?.from?.pathname || "/", { replace: true });
       } 
     } catch (error) {
       console.log(error);

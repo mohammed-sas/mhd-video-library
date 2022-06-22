@@ -8,12 +8,12 @@ import { useToggle } from "../../hooks/useToggle";
 import { useLike, useAuth, useHistory, useWatchLater } from "../../context";
 import {InfoAlert,SuccessAlert} from '../../components'
 import {NotesList} from "./notes";
+import { Video } from "context types/common.types";
 const SingleVideo = () => {
   const { videoId } = useParams();
-  const [video, setVideo] = useState({});
-  const { addToLikes, deleteFromLikes, likeState } = useLike();
-  const { addToWatchLater, deleteFromWatchLater, watchLaterState } =
-    useWatchLater();
+  const [video, setVideo] = useState<Video>({} as Video);
+  const likeCtx = useLike();
+   const watchLaterCtx= useWatchLater();
   const [loading, setLoading] = useState(true);
   const [liked, setLiked] = useToggle(false);
   const [saved, setSaved] = useToggle(false);
@@ -21,11 +21,11 @@ const SingleVideo = () => {
   const [alertMessage, setAlertMessage] = useState("");
   const [apiCalled, setApiCalled] = useState(false);
   const [processing, setProcessing] = useState(false);
-  const { currentUser } = useAuth();
-  const playerRef = useRef(null);
+  const authCtx= useAuth();
+  const playerRef = useRef<ReactPlayer>(null);
   const [playing,setPlaying] = useToggle(true);
   const navigate = useNavigate();
-  const { addToHistory } = useHistory();
+  const historyCtx= useHistory();
   useEffect(() => {
     const fetchVideos = async () => {
       try {
@@ -34,10 +34,10 @@ const SingleVideo = () => {
         setLoading(false);
         if (response.status === 200) {
           const result = response.data.videos.find(
-            (video) => video._id === videoId
+            (video:Video) => video._id === videoId
           );
           setVideo(result);
-          await addToHistory(result);
+          await historyCtx?.addToHistory(result);
         }
       } catch (error) {
         console.log(error);
@@ -47,14 +47,14 @@ const SingleVideo = () => {
     fetchVideos();
 
     const isLiked = () => {
-      const isExist = likeState.likes.find(
+      const isExist = likeCtx?.likeState.likes.find(
         (likedVideo) => likedVideo._id === videoId
       );
       isExist ? setLiked() : null;
     };
     isLiked();
     const isSaved = () => {
-      const isExist = watchLaterState.watchLater.find(
+      const isExist = watchLaterCtx?.watchLaterState.watchLater.find(
         (watchedVideo) => watchedVideo._id === videoId
       );
       isExist ? setSaved() : null;
@@ -64,7 +64,7 @@ const SingleVideo = () => {
 
   const likehandler = async () => {
     try {
-      if (!currentUser.user) {
+      if (!authCtx?.currentUserState.user) {
         navigate("/login");
       }
       setLiked();
@@ -72,14 +72,14 @@ const SingleVideo = () => {
         setApiCalled(true);
         setProcessing(true);
         setAlertMessage("Adding to your liked list");
-        await addToLikes(video);
+        await likeCtx?.addToLikes(video);
         setProcessing(false);
         setAlertMessage("Added to your liked list");
       } else {
         setApiCalled(true);
         setProcessing(true);
         setAlertMessage("removing from liked list");
-        await deleteFromLikes(video._id);
+        await likeCtx?.deleteFromLikes(video._id);
         setProcessing(false);
         setAlertMessage("removed from liked list");
       }
@@ -89,7 +89,7 @@ const SingleVideo = () => {
   };
   const playlistHandler = async () => {
     try {
-      if (!currentUser.user) {
+      if (!authCtx?.currentUserState.user) {
         navigate("/login");
       }
       setShowModal();
@@ -99,7 +99,7 @@ const SingleVideo = () => {
   };
   const watchLaterHandler = async () => {
     try {
-      if (!currentUser.user) {
+      if (!authCtx?.currentUserState.user) {
         navigate("/login");
       }
       setSaved();
@@ -107,14 +107,14 @@ const SingleVideo = () => {
         setApiCalled(true);
         setProcessing(true);
         setAlertMessage("adding to watch later");
-        await addToWatchLater(video);
+        await watchLaterCtx?.addToWatchLater(video);
         setProcessing(false);
         setAlertMessage("added to watch later");
       } else {
         setApiCalled(true);
         setProcessing(true);
         setAlertMessage("removing from watch later");
-        await deleteFromWatchLater(video._id);
+        await watchLaterCtx?.deleteFromWatchLater(video._id);
         setProcessing(false);
         setAlertMessage("removed from watch later");
       }

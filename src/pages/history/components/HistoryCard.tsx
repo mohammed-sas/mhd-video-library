@@ -1,11 +1,14 @@
+import { Video } from 'context types/common.types';
 import { useHistory } from '../../../context';
 import classes from './historyCard.module.css';
-
-const HistoryCard = ({video}) => {
-    const {deleteHistory} = useHistory();
-    const removeHandler=async (id)=>{
+type Prop={
+    video:Video,
+}
+const HistoryCard = ({video}:Prop) => {
+    const historyCtx= useHistory();
+    const removeHandler=async (id:string)=>{
         try{
-            await deleteHistory(id);
+            await historyCtx?.deleteHistory(id);
         }catch(error){
             console.log(error);
         }

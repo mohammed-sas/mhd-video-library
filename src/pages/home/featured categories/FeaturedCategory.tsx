@@ -6,7 +6,7 @@ import backhand from '../../../assets/backhandSmash.webp'
 import { useNavigate } from 'react-router-dom'
 const FeaturedCategory = () => {
     const navigate = useNavigate();
-    const clickHandler=(category)=>{
+    const clickHandler=(category:string)=>{
         navigate(`/explore/?type=${category}`);
     }
     return (

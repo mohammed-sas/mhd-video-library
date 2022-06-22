@@ -1,44 +1,56 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import "./login.css";
-import { Link, useNavigate,useLocation } from "react-router-dom";
-import { useAuth,useNotes,usePlaylist,useWatchLater,useHistory,useLike } from "../../context";
-
+import { Link, useNavigate, useLocation, Location } from "react-router-dom";
+import {
+  useAuth,
+  useNotes,
+  usePlaylist,
+  useWatchLater,
+  useHistory,
+  useLike,
+} from "../../context";
+type LocationProps = {
+  state: {
+    from: Location;
+  };
+};
 const Login = () => {
-  const { login } = useAuth();
+  const authCtx = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
-  const {historyDispatch}=useHistory();
-  const {likeDispatch} = useLike();
-  const {playlistDispatch} = usePlaylist();
-  const {watchLaterDispatch} = useWatchLater();
-  const {notesDispatch} = useNotes();
+
+  const location = useLocation() as unknown as LocationProps;
+  const historyCtx = useHistory();
+  const likeCtx = useLike();
+  const playlistCtx = usePlaylist();
+  const watchLaterCtx = useWatchLater();
+  const notesCtx = useNotes();
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser({
       ...user,
       [name]: value,
     });
   };
-  const updateUserData=()=>{
-    historyDispatch({type:"UPDATE",payload:[]});
-    likeDispatch({type:"UPDATE",payload:[]});
-    notesDispatch({type:"UPDATE",payload:[]});
-    playlistDispatch({type:"UPDATE",payload:[]});
-    watchLaterDispatch({type:"UPDATE",payload:[]});
-  }
-  const submitHandler = async (e) => {
+  const updateUserData = () => {
+    historyCtx?.historyDispatch({ type: "UPDATE", payload: [] });
+    likeCtx?.likeDispatch({ type: "UPDATE", payload: [] });
+    notesCtx?.notesDispatch({ type: "UPDATE", payload: [] });
+    playlistCtx?.playlistDispatch({ type: "UPDATE", payload: [] });
+    watchLaterCtx?.watchLaterDispatch({ type: "UPDATE", payload: [] });
+  };
+  const submitHandler = async (e: React.SyntheticEvent) => {
     try {
       e.preventDefault();
-      let status = await login(user);
+      let status = await authCtx?.login(user);
 
-      if (status === 200){
+      if (status === 200) {
         updateUserData();
-        navigate(location?.state?.from?.pathname || -1, { replace: true });
-      }  
+        navigate(location?.state?.from?.pathname || "/", { replace: true });
+      }
     } catch (error) {}
   };
   const guestHandler = async () => {
@@ -47,10 +59,10 @@ const Login = () => {
         email: "mohammed@gmail.com",
         password: "test12345678@",
       };
-      let status = await login(guestUser);
+      let status = await authCtx?.login(guestUser);
       if (status) {
         updateUserData();
-        navigate(location?.state?.from?.pathname || -1, { replace: true });
+        navigate(location?.state?.from?.pathname || "/", { replace: true });
       }
     } catch (error) {
       console.log(error);
