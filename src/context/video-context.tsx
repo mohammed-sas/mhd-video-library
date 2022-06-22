@@ -1,9 +1,10 @@
 import axios from "axios";
 import { createContext, useContext,useEffect,useState } from "react";
+import {Prop} from '../context types/common.types';
+import {VideoListsContext,VideoListState} from '../context types/video.types';
+const VideoContext = createContext<VideoListsContext|null>(null);
 
-const VideoContext = createContext(null);
-
-const VideoProvider=({children})=>{
+const VideoProvider=({children}:Prop)=>{
     const value = useVideoActions();
     return(
         <VideoContext.Provider value={value}>{children}</VideoContext.Provider>
@@ -12,7 +13,7 @@ const VideoProvider=({children})=>{
 
 
 const useVideoActions=()=>{
-    const [videoLists,setVideoLists] = useState({videos:[]});
+    const [videoLists,setVideoLists] = useState<VideoListState>({videos:[]});
 
    
     useEffect(()=>{
