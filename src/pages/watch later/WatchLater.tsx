@@ -1,7 +1,7 @@
 import classes from "./watchLater.module.css";
 import { useWatchLater } from "../../context";
 import { SideNavbar, VideoCard } from "../../components";
-const WatchLater = () => {
+const WatchLater = ():JSX.Element => {
   const watchLaterCtx = useWatchLater();
   return (
     <main className={classes["watchlater-container"]}>

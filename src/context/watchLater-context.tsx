@@ -6,7 +6,7 @@ import {WatchLaterContextInterface,Props,WatchLater} from '../context types/watc
 const WatchLaterContext = createContext<WatchLaterContextInterface|null>(null);
 
 
-const WatchLaterProvider=({children}:Props)=>{
+const WatchLaterProvider=({children}:Props):JSX.Element=>{
     const value = useWatchLaterActions();
 
     return(
@@ -48,7 +48,7 @@ const useWatchLaterActions=()=>{
 }
 
 
-const useWatchLater =()=>useContext(WatchLaterContext);
+const useWatchLater =():WatchLaterContextInterface|null=>useContext(WatchLaterContext);
 
 
 export {useWatchLater,WatchLaterProvider};

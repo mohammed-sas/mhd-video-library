@@ -4,7 +4,7 @@ import classes from './historyCard.module.css';
 type Prop={
     video:Video,
 }
-const HistoryCard = ({video}:Prop) => {
+const HistoryCard = ({video}:Prop):JSX.Element => {
     const historyCtx= useHistory();
     const removeHandler=async (id:string)=>{
         try{

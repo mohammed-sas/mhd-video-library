@@ -1,6 +1,6 @@
 
 import {UserState,UserActions} from '../context types/auth.types'
-const authReducer = (state:UserState, actions:UserActions) => {
+const authReducer = (state:UserState, actions:UserActions):UserState => {
   switch (actions.type) {
     case "SET_USER":
       return {

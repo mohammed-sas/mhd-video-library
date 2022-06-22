@@ -4,7 +4,7 @@ import {Prop} from '../context types/common.types';
 import {VideoListsContext,VideoListState} from '../context types/video.types';
 const VideoContext = createContext<VideoListsContext|null>(null);
 
-const VideoProvider=({children}:Prop)=>{
+const VideoProvider=({children}:Prop):JSX.Element=>{
     const value = useVideoActions();
     return(
         <VideoContext.Provider value={value}>{children}</VideoContext.Provider>
@@ -36,6 +36,6 @@ const useVideoActions=()=>{
     return {videoLists};
 }
 
-const useVideo=()=>useContext(VideoContext);
+const useVideo=():VideoListsContext|null=>useContext(VideoContext);
 
 export {useVideo,VideoProvider};

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./login.css";
-import { Link, useNavigate, useLocation, Location } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   useAuth,
   useNotes,
@@ -9,16 +9,17 @@ import {
   useHistory,
   useLike,
 } from "../../context";
-type LocationProps = {
-  state: {
-    from: Location;
-  };
-};
-const Login = () => {
+
+type LocationState = {
+  from: {
+    pathname: string;
+  }
+}
+const Login = ():JSX.Element => {
   const authCtx = useAuth();
   const navigate = useNavigate();
 
-  const location = useLocation() as unknown as LocationProps;
+  const location = useLocation();
   const historyCtx = useHistory();
   const likeCtx = useLike();
   const playlistCtx = usePlaylist();
@@ -49,7 +50,8 @@ const Login = () => {
 
       if (status === 200) {
         updateUserData();
-        navigate(location?.state?.from?.pathname || "/", { replace: true });
+        const from = (location.state as LocationState)?.from;
+        navigate(from?.pathname || "/", { replace: true });
       }
     } catch (error) {}
   };
@@ -62,7 +64,8 @@ const Login = () => {
       let status = await authCtx?.login(guestUser);
       if (status) {
         updateUserData();
-        navigate(location?.state?.from?.pathname || "/", { replace: true });
+        const from = (location.state as LocationState)?.from;
+        navigate(from?.pathname || "/", { replace: true });
       }
     } catch (error) {
       console.log(error);

@@ -9,7 +9,7 @@ type ActionModalProps={
   setShowModal:()=>void
 }
 
-const ActionsModal = ({ playlistVideo, setShowModal }:ActionModalProps) => {
+const ActionsModal = ({ playlistVideo, setShowModal }:ActionModalProps):JSX.Element => {
   const [newPlayList, setNewPlayList] = useState("");
   const [alertMessage, setAlertMessage] = useState("");
   const [apiCalled, setApiCalled] = useState(false);

@@ -1,6 +1,6 @@
 
 
-const NotFound = () => {
+const NotFound = ():JSX.Element => {
     return (
         <div>
             <h2 className="centered-text text-white">Error 404, page not found</h2>

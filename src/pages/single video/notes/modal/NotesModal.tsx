@@ -16,7 +16,7 @@ type NewNote={
   time:string
 }
 
-const NotesModal = ({ videoId, player, setShowNotesForm,setPlaying }:Prop) => {
+const NotesModal = ({ videoId, player, setShowNotesForm,setPlaying }:Prop):JSX.Element => {
   const notesCtx= useNotes();
   const [newNote, setNewNote] = useState<NewNote>({
     title:"",

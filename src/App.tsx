@@ -15,7 +15,7 @@ import {
   NotFound
 } from "./pages";
 import Profile from "./pages/profile/Profile";
-function App() {
+function App():JSX.Element {
   return (
     <div className="App bg-black">
       <Navbar />

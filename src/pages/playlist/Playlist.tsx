@@ -2,7 +2,7 @@ import classes from "./playlist.module.css";
 import SideNavbar from "../../components/side navbar/SideNavbar";
 import { usePlaylist } from "../../context/playlist-context";
 import PlaylistCard from "./playlist card/PlaylistCard";
-const Playlist = () => {
+const Playlist = ():JSX.Element => {
   const playlistCtx = usePlaylist();
   return (
     <main className={classes["playlists-container"]}>

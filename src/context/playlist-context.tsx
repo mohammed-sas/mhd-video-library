@@ -7,7 +7,7 @@ import { Video } from "../context types/common.types";
 const PlaylistContext = createContext<ContextInterface|null>(null);
 
 
-const PlaylistProvider=({children}:Prop)=>{
+const PlaylistProvider=({children}:Prop):JSX.Element=>{
     const value = usePlaylistAction();
     
     return(
@@ -73,7 +73,7 @@ const usePlaylistAction=()=>{
 }
 
 
-const usePlaylist =()=>useContext(PlaylistContext);
+const usePlaylist =():ContextInterface|null=>useContext(PlaylistContext);
 
 
 export {usePlaylist,PlaylistProvider};

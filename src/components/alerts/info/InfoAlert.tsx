@@ -4,7 +4,7 @@ import {useState,useEffect} from 'react';
 type InfoProp={
   message:string
 }
-const InfoAlert = ({ message }:InfoProp) => {
+const InfoAlert = ({ message }:InfoProp):JSX.Element => {
   const [hide, setHide] = useState<boolean>(false);
   useEffect(() => {
     let id = setTimeout(() => {

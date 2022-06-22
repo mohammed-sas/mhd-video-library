@@ -5,7 +5,7 @@ import { Prop, Video } from "context types/common.types";
 import { ContextInterface } from "context types/like.types";
 const LikeContext = createContext<ContextInterface | null>(null);
 
-const LikeProvider = ({ children }: Prop) => {
+const LikeProvider = ({ children }: Prop):JSX.Element => {
   const value = useLikeActions();
   return <LikeContext.Provider value={value}>{children}</LikeContext.Provider>;
 };
@@ -42,6 +42,6 @@ const useLikeActions = () => {
   return { likeState, addToLikes, deleteFromLikes, likeDispatch };
 };
 
-const useLike = () => useContext(LikeContext);
+const useLike = ():ContextInterface|null => useContext(LikeContext);
 
 export { useLike, LikeProvider };

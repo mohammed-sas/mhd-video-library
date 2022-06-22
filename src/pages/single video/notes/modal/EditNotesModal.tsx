@@ -8,7 +8,7 @@ type Prop={
   setPlaying:()=>void
 }
 
-const EditNotesModal = ({note,setShowEditForm,setPlaying}:Prop) => {
+const EditNotesModal = ({note,setShowEditForm,setPlaying}:Prop):JSX.Element => {
     const notesCtx= useNotes();
     const [editedNote,setEditedNote]=useState({
       ...note

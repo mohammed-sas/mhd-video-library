@@ -1,6 +1,6 @@
 import {HistoryState,HistoryActions} from '../context types/history.types'
 
-const historyReducer = (state:HistoryState, actions:HistoryActions) => {
+const historyReducer = (state:HistoryState, actions:HistoryActions):HistoryState => {
   switch (actions.type) {
     case "ADD":
       return {

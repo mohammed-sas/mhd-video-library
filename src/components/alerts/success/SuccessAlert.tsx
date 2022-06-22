@@ -4,7 +4,7 @@ import classes from '../alert.module.css';
 type SuccessProp={
   message:string
 }
-const SuccessAlert = ({message}:SuccessProp) => {
+const SuccessAlert = ({message}:SuccessProp):JSX.Element => {
     const [hide,setHide] = useState<boolean>(false);
     useEffect(()=>{
         let id = setTimeout(()=>{

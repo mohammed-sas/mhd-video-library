@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Server, Model, RestSerializer } from "miragejs";
 import {
   loginHandler,

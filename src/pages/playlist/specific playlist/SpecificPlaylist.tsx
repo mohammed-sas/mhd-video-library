@@ -4,7 +4,7 @@ import SideNavbar from "../../../components/side navbar/SideNavbar";
 import { usePlaylist } from "../../../context/playlist-context";
 import VideoCard from "../../../components/video card/VideoCard";
 
-const SpecificPlaylist = () => {
+const SpecificPlaylist = ():JSX.Element => {
   const playlistCtx= usePlaylist();
   const { playlistId } = useParams();
   return (

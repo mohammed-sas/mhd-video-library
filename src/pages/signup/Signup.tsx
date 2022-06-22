@@ -1,17 +1,19 @@
 import "./signup.css";
 import "../login/login.css";
 import React, { useState } from "react";
-import { Link, useNavigate,Location,useLocation } from "react-router-dom";
+import { Link, useNavigate,useLocation } from "react-router-dom";
 import { useToggle } from "../../hooks/useToggle";
 import { useAuth,useNotes,usePlaylist,useWatchLater,useHistory,useLike } from "../../context";
-type LocationProps = {
-  state: {
-    from: Location;
-  };
-};
-const Signup = () => {
+type LocationState = {
+  from: {
+    pathname: string;
+  }
+}
+
+const Signup = ():JSX.Element => {
   const navigate = useNavigate();
-  const location = useLocation() as unknown as LocationProps;
+  const location = useLocation();
+
   const [showpass, setShowpass] = useToggle(false);
   const [showConfirmpass, setShowConfirmpass] = useToggle(false);
   const authCtx= useAuth();
@@ -57,7 +59,8 @@ const Signup = () => {
       const status = await authCtx?.signUp(user);
       if (status === 201){
         updateUserData();
-        navigate(location?.state?.from?.pathname || "/", { replace: true });
+        const from = (location.state as LocationState)?.from;
+        navigate(from?.pathname || "/", { replace: true });
       } 
     } catch (error) {
       console.log(error);

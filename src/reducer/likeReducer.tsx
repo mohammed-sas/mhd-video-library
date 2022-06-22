@@ -1,6 +1,6 @@
 import { LikeState, LikeActions } from "../context types/like.types";
 
-const likeReducer = (state: LikeState, actions: LikeActions) => {
+const likeReducer = (state: LikeState, actions: LikeActions):LikeState => {
   switch (actions.type) {
     case "ADD":
       return {

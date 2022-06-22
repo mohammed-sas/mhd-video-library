@@ -9,7 +9,7 @@ type Prop={
     note:Notes,
     setPlaying:()=>void
 }
-const NotesCard = ({note,setPlaying}:Prop) => {
+const NotesCard = ({note,setPlaying}:Prop):JSX.Element => {
     const notesCtx= useNotes();
     const [showEditForm,setShowEditForm] = useToggle(false);
 

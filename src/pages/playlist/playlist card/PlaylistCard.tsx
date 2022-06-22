@@ -8,7 +8,7 @@ import { Playlist } from "context types/playlist.types";
 type PlaylistCardProp={
   list:Playlist
 }
-const PlaylistCard = ({ list }:PlaylistCardProp) => {
+const PlaylistCard = ({ list }:PlaylistCardProp):JSX.Element => {
   const navigate = useNavigate();
   const [alertMessage,setAlertMessage] = useState<string>("");
   const [apiCalled,setApiCalled] = useState<boolean>(false);

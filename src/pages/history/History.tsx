@@ -2,7 +2,7 @@ import { SideNavbar } from "../../components";
 import { useHistory } from "../../context";
 import classes from "./history.module.css";
 import HistoryCard from "./components/HistoryCard";
-const History = () => {
+const History = ():JSX.Element => {
     const historyCtx = useHistory();
     const clearHistoryHandler=async ()=>{
         try{

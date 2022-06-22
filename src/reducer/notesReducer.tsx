@@ -1,5 +1,5 @@
 import {NotesState,NotesActions} from '../context types/notes.types'
-const notesReducer=(state:NotesState,actions:NotesActions)=>{
+const notesReducer=(state:NotesState,actions:NotesActions):NotesState=>{
     switch(actions.type){
         case "ADD":
             return{

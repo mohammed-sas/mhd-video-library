@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import hero from "../../assets/astrox.png";
 import FeaturedCategory from "./featured categories/FeaturedCategory";
 import classes from "./home.module.css";
-const Home = () => {
+const Home = ():JSX.Element => {
   const navigate = useNavigate();
   return (
     <main className={`${classes["home-container"]} bg-black`}>

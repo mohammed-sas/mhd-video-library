@@ -14,7 +14,7 @@ let initialState = {
 
 const AuthContext = createContext<ContextInterface | null>(null);
 
-const AuthProvider = ({ children }: Prop) => {
+const AuthProvider = ({ children }: Prop):JSX.Element => {
   const auth = useProvideAuth();
   return <AuthContext.Provider value={auth}> {children} </AuthContext.Provider>;
 };
@@ -22,6 +22,7 @@ const AuthProvider = ({ children }: Prop) => {
 const useProvideAuth = () => {
   const [currentUserState, authDispatch] = useReducer(authReducer, initialState);
   const navigate = useNavigate();
+  // eslint-disable-next-line 
   const signUp = async (user: SignupData): Promise<any> => {
     try {
       const response = await axios.post("/api/auth/signup", user);
@@ -35,7 +36,7 @@ const useProvideAuth = () => {
       console.log(error);
     }
   };
-
+// eslint-disable-next-line 
   const login = async (user: LoginData): Promise<any> => {
     try {
       const response = await axios.post("/api/auth/login", user);
@@ -63,6 +64,6 @@ const useProvideAuth = () => {
   };
 };
 
-const useAuth = () => useContext(AuthContext);
+const useAuth = ():ContextInterface | null => useContext(AuthContext);
 
 export { useAuth, AuthProvider };

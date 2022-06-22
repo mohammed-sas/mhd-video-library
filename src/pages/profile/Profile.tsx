@@ -1,7 +1,7 @@
 import classes from "./profile.module.css";
 import { useAuth } from "../../context";
 
-const Profile = () => {
+const Profile = ():JSX.Element => {
   const authCtx = useAuth();
 
   return (

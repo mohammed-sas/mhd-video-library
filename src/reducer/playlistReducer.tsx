@@ -1,6 +1,6 @@
 import {PlayListState,PlaylistActions} from '../context types/playlist.types'
 
-const playlistReducer = (state:PlayListState, actions:PlaylistActions) => {
+const playlistReducer = (state:PlayListState, actions:PlaylistActions):PlayListState => {
   switch (actions.type) {
     case "UPDATE":
       return {

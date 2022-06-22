@@ -11,7 +11,7 @@ type Prop={
   setPlaying:()=>void
 }
 
-const NotesList = ({ videoId, playerRef,setPlaying }:Prop) => {
+const NotesList = ({ videoId, playerRef,setPlaying }:Prop):JSX.Element=> {
   const notesCtx= useNotes();
   const authCtx= useAuth();
   const navigate = useNavigate();

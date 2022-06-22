@@ -18,7 +18,7 @@ type VideoCardProp={
   setPlaylistVideo?:(video:Video)=>void
 }
 
-const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }:VideoCardProp) => {
+const VideoCard = ({ video, setShowModal, setPlaylistVideo, playlistId }:VideoCardProp):JSX.Element => {
   const [showMenu, setShowMenu] = useToggle(false);
   const playlistContext = usePlaylist();
   const authContext= useAuth();

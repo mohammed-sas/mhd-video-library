@@ -2,7 +2,7 @@ import classes from './liked.module.css'
 import SideNavbar from '../../components/side navbar/SideNavbar';
 import {useLike} from '../../context/like-context'
 import VideoCard from '../../components/video card/VideoCard'
-const Liked = () => {
+const Liked = ():JSX.Element => {
     const likeContext= useLike();
     return (
         <main className={classes["likes-page"]}>

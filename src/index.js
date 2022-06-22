@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import { makeServer } from "./server";
+import { makeServer } from "./server";// eslint-disable-line
 import { BrowserRouter } from "react-router-dom";
 import {
   LikeProvider,

@@ -5,7 +5,7 @@ import {Prop} from "../context types/common.types";
 import {ContextInterface, NoteData, Notes} from '../context types/notes.types';
 const NotesContext = createContext<ContextInterface|null>(null);
 
-const NotesProvider=({children}:Prop)=>{
+const NotesProvider=({children}:Prop):JSX.Element=>{
     const value = useNotesActions();
     return(
         <NotesContext.Provider value={value}>{children}</NotesContext.Provider>
@@ -57,6 +57,6 @@ const useNotesActions=()=>{
     return {notesState,addNotes,deleteNote,updateNote,notesDispatch};
 }
 
-const useNotes=()=>useContext(NotesContext);
+const useNotes=():ContextInterface|null=>useContext(NotesContext);
 
 export {NotesProvider,useNotes};

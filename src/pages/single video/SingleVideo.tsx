@@ -9,9 +9,18 @@ import { useLike, useAuth, useHistory, useWatchLater } from "../../context";
 import {InfoAlert,SuccessAlert} from '../../components'
 import {NotesList} from "./notes";
 import { Video } from "context types/common.types";
-const SingleVideo = () => {
+const SingleVideo = ():JSX.Element => {
   const { videoId } = useParams();
-  const [video, setVideo] = useState<Video>({} as Video);
+  const [video, setVideo] = useState<Video>({
+    _id:"",
+    youtubeId:"",
+    title:"",
+    description: "",
+    videoThumbnail: "",
+    channelTitle: "",
+    category: "",
+    channelThumbnail: ""
+  });
   const likeCtx = useLike();
    const watchLaterCtx= useWatchLater();
   const [loading, setLoading] = useState(true);
@@ -169,7 +178,7 @@ const SingleVideo = () => {
             <p className="text-white">{video.description}</p>
           </div>
           
-          <NotesList videoId={videoId} playerRef={playerRef} setPlaying={setPlaying} />
+          <NotesList videoId={videoId?videoId:""} playerRef={playerRef} setPlaying={setPlaying} />
         
           {showModal ? (
             <ActionsModal setShowModal={setShowModal} playlistVideo={video} />

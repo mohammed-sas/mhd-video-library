@@ -5,7 +5,7 @@ import {Prop,ContextInterface} from '../context types/history.types'
 import { Video } from "context types/common.types";
 const HistoryContext = createContext<ContextInterface|null>(null);
 
-const HistoryProvider =({children}:Prop) =>{
+const HistoryProvider =({children}:Prop):JSX.Element =>{
     const value = useHistoryActions();
     return (
         <HistoryContext.Provider value={value}>{children}</HistoryContext.Provider>
@@ -56,6 +56,6 @@ const useHistoryActions=()=>{
     return {historyState ,addToHistory,deleteHistory,clearAllHistory,historyDispatch};
 }
 
-const useHistory =()=> useContext(HistoryContext);
+const useHistory =():ContextInterface|null=> useContext(HistoryContext);
 
 export {useHistory,HistoryProvider};

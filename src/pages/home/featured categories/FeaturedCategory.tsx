@@ -4,7 +4,7 @@ import footwork from '../../../assets/footwork.webp'
 import defense from '../../../assets/defense.webp'
 import backhand from '../../../assets/backhandSmash.webp'
 import { useNavigate } from 'react-router-dom'
-const FeaturedCategory = () => {
+const FeaturedCategory = ():JSX.Element => {
     const navigate = useNavigate();
     const clickHandler=(category:string)=>{
         navigate(`/explore/?type=${category}`);
