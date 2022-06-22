@@ -1,7 +1,6 @@
 import "./App.css";
 import { Navbar, RequireAuth } from "./components";
 import { Routes, Route } from "react-router";
-import Mockman from "mockman-js";
 import {
   Home,
   Login,
@@ -74,7 +73,6 @@ function App() {
             </RequireAuth>
           }
         />
-        <Route path="/mock-api" element={<Mockman />} />
         <Route path="*" element={<NotFound/>}/>
       </Routes>
     </div>

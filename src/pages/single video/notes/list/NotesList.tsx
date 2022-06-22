@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import ReactPlayer from 'react-player';
 type Prop={
   videoId:string,
-  playerRef:ReactPlayer,
+  playerRef:React.RefObject<ReactPlayer>,
   setPlaying:()=>void
 }
 

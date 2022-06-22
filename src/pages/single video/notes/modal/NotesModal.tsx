@@ -5,14 +5,22 @@ import { useNotes } from "../../../../context";
 import ReactPlayer from 'react-player'
 type Prop={
   videoId:string,
-  player:ReactPlayer,
+  player:React.RefObject<ReactPlayer>,
   setShowNotesForm:()=>void,
   setPlaying:()=>void
 }
 
+type NewNote={
+  title:string,
+  description:string,
+  time:string
+}
+
 const NotesModal = ({ videoId, player, setShowNotesForm,setPlaying }:Prop) => {
   const notesCtx= useNotes();
-  const [newNote, setNewNote] = useState({
+  const [newNote, setNewNote] = useState<NewNote>({
+    title:"",
+    description:"",
     time: convertTime(player?.current?.getCurrentTime()),
   });
   const changeHandler = (e:React.ChangeEvent<HTMLInputElement>|React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -22,7 +30,7 @@ const NotesModal = ({ videoId, player, setShowNotesForm,setPlaying }:Prop) => {
       [name]: value,
     });
   };
-  const submitHandler = async (e) => {
+  const submitHandler = async (e:React.SyntheticEvent) => {
     try {
       e.preventDefault();
       await notesCtx?.addNotes(videoId, newNote);

@@ -6,11 +6,12 @@ import SideNavbar from "../../components/side navbar/SideNavbar";
 import { useToggle } from "../../hooks/useToggle";
 import ActionsModal from "../../components/video actions modal/ActionsModal";
 import { useSearchParams } from "react-router-dom";
+import {Video} from '../../context types/common.types'
 const VideoListing = () => {
-  const [lists, setLists] = useState([]);
+  const [lists, setLists] = useState<Video[]>([] as Video[]);
   const [showModal, setShowModal] = useToggle(false);
-  const [playlistVideo, setPlaylistVideo] = useState(null);
-  const [categoryVideos,setCategoryVideos] = useState([]);
+  const [playlistVideo, setPlaylistVideo] = useState<Video>({} as Video);
+  const [categoryVideos,setCategoryVideos] = useState<Video[]>([] as Video[]);
   const [category,setCategory]=useState("all");
   const [searchParams,setSearchParams]=useSearchParams();
   const type = searchParams.get("type");
@@ -23,7 +24,7 @@ const VideoListing = () => {
         if (response.status === 200){
            setLists(response.data.videos);
            if(type){
-             const result = response.data.videos.filter(video=>video.category === type);
+             const result = response.data.videos.filter((video:Video)=>video.category === type);
              setCategoryVideos(result);
              setCategory(type);
            }else{
@@ -36,7 +37,7 @@ const VideoListing = () => {
     };
     fetchVideos();
   }, []);
-  const categoryHandler=(category)=>{
+  const categoryHandler=(category:string)=>{
     setSearchParams({"type":category});
     setCategory(category);
     if(category === "all"){
@@ -72,7 +73,6 @@ const VideoListing = () => {
       </div>
       {showModal ? (
         <ActionsModal
-          setPlaylistVideo={setPlaylistVideo}
           playlistVideo={playlistVideo}
           setShowModal={setShowModal}
         />
