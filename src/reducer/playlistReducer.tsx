@@ -22,7 +22,7 @@ const playlistReducer = (state:PlayListState, { type, payload }:PlaylistActions)
       return {
         ...state,
         playlists: [
-          ...state?.playlists?.filter((list) => list._id !== payload?._id),
+          ...state?.playlists?.filter((list) => list._id !== payload._id),
           payload,
         ],
       };
