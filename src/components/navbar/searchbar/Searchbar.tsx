@@ -1,20 +1,21 @@
-import { useState } from "react";
+import { Video } from "context types/common.types";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { useVideo } from "../../../context/";
+import { useVideo } from "../../../context";
 import classes from "./searchBar.module.css";
 
-const Searchbar = () => {
-  const { videoLists } = useVideo();
-  const [searchList, setSearchList] = useState([]);
+const Searchbar = ():JSX.Element => {
+  const videoState = useVideo();
+  const [searchList, setSearchList] = useState<Video[]|undefined>([]);
   const navigate = useNavigate();
-  const changeHandler = (e) => {
+  const changeHandler = (e:React.ChangeEvent<HTMLInputElement>) => {
     let searchString = e.target.value.trim().toLowerCase();
     let queryLen = searchString.length;
     if (queryLen === 0) {
       setSearchList([]);
       return;
     }
-    let lists = videoLists.videos.filter((video) => {
+    let lists = videoState?.videoLists.videos.filter((video:Video) => {
       return (
         video.category.substring(0, queryLen) === searchString ||
         video.title.toLowerCase().match(searchString)
@@ -23,7 +24,7 @@ const Searchbar = () => {
     setSearchList(lists);
   };
 
-  const clickHandler = (id) => {
+  const clickHandler = (id:string) => {
     navigate(`/explore/${id}`);
     setSearchList([]);
   };
@@ -37,7 +38,7 @@ const Searchbar = () => {
         onChange={changeHandler}
       />
       <ul className={classes["search-lists"]}>
-        {searchList.map((video) => {
+        {searchList?.map((video) => {
           return (
             <li key={video._id} onClick={() => clickHandler(video._id)}>
               <p className="text-white">{video.title}</p>

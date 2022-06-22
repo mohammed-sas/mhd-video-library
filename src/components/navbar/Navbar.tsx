@@ -2,9 +2,9 @@ import classes from "./navbar.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/auth-context";
 import { useToggle } from "../../hooks/useToggle";
-import Searchbar from "../navbar/searchbar/Searchbar";
+import Searchbar from "./searchbar/Searchbar";
 import logo from "../../assets/logo.webp";
-const Navbar = () => {
+const Navbar = ():JSX.Element => {
   const { currentUserState:currentUser, logout } = useAuth();
   const [showSideBar, setShowSidebar] = useToggle(false);
   const navigate = useNavigate();
